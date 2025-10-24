@@ -649,4 +649,120 @@ if (typeof document !== 'undefined') {
     </div>
   </div>`;
   document.body.insertAdjacentHTML('beforeend', modalsHTML);
+  
+  // Add reports modals
+  const reportsModalsHTML = `
+  <!-- Modal de Programação -->
+  <div id="programacaoModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Relatório de Programação</h2>
+        </div>
+        <button onclick="closeProgramacaoModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+      </div>
+      <div class="p-6">
+        <div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div><label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Data Início:</label><input type="date" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"></div>
+          <div><label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Data Fim:</label><input type="date" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"></div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 text-center">
+          <p class="text-gray-600 dark:text-gray-400">Selecione o período para gerar o relatório de programação</p>
+        </div>
+      </div>
+      <div class="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700">
+        <button onclick="closeProgramacaoModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">Fechar</button>
+        <button class="px-6 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg transition-colors duration-200">Gerar Relatório</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Relatório de Pedidos -->
+  <div id="relatorioPedidosModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+          <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Relatório de Pedidos</h2>
+        </div>
+        <button onclick="closeRelatorioPedidosModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+      </div>
+      <div class="p-6">
+        <div class="mb-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div><label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Data Início:</label><input type="date" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"></div>
+          <div><label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Data Fim:</label><input type="date" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"></div>
+          <div><label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Status:</label><select class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"><option value="">Todos</option><option value="pendente">Pendente</option><option value="aprovado">Aprovado</option><option value="concluido">Concluído</option></select></div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 text-center">
+          <p class="text-gray-600 dark:text-gray-400">Selecione o período e status para gerar o relatório de pedidos</p>
+        </div>
+      </div>
+      <div class="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700">
+        <button onclick="closeRelatorioPedidosModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">Fechar</button>
+        <button class="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-lg transition-colors duration-200">Gerar Relatório</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Faturas -->
+  <div id="faturasModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+          <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Relatório de Faturas</h2>
+        </div>
+        <button onclick="closeFaturasModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+      </div>
+      <div class="p-6">
+        <div class="mb-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div><label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Mês/Ano:</label><input type="month" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-rose-500"></div>
+          <div><label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Status:</label><select class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-rose-500"><option value="">Todas</option><option value="paga">Paga</option><option value="pendente">Pendente</option><option value="vencida">Vencida</option></select></div>
+          <div><label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Tipo:</label><select class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-rose-500"><option value="">Todos</option><option value="mensal">Mensalidade</option><option value="adicional">Adicional</option></select></div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 text-center">
+          <p class="text-gray-600 dark:text-gray-400">Selecione os filtros para gerar o relatório de faturas</p>
+        </div>
+      </div>
+      <div class="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700">
+        <button onclick="closeFaturasModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">Fechar</button>
+        <button class="px-6 py-2 bg-rose-500 hover:bg-rose-600 text-white font-semibold rounded-lg transition-colors duration-200">Gerar Relatório</button>
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend', reportsModalsHTML);
+}
+
+// ===== MODAL DE PROGRAMAÇÃO =====
+function openProgramacaoModal() {
+  document.getElementById('programacaoModal').classList.remove('hidden');
+  document.getElementById('programacaoModal').classList.add('flex');
+}
+
+function closeProgramacaoModal() {
+  document.getElementById('programacaoModal').classList.remove('flex');
+  document.getElementById('programacaoModal').classList.add('hidden');
+}
+
+// ===== MODAL DE RELATÓRIO DE PEDIDOS =====
+function openRelatorioPedidosModal() {
+  document.getElementById('relatorioPedidosModal').classList.remove('hidden');
+  document.getElementById('relatorioPedidosModal').classList.add('flex');
+}
+
+function closeRelatorioPedidosModal() {
+  document.getElementById('relatorioPedidosModal').classList.remove('flex');
+  document.getElementById('relatorioPedidosModal').classList.add('hidden');
+}
+
+// ===== MODAL DE FATURAS =====
+function openFaturasModal() {
+  document.getElementById('faturasModal').classList.remove('hidden');
+  document.getElementById('faturasModal').classList.add('flex');
+}
+
+function closeFaturasModal() {
+  document.getElementById('faturasModal').classList.remove('flex');
+  document.getElementById('faturasModal').classList.add('hidden');
 }
