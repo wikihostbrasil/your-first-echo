@@ -881,6 +881,13 @@
     </div>
 
     <div id="drawerEstilosMusicais" class="fixed bottom-0 left-0 right-0 z-[46] bg-white dark:bg-gray-800 shadow-2xl transform translate-y-full transition-transform duration-300 flex flex-col" style="max-height: 85vh;">
+        <style>
+            @media (min-width: 768px) {
+                #drawerEstilosMusicais {
+                    max-height: 92vh !important;
+                }
+            }
+        </style>
         <div class="bg-pink-600 dark:bg-pink-700 p-4 flex items-center justify-between flex-shrink-0">
             <div class="flex items-center space-x-2">
                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -928,130 +935,152 @@
         <div class="p-6 overflow-y-auto flex-1">
             <!-- Tab Content - Padrão -->
             <div id="tabPadrao" class="estilos-tab-content">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                    <!-- Top Sertanejo with Dropdown -->
-                    <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4">
-                        <div class="flex items-start gap-3 mb-2">
-                            <input type="checkbox" id="topSertanejo_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500">
-                            <div class="flex-1">
-                                <label for="topSertanejo_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Top Sertanejo</label>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Só as Top do sertanejo</p>
+                <!-- Categoria: Hits do Momento -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b-2 border-pink-500">🔥 Hits do Momento</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        <!-- Top Sertanejo with Dropdown -->
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('topSertanejo_padrao', event)">
+                            <div class="flex items-start gap-3 mb-2">
+                                <input type="checkbox" id="topSertanejo_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="topSertanejo_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Top Sertanejo</label>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Só as Top do sertanejo</p>
+                                </div>
+                            </div>
+                            <button onclick="toggleMusicDropdown('sertanejoDropdown_padrao'); event.stopPropagation();" class="text-xs text-pink-600 dark:text-pink-400 hover:underline">Opções ▼</button>
+                            <div id="sertanejoDropdown_padrao" class="hidden mt-3 pl-4 space-y-2 border-l-2 border-pink-300 dark:border-pink-600">
+                                <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700 dark:text-gray-300">
+                                    <input type="radio" name="sertanejoFilter_padrao" value="top" checked class="w-4 h-4 text-pink-600">
+                                    <span>Só as Top</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700 dark:text-gray-300">
+                                    <input type="radio" name="sertanejoFilter_padrao" value="melhores" class="w-4 h-4 text-pink-600">
+                                    <span>Só as Melhores</span>
+                                </label>
                             </div>
                         </div>
-                        <button onclick="toggleMusicDropdown('sertanejoDropdown_padrao')" class="text-xs text-pink-600 dark:text-pink-400 hover:underline">Opções ▼</button>
-                        <div id="sertanejoDropdown_padrao" class="hidden mt-3 pl-4 space-y-2 border-l-2 border-pink-300 dark:border-pink-600">
-                            <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700 dark:text-gray-300">
-                                <input type="radio" name="sertanejoFilter_padrao" value="top" checked class="w-4 h-4 text-pink-600">
-                                <span>Só as Top</span>
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700 dark:text-gray-300">
-                                <input type="radio" name="sertanejoFilter_padrao" value="melhores" class="w-4 h-4 text-pink-600">
-                                <span>Só as Melhores</span>
-                            </label>
-                        </div>
-                    </div>
 
-                    <!-- Samba e Pagode -->
-                    <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4">
-                        <div class="flex items-start gap-3">
-                            <input type="checkbox" id="sambaPagode_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500">
-                            <div class="flex-1">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <label for="sambaPagode_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer">Samba e Pagode</label>
-                                    <span class="flex items-center gap-1 text-xs bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 px-2 py-0.5 rounded-full">
-                                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                        </svg>
-                                    </span>
+                        <!-- TikTok Hits -->
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('tiktokHits_padrao', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="tiktokHits_padrao" checked class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="tiktokHits_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">TikTok Hits</label>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Os hits virais do TikTok</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top Internacional -->
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('topInternacional_padrao', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="topInternacional_padrao" checked class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="topInternacional_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Top Internacional</label>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Os maiores Hits internacionais</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Top Internacional -->
-                    <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4">
-                        <div class="flex items-start gap-3">
-                            <input type="checkbox" id="topInternacional_padrao" checked class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500">
-                            <div class="flex-1">
-                                <label for="topInternacional_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Top Internacional</label>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Os maiores Hits internacionais</p>
+                <!-- Categoria: Talvez você possa gostar -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b-2 border-purple-500">💜 Talvez você possa gostar</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        <!-- Samba e Pagode -->
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('sambaPagode_padrao', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="sambaPagode_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <label for="sambaPagode_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer">Samba e Pagode</label>
+                                        <span class="flex items-center gap-1 text-xs bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 px-2 py-0.5 rounded-full">
+                                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dance Hits -->
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('danceHits_padrao', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="danceHits_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="danceHits_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Dance Hits</label>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">As melhores para dançar</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Happy Pop Hits -->
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('happyPop_padrao', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="happyPop_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="happyPop_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Happy Pop Hits</label>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Pop animado e positivo</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pop Drive -->
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('popDrive_padrao', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="popDrive_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="popDrive_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Pop Drive</label>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Pop para dirigir</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- TikTok Hits -->
-                    <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4">
-                        <div class="flex items-start gap-3">
-                            <input type="checkbox" id="tiktokHits_padrao" checked class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500">
-                            <div class="flex-1">
-                                <label for="tiktokHits_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">TikTok Hits</label>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Os hits virais do TikTok</p>
+                <!-- Categoria: Clássicos & Tradicionais -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b-2 border-blue-500">🎸 Clássicos & Tradicionais</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        <!-- Rock Clássico -->
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('rockClassico_padrao', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="rockClassico_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="rockClassico_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Rock Clássico</label>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Os clássicos do rock</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MPB -->
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('mpb_padrao', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="mpb_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="mpb_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">MPB</label>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Música Popular Brasileira</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Dance Hits -->
-                    <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4">
-                        <div class="flex items-start gap-3">
-                            <input type="checkbox" id="danceHits_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500">
-                            <div class="flex-1">
-                                <label for="danceHits_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Dance Hits</label>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">As melhores para dançar</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Happy Pop Hits -->
-                    <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4">
-                        <div class="flex items-start gap-3">
-                            <input type="checkbox" id="happyPop_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500">
-                            <div class="flex-1">
-                                <label for="happyPop_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Happy Pop Hits</label>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Pop animado e positivo</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pop Drive -->
-                    <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4">
-                        <div class="flex items-start gap-3">
-                            <input type="checkbox" id="popDrive_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500">
-                            <div class="flex-1">
-                                <label for="popDrive_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Pop Drive</label>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Pop para dirigir</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Rock Clássico -->
-                    <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4">
-                        <div class="flex items-start gap-3">
-                            <input type="checkbox" id="rockClassico_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500">
-                            <div class="flex-1">
-                                <label for="rockClassico_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Rock Clássico</label>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Os clássicos do rock</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Funk Brasil -->
-                    <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4">
-                        <div class="flex items-start gap-3">
-                            <input type="checkbox" id="funkBrasil_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500">
-                            <div class="flex-1">
-                                <label for="funkBrasil_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Funk Brasil</label>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Funkeiros do momento</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- MPB -->
-                    <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4">
-                        <div class="flex items-start gap-3">
-                            <input type="checkbox" id="mpb_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500">
-                            <div class="flex-1">
-                                <label for="mpb_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">MPB</label>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Música Popular Brasileira</p>
+                <!-- Categoria: Funk & Ritmos Brasileiros -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b-2 border-green-500">🎵 Funk & Ritmos Brasileiros</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        <!-- Funk Brasil -->
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('funkBrasil_padrao', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="funkBrasil_padrao" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="funkBrasil_padrao" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Funk Brasil</label>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Funkeiros do momento</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1060,40 +1089,210 @@
 
             <!-- Tab Content - Segunda -->
             <div id="tabSegunda" class="estilos-tab-content hidden">
-                <p class="text-gray-500 dark:text-gray-400 text-center py-8">Configure os estilos musicais para segunda-feira</p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                    <!-- Same structure as Padrão, but with _segunda suffix for IDs -->
+                <!-- Categoria: Hits do Momento -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b-2 border-pink-500">🔥 Hits do Momento</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('topSertanejo_segunda', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="topSertanejo_segunda" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="topSertanejo_segunda" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Top Sertanejo</label>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Só as Top do sertanejo</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('tiktokHits_segunda', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="tiktokHits_segunda" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="tiktokHits_segunda" class="font-medium text-gray-800 dark:text-white cursor-pointer block">TikTok Hits</label>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Os hits virais do TikTok</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('topInternacional_segunda', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="topInternacional_segunda" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="topInternacional_segunda" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Top Internacional</label>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Os maiores Hits internacionais</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b-2 border-purple-500">💜 Talvez você possa gostar</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('sambaPagode_segunda', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="sambaPagode_segunda" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="sambaPagode_segunda" class="font-medium text-gray-800 dark:text-white cursor-pointer">Samba e Pagode</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('danceHits_segunda', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="danceHits_segunda" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="danceHits_segunda" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Dance Hits</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Tab Content - Terça -->
             <div id="tabTerca" class="estilos-tab-content hidden">
-                <p class="text-gray-500 dark:text-gray-400 text-center py-8">Configure os estilos musicais para terça-feira</p>
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b-2 border-pink-500">🔥 Hits do Momento</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('topSertanejo_terca', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="topSertanejo_terca" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="topSertanejo_terca" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Top Sertanejo</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('tiktokHits_terca', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="tiktokHits_terca" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="tiktokHits_terca" class="font-medium text-gray-800 dark:text-white cursor-pointer block">TikTok Hits</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Tab Content - Quarta -->
             <div id="tabQuarta" class="estilos-tab-content hidden">
-                <p class="text-gray-500 dark:text-gray-400 text-center py-8">Configure os estilos musicais para quarta-feira</p>
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b-2 border-pink-500">🔥 Hits do Momento</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('topSertanejo_quarta', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="topSertanejo_quarta" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="topSertanejo_quarta" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Top Sertanejo</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('tiktokHits_quarta', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="tiktokHits_quarta" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="tiktokHits_quarta" class="font-medium text-gray-800 dark:text-white cursor-pointer block">TikTok Hits</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Tab Content - Quinta -->
             <div id="tabQuinta" class="estilos-tab-content hidden">
-                <p class="text-gray-500 dark:text-gray-400 text-center py-8">Configure os estilos musicais para quinta-feira</p>
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b-2 border-pink-500">🔥 Hits do Momento</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('topSertanejo_quinta', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="topSertanejo_quinta" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="topSertanejo_quinta" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Top Sertanejo</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('tiktokHits_quinta', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="tiktokHits_quinta" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="tiktokHits_quinta" class="font-medium text-gray-800 dark:text-white cursor-pointer block">TikTok Hits</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Tab Content - Sexta -->
             <div id="tabSexta" class="estilos-tab-content hidden">
-                <p class="text-gray-500 dark:text-gray-400 text-center py-8">Configure os estilos musicais para sexta-feira</p>
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b-2 border-pink-500">🔥 Hits do Momento</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('topSertanejo_sexta', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="topSertanejo_sexta" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="topSertanejo_sexta" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Top Sertanejo</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('tiktokHits_sexta', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="tiktokHits_sexta" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="tiktokHits_sexta" class="font-medium text-gray-800 dark:text-white cursor-pointer block">TikTok Hits</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Tab Content - Sábado -->
             <div id="tabSabado" class="estilos-tab-content hidden">
-                <p class="text-gray-500 dark:text-gray-400 text-center py-8">Configure os estilos musicais para sábado</p>
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b-2 border-pink-500">🔥 Hits do Momento</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('topSertanejo_sabado', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="topSertanejo_sabado" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="topSertanejo_sabado" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Top Sertanejo</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('tiktokHits_sabado', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="tiktokHits_sabado" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="tiktokHits_sabado" class="font-medium text-gray-800 dark:text-white cursor-pointer block">TikTok Hits</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Tab Content - Domingo -->
             <div id="tabDomingo" class="estilos-tab-content hidden">
-                <p class="text-gray-500 dark:text-gray-400 text-center py-8">Configure os estilos musicais para domingo</p>
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mb-4 pb-2 border-b-2 border-pink-500">🔥 Hits do Momento</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('topSertanejo_domingo', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="topSertanejo_domingo" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="topSertanejo_domingo" class="font-medium text-gray-800 dark:text-white cursor-pointer block">Top Sertanejo</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="estilo-item border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors p-4 cursor-pointer" onclick="toggleEstiloCheckbox('tiktokHits_domingo', event)">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="tiktokHits_domingo" class="mt-1 w-5 h-5 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500" onclick="event.stopPropagation()">
+                                <div class="flex-1">
+                                    <label for="tiktokHits_domingo" class="font-medium text-gray-800 dark:text-white cursor-pointer block">TikTok Hits</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -2262,6 +2461,19 @@
             dropdown.classList.toggle('hidden');
         }
 
+        // Toggle checkbox when clicking on the card
+        function toggleEstiloCheckbox(checkboxId, event) {
+            // Prevent triggering if clicking directly on checkbox or buttons
+            if (event.target.type === 'checkbox' || event.target.tagName === 'BUTTON' || event.target.type === 'radio') {
+                return;
+            }
+            
+            const checkbox = document.getElementById(checkboxId);
+            if (checkbox) {
+                checkbox.checked = !checkbox.checked;
+            }
+        }
+
         // Switch between music styles tabs
         function switchEstilosTab(tabName) {
             // Hide all tab contents
@@ -2290,7 +2502,11 @@
         // Filter music styles based on search
         function filterEstilosMusicais(searchTerm) {
             const term = searchTerm.toLowerCase().trim();
-            const allItems = document.querySelectorAll('.estilo-item');
+            const visibleContent = document.querySelector('.estilos-tab-content:not(.hidden)');
+            if (!visibleContent) return;
+            
+            const allItems = visibleContent.querySelectorAll('.estilo-item');
+            const categories = visibleContent.querySelectorAll('.mb-8');
             
             allItems.forEach(item => {
                 const label = item.querySelector('label');
@@ -2308,10 +2524,23 @@
                 }
             });
             
-            // If search is empty, show all items
+            // Hide/show categories based on visible items
+            categories.forEach(category => {
+                const visibleItems = category.querySelectorAll('.estilo-item[style=""], .estilo-item:not([style*="display: none"])');
+                if (term === '' || visibleItems.length > 0) {
+                    category.style.display = '';
+                } else {
+                    category.style.display = 'none';
+                }
+            });
+            
+            // If search is empty, show all items and categories
             if (term === '') {
                 allItems.forEach(item => {
                     item.style.display = '';
+                });
+                categories.forEach(category => {
+                    category.style.display = '';
                 });
             }
         }
@@ -2359,6 +2588,7 @@
         window.toggleIndeterminate = toggleIndeterminate;
         window.saveFileEdit = saveFileEdit;
         window.toggleMusicDropdown = toggleMusicDropdown;
+        window.toggleEstiloCheckbox = toggleEstiloCheckbox;
         window.saveEstilosMusicais = saveEstilosMusicais;
         window.switchEstilosTab = switchEstilosTab;
         window.filterEstilosMusicais = filterEstilosMusicais;
