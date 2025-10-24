@@ -3,7 +3,9 @@ let currentPedidoStep = 1;
 let pedidoData = {};
 
 function openPedidosModal() {
-  document.getElementById('pedidosModal').style.display = 'flex';
+  const modal = document.getElementById('pedidosModal');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
   currentPedidoStep = 1;
   pedidoData = {};
   updatePedidosStepDisplay();
@@ -16,7 +18,9 @@ function openPedidosModal() {
 }
 
 function closePedidosModal() {
-  document.getElementById('pedidosModal').style.display = 'none';
+  const modal = document.getElementById('pedidosModal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
   currentPedidoStep = 1;
   resetPedidosForm();
 }
