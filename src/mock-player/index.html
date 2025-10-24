@@ -81,7 +81,7 @@
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
-        /* Custom Select with Search */
+        /* Custom Select with Search - Enhanced */
         .custom-select {
             position: relative;
         }
@@ -89,21 +89,30 @@
         .custom-select-trigger {
             width: 100%;
             padding: 0.5rem 2.5rem 0.5rem 1rem;
-            border: 1px solid #d1d5db;
-            border-radius: 0.5rem;
+            border: 2px solid #d1d5db;
+            border-radius: 0.75rem;
             background: white;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         .dark .custom-select-trigger {
             background: #374151;
             border-color: #4b5563;
             color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .custom-select-trigger:hover {
-            border-color: #9ca3af;
+            border-color: #3b82f6;
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .dark .custom-select-trigger:hover {
+            border-color: #60a5fa;
         }
 
         .custom-select-trigger::after {
@@ -113,11 +122,31 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 0.75rem;
-            transition: transform 0.2s;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #6b7280;
+        }
+
+        .dark .custom-select-trigger::after {
+            color: #9ca3af;
+        }
+
+        .custom-select.active .custom-select-trigger {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 4px 6px rgba(59, 130, 246, 0.2);
+        }
+
+        .dark .custom-select.active .custom-select-trigger {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1), 0 4px 6px rgba(96, 165, 250, 0.2);
         }
 
         .custom-select.active .custom-select-trigger::after {
             transform: translateY(-50%) rotate(180deg);
+            color: #3b82f6;
+        }
+
+        .dark .custom-select.active .custom-select-trigger::after {
+            color: #60a5fa;
         }
 
         .custom-select-dropdown {
@@ -125,54 +154,97 @@
             top: 100%;
             left: 0;
             right: 0;
-            margin-top: 0.25rem;
+            margin-top: 0.5rem;
             background: white;
-            border: 1px solid #d1d5db;
-            border-radius: 0.5rem;
-            max-height: 300px;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            max-height: 320px;
             overflow: hidden;
             display: none;
             z-index: 1000;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            animation: dropdownSlideIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .dark .custom-select-dropdown {
-            background: #374151;
-            border-color: #4b5563;
+            background: #1f2937;
+            border-color: #374151;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
         }
 
         .custom-select.active .custom-select-dropdown {
             display: block;
         }
 
+        @keyframes dropdownSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .custom-select-search {
-            padding: 0.75rem;
-            border-bottom: 1px solid #e5e7eb;
+            padding: 0.875rem;
+            border-bottom: 2px solid #e5e7eb;
+            background: #f9fafb;
         }
 
         .dark .custom-select-search {
-            border-color: #4b5563;
+            border-color: #374151;
+            background: #111827;
         }
 
         .custom-select-search input {
             width: 100%;
-            padding: 0.5rem 2.5rem 0.5rem 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 0.375rem;
+            padding: 0.625rem 2.75rem 0.625rem 2.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
             font-size: 0.875rem;
             background: white;
+            transition: all 0.2s;
+            font-weight: 500;
         }
 
         .dark .custom-select-search input {
             background: #1f2937;
-            border-color: #4b5563;
+            border-color: #374151;
             color: white;
         }
 
         .custom-select-search input:focus {
             outline: none;
             border-color: #3b82f6;
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .dark .custom-select-search input:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+        }
+
+        .custom-select-search input::placeholder {
+            color: #9ca3af;
+            font-weight: 400;
+        }
+
+        /* Search icon */
+        .custom-select-search {
+            position: relative;
+        }
+
+        .custom-select-search::before {
+            content: '🔍';
+            position: absolute;
+            left: 1.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .custom-select-options {
@@ -181,34 +253,48 @@
         }
 
         .custom-select-option {
-            padding: 0.75rem 1rem;
+            padding: 0.875rem 1.25rem;
             cursor: pointer;
-            transition: background 0.15s;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            border-left: 3px solid transparent;
         }
 
         .custom-select-option:hover {
-            background: #f3f4f6;
+            background: #eff6ff;
+            border-left-color: #3b82f6;
+            padding-left: 1.5rem;
         }
 
         .dark .custom-select-option:hover {
-            background: #4b5563;
+            background: #1e3a8a;
+            border-left-color: #60a5fa;
         }
 
         .custom-select-option.selected {
             background: #dbeafe;
             color: #1e40af;
+            border-left-color: #2563eb;
+            font-weight: 600;
         }
 
         .dark .custom-select-option.selected {
             background: #1e3a8a;
             color: #93c5fd;
+            border-left-color: #60a5fa;
+        }
+
+        .custom-select-option.selected::after {
+            content: '✓';
+            float: right;
+            font-weight: bold;
         }
 
         .custom-select-option.hidden {
             display: none;
         }
 
-        /* Toast Notifications */
+        /* Toast Notifications - Enhanced */
         .toast-container {
             position: fixed;
             bottom: 100px;
@@ -216,37 +302,99 @@
             z-index: 9999;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             pointer-events: none;
+        }
+
+        @media (max-width: 640px) {
+            .toast-container {
+                bottom: 200px;
+                left: 20px;
+                right: 20px;
+            }
         }
 
         .toast {
             background: white;
             color: #1f2937;
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             display: flex;
             align-items: center;
             gap: 12px;
             transform: translateX(400px);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: auto;
-            min-width: 300px;
+            min-width: 320px;
+            border-left: 4px solid;
+            backdrop-filter: blur(10px);
+            animation: toastSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (max-width: 640px) {
+            .toast {
+                min-width: unset;
+                width: 100%;
+            }
         }
 
         .dark .toast {
-            background: #374151;
+            background: rgba(55, 65, 81, 0.95);
             color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
         }
 
         .toast.show {
             transform: translateX(0);
         }
 
-        .toast-success { border-left: 4px solid #10b981; }
-        .toast-error { border-left: 4px solid #ef4444; }
-        .toast-info { border-left: 4px solid #3b82f6; }
+        @keyframes toastSlideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast-success { 
+            border-left-color: #10b981;
+            background: linear-gradient(to right, rgba(16, 185, 129, 0.1), white);
+        }
+        
+        .dark .toast-success {
+            background: linear-gradient(to right, rgba(16, 185, 129, 0.2), rgba(55, 65, 81, 0.95));
+        }
+
+        .toast-error { 
+            border-left-color: #ef4444;
+            background: linear-gradient(to right, rgba(239, 68, 68, 0.1), white);
+        }
+
+        .dark .toast-error {
+            background: linear-gradient(to right, rgba(239, 68, 68, 0.2), rgba(55, 65, 81, 0.95));
+        }
+
+        .toast-info { 
+            border-left-color: #3b82f6;
+            background: linear-gradient(to right, rgba(59, 130, 246, 0.1), white);
+        }
+
+        .dark .toast-info {
+            background: linear-gradient(to right, rgba(59, 130, 246, 0.2), rgba(55, 65, 81, 0.95));
+        }
+
+        .toast-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
         /* Audio Visualizer */
         .audio-visualizer {
@@ -347,10 +495,10 @@
     </button>
 
     <!-- Sidebar Overlay -->
-    <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-30 hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 hidden opacity-0 transition-all duration-300"></div>
 
     <!-- Drawer Overlay -->
-    <div id="drawerOverlay" class="fixed inset-0 bg-black/60 z-[45] hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="drawerOverlay" class="fixed inset-0 bg-black/70 backdrop-blur-md z-[45] hidden opacity-0 transition-all duration-300"></div>
 
     <!-- Sidebar -->
     <div id="sidebar" class="fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-800 shadow-2xl transform translate-x-full transition-transform duration-300 z-40 overflow-y-auto">
@@ -441,9 +589,9 @@
                     <div class="custom-select" data-name="inicio">
                         <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
                         <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="🔍 Buscar..." class="custom-select-search-input">
-                            </div>
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar..." class="custom-select-search-input">
+                        </div>
                             <div class="custom-select-options text-gray-900 dark:text-white">
                                 <div class="custom-select-option" data-value="atencao">Atenção Colaborador</div>
                                 <div class="custom-select-option" data-value="urgente">Urgente</div>
@@ -457,9 +605,9 @@
                     <div class="custom-select" data-name="nome">
                         <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
                         <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="🔍 Buscar nome..." class="custom-select-search-input">
-                            </div>
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar nome..." class="custom-select-search-input">
+                        </div>
                             <div class="custom-select-options text-gray-900 dark:text-white">
                                 <div class="custom-select-option" data-value="teste01">Teste 01</div>
                                 <div class="custom-select-option" data-value="joao">João Silva</div>
@@ -475,9 +623,9 @@
                     <div class="custom-select" data-name="chamada">
                         <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
                         <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="🔍 Buscar chamada..." class="custom-select-search-input">
-                            </div>
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar chamada..." class="custom-select-search-input">
+                        </div>
                             <div class="custom-select-options text-gray-900 dark:text-white">
                                 <div class="custom-select-option" data-value="atendimento">Favor comparecer à área de atendimento ao cliente</div>
                                 <div class="custom-select-option" data-value="recepcao">Dirija-se à recepção</div>
@@ -491,9 +639,9 @@
                     <div class="custom-select" data-name="prioridade">
                         <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
                         <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="🔍 Buscar..." class="custom-select-search-input">
-                            </div>
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar..." class="custom-select-search-input">
+                        </div>
                             <div class="custom-select-options text-gray-900 dark:text-white">
                                 <div class="custom-select-option" data-value="normal">Normal</div>
                                 <div class="custom-select-option" data-value="alta">Alta</div>
@@ -535,9 +683,9 @@
                     <div class="custom-select" data-name="modelo">
                         <div class="custom-select-trigger text-gray-900 dark:text-white">Modelo...</div>
                         <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="🔍 Buscar modelo..." class="custom-select-search-input">
-                            </div>
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar modelo..." class="custom-select-search-input">
+                        </div>
                             <div class="custom-select-options text-gray-900 dark:text-white">
                                 <div class="custom-select-option" data-value="carro">Carro</div>
                                 <div class="custom-select-option" data-value="moto">Moto</div>
@@ -553,9 +701,9 @@
                     <div class="custom-select" data-name="cor">
                         <div class="custom-select-trigger text-gray-900 dark:text-white">Cor...</div>
                         <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="🔍 Buscar cor..." class="custom-select-search-input">
-                            </div>
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar cor..." class="custom-select-search-input">
+                        </div>
                             <div class="custom-select-options text-gray-900 dark:text-white">
                                 <div class="custom-select-option" data-value="branco">Branco</div>
                                 <div class="custom-select-option" data-value="preto">Preto</div>
@@ -599,9 +747,9 @@
                 <div class="custom-select mb-3" data-name="aviso">
                     <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione um aviso...</div>
                     <div class="custom-select-dropdown">
-                        <div class="custom-select-search">
-                            <input type="text" placeholder="🔍 Buscar aviso..." class="custom-select-search-input">
-                        </div>
+                    <div class="custom-select-search">
+                        <input type="text" placeholder="Buscar aviso..." class="custom-select-search-input">
+                    </div>
                         <div class="custom-select-options text-gray-900 dark:text-white">
                             <div class="custom-select-option" data-value="promocao">Promoção do dia</div>
                             <div class="custom-select-option" data-value="seguranca">Aviso de segurança</div>
@@ -630,9 +778,9 @@
                     <div class="flex-1 min-w-[200px] custom-select" data-name="anuncio-programado">
                         <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione</div>
                         <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="🔍 Buscar anúncio..." class="custom-select-search-input">
-                            </div>
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar anúncio..." class="custom-select-search-input">
+                        </div>
                             <div class="custom-select-options text-gray-900 dark:text-white">
                                 <div class="custom-select-option" data-value="anuncio1">Anúncio 1</div>
                                 <div class="custom-select-option" data-value="anuncio2">Anúncio 2</div>
@@ -1106,62 +1254,94 @@
             document.querySelectorAll('.custom-select.active').forEach(s => s.classList.remove('active'));
         });
 
-        // Toast notification system
+        // Toast notification system - Enhanced
         function showToast(message, type = 'success') {
             const toastContainer = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             toast.className = `toast toast-${type}`;
             
             const icons = {
-                success: '<svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>',
-                error: '<svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>',
-                info: '<svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>'
+                success: '<div class="toast-icon"><svg class="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>',
+                error: '<div class="toast-icon"><svg class="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg></div>',
+                info: '<div class="toast-icon"><svg class="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></div>'
             };
             
             toast.innerHTML = `
                 ${icons[type]}
-                <span class="flex-1">${message}</span>
-                <button onclick="this.parentElement.remove()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <div class="flex-1">
+                    <span class="font-semibold block">${message}</span>
+                </div>
+                <button onclick="removeToast(this.parentElement)" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
             `;
             
             toastContainer.appendChild(toast);
             
             // Trigger animation
-            setTimeout(() => toast.classList.add('show'), 10);
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
             
-            // Auto remove after 3 seconds
+            // Auto remove after 4 seconds
             setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+                removeToast(toast);
+            }, 4000);
         }
 
-        // Play functions with toast feedback
+        function removeToast(toast) {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.remove();
+                }
+            }, 300);
+        }
+
+        // Play functions with enhanced toast feedback
         function playFuncionarios() {
             const audioVis = document.getElementById('audioVisualizer');
             audioVis.classList.remove('hidden');
-            showToast('Reproduzindo chamada de funcionários...', 'success');
-            setTimeout(() => audioVis.classList.add('hidden'), 3000);
+            showToast('🎵 Reproduzindo chamada de funcionários...', 'success');
+            
+            // Simulate playback
+            setTimeout(() => {
+                audioVis.classList.add('hidden');
+                showToast('✓ Chamada reproduzida com sucesso!', 'info');
+            }, 3000);
         }
 
         function playVeiculos() {
             const audioVis = document.getElementById('audioVisualizer');
+            const placa = document.querySelector('input[placeholder="DIGITE A PLACA"]')?.value;
+            
+            if (!placa || placa.trim() === '') {
+                showToast('⚠️ Por favor, digite a placa do veículo', 'error');
+                return;
+            }
+            
             audioVis.classList.remove('hidden');
-            showToast('Reproduzindo chamada de veículos...', 'success');
-            setTimeout(() => audioVis.classList.add('hidden'), 3000);
+            showToast(`🚗 Reproduzindo chamada para veículo ${placa}...`, 'success');
+            
+            setTimeout(() => {
+                audioVis.classList.add('hidden');
+                showToast('✓ Chamada reproduzida com sucesso!', 'info');
+            }, 3000);
         }
 
         function playAnuncio() {
             const audioVis = document.getElementById('audioVisualizer');
             audioVis.classList.remove('hidden');
-            showToast('Reproduzindo anúncio...', 'success');
-            setTimeout(() => audioVis.classList.add('hidden'), 3000);
+            showToast('📢 Reproduzindo anúncio geral...', 'success');
+            
+            setTimeout(() => {
+                audioVis.classList.add('hidden');
+                showToast('✓ Anúncio reproduzido com sucesso!', 'info');
+            }, 3000);
         }
 
         function salvarAnuncios() {
-            showToast('Configurações de anúncios salvas com sucesso!', 'success');
+            showToast('💾 Configurações salvas com sucesso!', 'success');
         }
 
         // Keyboard shortcuts
