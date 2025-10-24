@@ -1344,6 +1344,180 @@ Fique a vontade para enviar suas sugestões, anúncios, avisos, entre outros con
     </div>
   </div>
 
+  <!-- Modal de Pedidos -->
+  <div id="pedidosModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
+      <!-- Header -->
+      <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Pedidos de Gravação</h2>
+        </div>
+        <button onclick="closePedidosModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Step Indicators -->
+      <div class="flex items-center justify-center p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+        <div class="flex items-center justify-between w-full max-w-md">
+          <div class="flex flex-col items-center flex-1">
+            <div id="step1Indicator" class="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg mb-2 transition-all">1</div>
+            <span id="step1Label" class="text-sm font-medium text-blue-600 dark:text-blue-400">Informações</span>
+          </div>
+          <div id="connector1" class="flex-1 h-1 bg-gray-300 dark:bg-gray-600 mx-4 mb-8 transition-all"></div>
+          <div class="flex flex-col items-center flex-1">
+            <div id="step2Indicator" class="w-12 h-12 rounded-full bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-400 flex items-center justify-center font-bold text-lg mb-2 transition-all">2</div>
+            <span id="step2Label" class="text-sm font-medium text-gray-500 dark:text-gray-400">Detalhes</span>
+          </div>
+          <div id="connector2" class="flex-1 h-1 bg-gray-300 dark:bg-gray-600 mx-4 mb-8 transition-all"></div>
+          <div class="flex flex-col items-center flex-1">
+            <div id="step3Indicator" class="w-12 h-12 rounded-full bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-400 flex items-center justify-center font-bold text-lg mb-2 transition-all">3</div>
+            <span id="step3Label" class="text-sm font-medium text-gray-500 dark:text-gray-400">Confirmação</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="p-6 overflow-y-auto flex-1">
+        <!-- Step 1: Informações -->
+        <div id="pedidosStep1">
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Responsável pelo pedido: <span class="text-red-500">*</span></label>
+              <input type="text" id="pedidoResponsavel" placeholder="Nome do responsável" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500">
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Conta:</label>
+              <input type="text" value="Exemplo 1" disabled class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Data de Início: <span class="text-red-500">*</span></label>
+                <input type="date" id="pedidoDataInicio" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Data de Vencimento: <span class="text-red-500">*</span></label>
+                <input type="date" id="pedidoDataVencimento" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Detalhes -->
+        <div id="pedidosStep2" class="hidden">
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Incluir em:</label>
+              <select id="pedidoIncluirEm" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <option value="programacao-principal">Programação Principal</option>
+                <option value="chamadas">Chamadas</option>
+                <option value="anuncios">Anúncios</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Anexar arquivo de orientação:</label>
+              <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center hover:border-purple-500 transition-colors">
+                <input type="file" id="pedidoArquivo" accept=".pdf,.doc,.docx,.mp3,.wav" onchange="handlePedidoFileUpload(this)" class="hidden">
+                <label for="pedidoArquivo" class="cursor-pointer">
+                  <svg class="w-12 h-12 mx-auto text-gray-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                  </svg>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">Clique para fazer upload ou arraste o arquivo</p>
+                  <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">PDF, DOC, DOCX, MP3, WAV (máx. 10MB)</p>
+                </label>
+              </div>
+              <p id="pedidoFileName" class="text-sm text-green-600 dark:text-green-400 mt-2 hidden"></p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Descrição do Pedido:</label>
+              <textarea id="pedidoDescricao" rows="6" placeholder="Descreva detalhadamente o que você precisa..." class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"></textarea>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="pedidoGravarComoEsta" checked class="w-4 h-4 text-purple-500 border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-purple-500">
+              <label for="pedidoGravarComoEsta" class="text-sm text-gray-700 dark:text-gray-200">Gravar como está, não alterar</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Confirmação -->
+        <div id="pedidosStep3" class="hidden">
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-6 space-y-4">
+            <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-4">Resumo do Pedido</h3>
+            
+            <div class="space-y-3">
+              <div class="flex justify-between items-start border-b border-gray-200 dark:border-gray-600 pb-2">
+                <span class="text-sm font-semibold text-gray-600 dark:text-gray-400">Responsável:</span>
+                <span id="resumoResponsavel" class="text-sm text-gray-800 dark:text-white font-medium"></span>
+              </div>
+              
+              <div class="flex justify-between items-start border-b border-gray-200 dark:border-gray-600 pb-2">
+                <span class="text-sm font-semibold text-gray-600 dark:text-gray-400">Data de Início:</span>
+                <span id="resumoDataInicio" class="text-sm text-gray-800 dark:text-white font-medium"></span>
+              </div>
+              
+              <div class="flex justify-between items-start border-b border-gray-200 dark:border-gray-600 pb-2">
+                <span class="text-sm font-semibold text-gray-600 dark:text-gray-400">Data de Vencimento:</span>
+                <span id="resumoDataVencimento" class="text-sm text-gray-800 dark:text-white font-medium"></span>
+              </div>
+              
+              <div class="flex justify-between items-start border-b border-gray-200 dark:border-gray-600 pb-2">
+                <span class="text-sm font-semibold text-gray-600 dark:text-gray-400">Incluir em:</span>
+                <span id="resumoIncluirEm" class="text-sm text-gray-800 dark:text-white font-medium"></span>
+              </div>
+              
+              <div id="resumoArquivoContainer" class="flex justify-between items-start border-b border-gray-200 dark:border-gray-600 pb-2 hidden">
+                <span class="text-sm font-semibold text-gray-600 dark:text-gray-400">Arquivo:</span>
+                <span id="resumoArquivo" class="text-sm text-gray-800 dark:text-white font-medium"></span>
+              </div>
+              
+              <div id="resumoDescricaoContainer" class="border-b border-gray-200 dark:border-gray-600 pb-2 hidden">
+                <span class="text-sm font-semibold text-gray-600 dark:text-gray-400 block mb-2">Descrição:</span>
+                <p id="resumoDescricao" class="text-sm text-gray-800 dark:text-white"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="pedidosLoading" class="hidden text-center py-12">
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mb-4"></div>
+          <p class="text-gray-600 dark:text-gray-400">Carregando...</p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex justify-between gap-3 p-6 border-t border-gray-200 dark:border-gray-700 flex-shrink-0">
+        <button onclick="closePedidosModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">
+          Cancelar
+        </button>
+        <div class="flex gap-3">
+          <button id="pedidoAnteriorBtn" onclick="pedidosPreviousStep()" class="hidden px-6 py-2 bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 text-gray-800 dark:text-white font-semibold rounded-lg transition-colors duration-200">
+            Anterior
+          </button>
+          <button id="pedidoProximoBtn" onclick="pedidosNextStep()" class="flex px-6 py-2 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-lg transition-colors duration-200">
+            Próximo
+          </button>
+          <button id="pedidoEnviarBtn" onclick="enviarPedido()" class="hidden px-6 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+            </svg>
+            Enviar Pedido
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="scripts/config.js"></script>
     <script src="scripts/toast.js"></script>
     <script src="scripts/custom-select.js"></script>
