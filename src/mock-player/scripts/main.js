@@ -188,3 +188,7 @@ window.toggleEstiloCheckbox = toggleEstiloCheckbox;
 window.saveEstilosMusicais = saveEstilosMusicais;
 window.switchEstilosTab = switchEstilosTab;
 window.filterEstilosMusicais = filterEstilosMusicais;
+window.openUploadModal = openUploadModal;
+window.closeUploadModal = closeUploadModal;
+window.toggleIndeterminateUpload = toggleIndeterminateUpload;
+window.saveUpload = saveUpload;

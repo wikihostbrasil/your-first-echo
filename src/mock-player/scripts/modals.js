@@ -228,3 +228,140 @@ function saveFileEdit() {
     closeEditFileModal();
     openFilesModal(currentEditFile.category);
 }
+
+// Upload modal functionality
+function openUploadModal() {
+    const modal = document.getElementById('uploadModal');
+    const fileInput = document.getElementById('uploadFile');
+    const fileNameDisplay = document.getElementById('uploadFileName');
+    
+    // Set default date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('uploadStart').value = today;
+    document.getElementById('uploadEnd').value = today;
+    
+    // File input change listener
+    fileInput.onchange = function() {
+        if (this.files.length > 0) {
+            fileNameDisplay.textContent = this.files[0].name;
+        } else {
+            fileNameDisplay.textContent = 'Nenhum arquivo escolhido';
+        }
+    };
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function closeUploadModal() {
+    const modal = document.getElementById('uploadModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    
+    // Reset form
+    document.getElementById('uploadRadio').value = 'Exemplo 1';
+    document.getElementById('uploadName').value = '';
+    document.getElementById('uploadCategory').value = 'promocionais';
+    document.getElementById('uploadStart').value = '';
+    document.getElementById('uploadEnd').value = '';
+    document.getElementById('uploadIndeterminate').checked = false;
+    document.getElementById('uploadEnd').disabled = false;
+    document.getElementById('uploadFile').value = '';
+    document.getElementById('uploadFileName').textContent = 'Nenhum arquivo escolhido';
+}
+
+function toggleIndeterminateUpload() {
+    const endInput = document.getElementById('uploadEnd');
+    const indeterminateCheckbox = document.getElementById('uploadIndeterminate');
+    
+    if (indeterminateCheckbox.checked) {
+        endInput.value = '';
+        endInput.disabled = true;
+    } else {
+        endInput.disabled = false;
+    }
+}
+
+function saveUpload() {
+    const radioInput = document.getElementById('uploadRadio');
+    const nameInput = document.getElementById('uploadName');
+    const categorySelect = document.getElementById('uploadCategory');
+    const startInput = document.getElementById('uploadStart');
+    const endInput = document.getElementById('uploadEnd');
+    const indeterminateCheckbox = document.getElementById('uploadIndeterminate');
+    const fileInput = document.getElementById('uploadFile');
+    
+    // Validation
+    const radio = radioInput.value.trim();
+    if (!radio || radio.length === 0) {
+        showToast('⚠️ Campo Rádio é obrigatório', 'error');
+        radioInput.focus();
+        return;
+    }
+    
+    if (!startInput.value) {
+        showToast('⚠️ Data de início é obrigatória', 'error');
+        startInput.focus();
+        return;
+    }
+    
+    if (!indeterminateCheckbox.checked && !endInput.value) {
+        showToast('⚠️ Data de vencimento é obrigatória ou marque como indeterminado', 'error');
+        endInput.focus();
+        return;
+    }
+    
+    // Check if end date is after start date
+    if (!indeterminateCheckbox.checked && endInput.value) {
+        const startDate = new Date(startInput.value);
+        const endDate = new Date(endInput.value);
+        
+        if (endDate < startDate) {
+            showToast('⚠️ Data de vencimento não pode ser anterior à data de início', 'error');
+            endInput.focus();
+            return;
+        }
+    }
+    
+    if (fileInput.files.length === 0) {
+        showToast('⚠️ Selecione um arquivo .mp3', 'error');
+        return;
+    }
+    
+    // Check file type
+    const file = fileInput.files[0];
+    if (!file.name.toLowerCase().endsWith('.mp3')) {
+        showToast('⚠️ Apenas arquivos .mp3 são permitidos', 'error');
+        return;
+    }
+    
+    // Convert date format to DD/MM/YYYY
+    const [yearStart, monthStart, dayStart] = startInput.value.split('-');
+    const startFormatted = `${dayStart}/${monthStart}/${yearStart}`;
+    
+    let endFormatted = 'Indeterminado';
+    if (!indeterminateCheckbox.checked) {
+        const [yearEnd, monthEnd, dayEnd] = endInput.value.split('-');
+        endFormatted = `${dayEnd}/${monthEnd}/${yearEnd}`;
+    }
+    
+    // Add to data (in real app, this would be an API call)
+    const category = categorySelect.value;
+    const audioName = nameInput.value.trim() || file.name.replace('.mp3', '');
+    
+    if (!filesData[category]) {
+        filesData[category] = [];
+    }
+    
+    filesData[category].push({
+        name: audioName,
+        start: startFormatted,
+        end: endFormatted
+    });
+    
+    // Show success message
+    showToast(`✓ Anúncio "${audioName}" enviado com sucesso!`, 'success');
+    
+    // Close modal
+    closeUploadModal();
+}
