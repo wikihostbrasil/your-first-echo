@@ -196,8 +196,30 @@
         /* Mobile adjustments for drawers */
         @media (max-width: 640px) {
             .custom-select-dropdown {
-                max-height: 240px;
+                max-height: 180px;
             }
+        }
+
+        /* Drawer contrast when select is active */
+        .drawer-content.select-active {
+            background: rgba(0, 0, 0, 0.03);
+            transition: background 0.3s ease;
+        }
+
+        .dark .drawer-content.select-active {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Enhanced select styling when active in drawer */
+        .drawer-content .custom-select.active .custom-select-trigger {
+            background: white;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 10px 20px rgba(59, 130, 246, 0.3);
+            transform: scale(1.02);
+        }
+
+        .dark .drawer-content .custom-select.active .custom-select-trigger {
+            background: #1f2937;
+            box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15), 0 10px 20px rgba(96, 165, 250, 0.3);
         }
 
         .custom-select-search {
@@ -1218,6 +1240,15 @@
                             s.classList.remove('active');
                             const otherDropdown = s.querySelector('.custom-select-dropdown');
                             if (otherDropdown) otherDropdown.style.display = 'none';
+                            
+                            // Remove contrast from other drawers
+                            const otherDrawer = s.closest('[id^="drawer"]');
+                            if (otherDrawer) {
+                                const otherDrawerContent = otherDrawer.querySelector('.overflow-y-auto');
+                                if (otherDrawerContent) {
+                                    otherDrawerContent.classList.remove('select-active');
+                                }
+                            }
                         }
                     });
 
@@ -1225,6 +1256,15 @@
                     select.classList.toggle('active');
                     
                     if (!wasActive) {
+                        // Add contrast to drawer when select is active
+                        const drawer = select.closest('[id^="drawer"]');
+                        if (drawer) {
+                            const drawerContent = drawer.querySelector('.overflow-y-auto');
+                            if (drawerContent) {
+                                drawerContent.classList.add('drawer-content', 'select-active');
+                            }
+                        }
+                        
                         // Position dropdown using fixed positioning
                         const rect = trigger.getBoundingClientRect();
                         const dropdownHeight = 320;
@@ -1271,6 +1311,14 @@
                         
                         searchInput.focus();
                     } else {
+                        // Remove contrast from drawer when select is closed
+                        const drawer = select.closest('[id^="drawer"]');
+                        if (drawer) {
+                            const drawerContent = drawer.querySelector('.overflow-y-auto');
+                            if (drawerContent) {
+                                drawerContent.classList.remove('select-active');
+                            }
+                        }
                         dropdown.style.display = 'none';
                     }
                 });
@@ -1345,6 +1393,15 @@
                 s.classList.remove('active', 'dropdown-up');
                 const dropdown = s.querySelector('.custom-select-dropdown');
                 if (dropdown) dropdown.style.display = 'none';
+                
+                // Remove contrast from drawer
+                const drawer = s.closest('[id^="drawer"]');
+                if (drawer) {
+                    const drawerContent = drawer.querySelector('.overflow-y-auto');
+                    if (drawerContent) {
+                        drawerContent.classList.remove('select-active');
+                    }
+                }
             });
         });
 
