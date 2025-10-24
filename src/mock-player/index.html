@@ -499,6 +499,67 @@
             background: #1f2937;
             border-color: #4b5563;
         }
+
+        /* Custom Scrollbar Styling */
+        #drawerEstilosMusicais .p-6::-webkit-scrollbar,
+        #sidebar::-webkit-scrollbar,
+        .overflow-x-auto::-webkit-scrollbar {
+            width: 8px;
+            height: 6px;
+        }
+
+        #drawerEstilosMusicais .p-6::-webkit-scrollbar-track,
+        #sidebar::-webkit-scrollbar-track,
+        .overflow-x-auto::-webkit-scrollbar-track {
+            background: #f3f4f6;
+            border-radius: 4px;
+        }
+
+        .dark #drawerEstilosMusicais .p-6::-webkit-scrollbar-track,
+        .dark #sidebar::-webkit-scrollbar-track,
+        .dark .overflow-x-auto::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+
+        #drawerEstilosMusicais .p-6::-webkit-scrollbar-thumb,
+        #sidebar::-webkit-scrollbar-thumb,
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .dark #drawerEstilosMusicais .p-6::-webkit-scrollbar-thumb,
+        .dark #sidebar::-webkit-scrollbar-thumb,
+        .dark .overflow-x-auto::-webkit-scrollbar-thumb {
+            background: #4b5563;
+        }
+
+        #drawerEstilosMusicais .p-6::-webkit-scrollbar-thumb:hover,
+        #sidebar::-webkit-scrollbar-thumb:hover,
+        .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+
+        .dark #drawerEstilosMusicais .p-6::-webkit-scrollbar-thumb:hover,
+        .dark #sidebar::-webkit-scrollbar-thumb:hover,
+        .dark .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+
+        /* Firefox scrollbar styling */
+        #drawerEstilosMusicais .p-6,
+        #sidebar,
+        .overflow-x-auto {
+            scrollbar-width: thin;
+            scrollbar-color: #d1d5db #f3f4f6;
+        }
+
+        .dark #drawerEstilosMusicais .p-6,
+        .dark #sidebar,
+        .dark .overflow-x-auto {
+            scrollbar-color: #4b5563 #1f2937;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 min-h-screen text-gray-900 dark:text-white transition-colors duration-300">
@@ -919,16 +980,16 @@
         </div>
 
         <!-- Tabs for Days of Week -->
-        <div class="border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
+        <div class="border-b border-gray-200 dark:border-gray-700 overflow-x-auto flex-shrink-0">
             <div class="flex min-w-max px-4">
-                <button onclick="switchEstilosTab('padrao')" class="estilos-tab active px-6 py-3 text-sm font-medium border-b-2 border-pink-600 text-pink-600 dark:text-pink-400 whitespace-nowrap">Padrão</button>
-                <button onclick="switchEstilosTab('segunda')" class="estilos-tab px-6 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Segunda</button>
-                <button onclick="switchEstilosTab('terca')" class="estilos-tab px-6 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Terça</button>
-                <button onclick="switchEstilosTab('quarta')" class="estilos-tab px-6 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Quarta</button>
-                <button onclick="switchEstilosTab('quinta')" class="estilos-tab px-6 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Quinta</button>
-                <button onclick="switchEstilosTab('sexta')" class="estilos-tab px-6 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Sexta</button>
-                <button onclick="switchEstilosTab('sabado')" class="estilos-tab px-6 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Sábado</button>
-                <button onclick="switchEstilosTab('domingo')" class="estilos-tab px-6 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Domingo</button>
+                <button onclick="switchEstilosTab('padrao')" class="estilos-tab active px-4 py-3 text-sm font-medium border-b-2 border-pink-600 text-pink-600 dark:text-pink-400 whitespace-nowrap">Padrão</button>
+                <button onclick="switchEstilosTab('segunda')" class="estilos-tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Segunda</button>
+                <button onclick="switchEstilosTab('terca')" class="estilos-tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Terça</button>
+                <button onclick="switchEstilosTab('quarta')" class="estilos-tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Quarta</button>
+                <button onclick="switchEstilosTab('quinta')" class="estilos-tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Quinta</button>
+                <button onclick="switchEstilosTab('sexta')" class="estilos-tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Sexta</button>
+                <button onclick="switchEstilosTab('sabado')" class="estilos-tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Sábado</button>
+                <button onclick="switchEstilosTab('domingo')" class="estilos-tab px-4 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 whitespace-nowrap">Domingo</button>
             </div>
         </div>
 
