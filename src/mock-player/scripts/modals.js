@@ -417,3 +417,185 @@ function saveSugestao() {
   showToast('✓ Sugestão enviada com sucesso!', 'success');
   closeSugestaoModal();
 }
+
+// ===== MODAL DE DADOS CADASTRAIS =====
+function openDadosCadastraisModal() {
+  document.getElementById('dadosCadastraisModal').classList.remove('hidden');
+  document.getElementById('dadosCadastraisModal').classList.add('flex');
+}
+
+function closeDadosCadastraisModal() {
+  document.getElementById('dadosCadastraisModal').classList.remove('flex');
+  document.getElementById('dadosCadastraisModal').classList.add('hidden');
+  
+  // Limpar formulário
+  document.getElementById('perfilNome').value = '';
+  document.getElementById('perfilEmail').value = '';
+  document.getElementById('perfilTelefone').value = '';
+  document.getElementById('perfilRadio').value = '';
+  document.getElementById('perfilCidade').value = '';
+  document.getElementById('perfilEstado').value = '';
+}
+
+function saveDadosCadastrais() {
+  const nome = document.getElementById('perfilNome').value.trim();
+  const email = document.getElementById('perfilEmail').value.trim();
+  const radio = document.getElementById('perfilRadio').value.trim();
+
+  // Validações
+  if (!nome) {
+    showToast('Por favor, informe seu nome completo', 'error');
+    return;
+  }
+
+  if (!email) {
+    showToast('Por favor, informe seu e-mail', 'error');
+    return;
+  }
+
+  // Validação básica de email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    showToast('Por favor, informe um e-mail válido', 'error');
+    return;
+  }
+
+  if (!radio) {
+    showToast('Por favor, informe o nome da rádio', 'error');
+    return;
+  }
+
+  // Simular salvamento
+  console.log('Dados cadastrais salvos:', {
+    nome,
+    email,
+    telefone: document.getElementById('perfilTelefone').value.trim(),
+    radio,
+    cidade: document.getElementById('perfilCidade').value.trim(),
+    estado: document.getElementById('perfilEstado').value
+  });
+
+  showToast('✓ Dados cadastrais atualizados com sucesso!', 'success');
+  closeDadosCadastraisModal();
+}
+
+// ===== MODAL DE ALTERAR SENHA =====
+function openAlterarSenhaModal() {
+  document.getElementById('alterarSenhaModal').classList.remove('hidden');
+  document.getElementById('alterarSenhaModal').classList.add('flex');
+}
+
+function closeAlterarSenhaModal() {
+  document.getElementById('alterarSenhaModal').classList.remove('flex');
+  document.getElementById('alterarSenhaModal').classList.add('hidden');
+  
+  // Limpar formulário
+  document.getElementById('senhaAtual').value = '';
+  document.getElementById('senhaNova').value = '';
+  document.getElementById('senhaConfirmar').value = '';
+}
+
+function saveAlterarSenha() {
+  const senhaAtual = document.getElementById('senhaAtual').value;
+  const senhaNova = document.getElementById('senhaNova').value;
+  const senhaConfirmar = document.getElementById('senhaConfirmar').value;
+
+  // Validações
+  if (!senhaAtual) {
+    showToast('Por favor, informe sua senha atual', 'error');
+    return;
+  }
+
+  if (!senhaNova) {
+    showToast('Por favor, informe a nova senha', 'error');
+    return;
+  }
+
+  if (senhaNova.length < 8) {
+    showToast('A nova senha deve ter no mínimo 8 caracteres', 'error');
+    return;
+  }
+
+  if (senhaNova !== senhaConfirmar) {
+    showToast('As senhas não conferem', 'error');
+    return;
+  }
+
+  // Simular salvamento
+  console.log('Senha alterada com sucesso');
+
+  showToast('✓ Senha alterada com sucesso!', 'success');
+  closeAlterarSenhaModal();
+}
+
+// ===== MODAL DE ALTERAR LOGO =====
+function openAlterarLogoModal() {
+  const modal = document.getElementById('alterarLogoModal');
+  const fileInput = document.getElementById('logoFile');
+  const fileNameDisplay = document.getElementById('logoFileName');
+  const logoPreview = document.getElementById('logoPreview');
+  
+  // File input change listener
+  fileInput.onchange = function() {
+    if (this.files.length > 0) {
+      const file = this.files[0];
+      fileNameDisplay.textContent = file.name;
+      
+      // Preview da imagem
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        logoPreview.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      fileNameDisplay.textContent = 'Nenhum arquivo escolhido';
+    }
+  };
+  
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function closeAlterarLogoModal() {
+  document.getElementById('alterarLogoModal').classList.remove('flex');
+  document.getElementById('alterarLogoModal').classList.add('hidden');
+  
+  // Limpar formulário
+  document.getElementById('logoFile').value = '';
+  document.getElementById('logoFileName').textContent = 'Nenhum arquivo escolhido';
+  document.getElementById('logoPreview').src = 'https://placehold.co/128x128/0066FF/FFFFFF?text=LOGO';
+}
+
+function saveAlterarLogo() {
+  const fileInput = document.getElementById('logoFile');
+  
+  if (fileInput.files.length === 0) {
+    showToast('⚠️ Selecione uma imagem', 'error');
+    return;
+  }
+  
+  const file = fileInput.files[0];
+  
+  // Validar tipo de arquivo
+  const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+  if (!validTypes.includes(file.type)) {
+    showToast('⚠️ Formato inválido. Use JPG, PNG ou GIF', 'error');
+    return;
+  }
+  
+  // Validar tamanho (2MB)
+  if (file.size > 2 * 1024 * 1024) {
+    showToast('⚠️ Imagem muito grande. Máximo 2MB', 'error');
+    return;
+  }
+  
+  // Atualizar logo principal
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('mainLogo').src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+  
+  showToast('✓ Logo atualizada com sucesso!', 'success');
+  closeAlterarLogoModal();
+}

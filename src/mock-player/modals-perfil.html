@@ -1,0 +1,126 @@
+<!-- Modal de Dados Cadastrais -->
+<div id="dadosCadastraisModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-3">
+                <svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Dados Cadastrais</h2>
+            </div>
+            <button onclick="closeDadosCadastraisModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="p-6 space-y-4">
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Nome Completo: <span class="text-red-500">*</span></label>
+                <input type="text" id="perfilNome" placeholder="Digite seu nome completo" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">E-mail: <span class="text-red-500">*</span></label>
+                <input type="email" id="perfilEmail" placeholder="seu@email.com" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Telefone:</label>
+                <input type="tel" id="perfilTelefone" placeholder="(00) 00000-0000" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Nome da Rádio: <span class="text-red-500">*</span></label>
+                <input type="text" id="perfilRadio" placeholder="Ex: Rádio Mix FM" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+        </div>
+        <div class="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700">
+            <button onclick="closeDadosCadastraisModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">Cancelar</button>
+            <button onclick="saveDadosCadastrais()" class="px-6 py-2 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-lg transition-colors duration-200">Salvar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Alterar Senha -->
+<div id="alterarSenhaModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md">
+        <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-3">
+                <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                </svg>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Alterar Senha</h2>
+            </div>
+            <button onclick="closeAlterarSenhaModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="p-6 space-y-4">
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Senha Atual: <span class="text-red-500">*</span></label>
+                <input type="password" id="senhaAtual" placeholder="Digite sua senha atual" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Nova Senha: <span class="text-red-500">*</span></label>
+                <input type="password" id="senhaNova" placeholder="Digite a nova senha" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Confirmar: <span class="text-red-500">*</span></label>
+                <input type="password" id="senhaConfirmar" placeholder="Confirme a nova senha" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+            </div>
+        </div>
+        <div class="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700">
+            <button onclick="closeAlterarSenhaModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">Cancelar</button>
+            <button onclick="saveAlterarSenha()" class="px-6 py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-lg transition-colors duration-200">Salvar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Alterar Logo -->
+<div id="alterarLogoModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md">
+        <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-3">
+                <svg class="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Alterar Logo</h2>
+            </div>
+            <button onclick="closeAlterarLogoModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="p-6 space-y-4">
+            <div class="flex flex-col items-center">
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">Logo Atual:</label>
+                <div class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg overflow-hidden">
+                    <img id="logoPreview" src="https://placehold.co/128x128/0066FF/FFFFFF?text=LOGO" alt="Logo" class="w-24 h-24 object-contain rounded-full">
+                </div>
+            </div>
+            <div>
+                <label for="logoFile" class="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg cursor-pointer transition-all duration-200 font-medium text-center flex items-center justify-center gap-2">Escolher Imagem</label>
+                <input type="file" id="logoFile" accept="image/*" class="hidden">
+                <span id="logoFileName" class="text-sm text-gray-500 dark:text-gray-400 block text-center mt-2">Nenhum arquivo escolhido</span>
+            </div>
+        </div>
+        <div class="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700">
+            <button onclick="closeAlterarLogoModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">Cancelar</button>
+            <button onclick="saveAlterarLogo()" class="px-6 py-2 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-colors duration-200">Salvar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Carregar modais no DOM
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('modals-perfil.html')
+            .then(response => response.text())
+            .then(html => {
+                const temp = document.createElement('div');
+                temp.innerHTML = html;
+                document.body.appendChild(temp);
+            });
+    });
+</script>
