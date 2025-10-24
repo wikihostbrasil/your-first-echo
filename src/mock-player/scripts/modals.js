@@ -365,3 +365,55 @@ function saveUpload() {
     // Close modal
     closeUploadModal();
 }
+
+// ===== MODAL DE SUGESTÃO =====
+function openSugestaoModal() {
+  document.getElementById('sugestaoModal').classList.remove('hidden');
+  document.getElementById('sugestaoModal').classList.add('flex');
+}
+
+function closeSugestaoModal() {
+  document.getElementById('sugestaoModal').classList.remove('flex');
+  document.getElementById('sugestaoModal').classList.add('hidden');
+  
+  // Limpar formulário
+  document.getElementById('sugestaoRadio').value = '';
+  document.getElementById('sugestaoNome').value = '';
+  document.getElementById('sugestaoTipo').value = '';
+  document.getElementById('sugestaoTexto').value = '';
+  document.getElementById('sugestaoObservacoes').value = '';
+}
+
+function saveSugestao() {
+  const radio = document.getElementById('sugestaoRadio').value.trim();
+  const tipo = document.getElementById('sugestaoTipo').value;
+  const texto = document.getElementById('sugestaoTexto').value.trim();
+
+  // Validações
+  if (!radio) {
+    showToast('Por favor, informe a rádio', 'error');
+    return;
+  }
+
+  if (!tipo) {
+    showToast('Por favor, selecione o tipo de sugestão', 'error');
+    return;
+  }
+
+  if (!texto) {
+    showToast('Por favor, digite sua sugestão', 'error');
+    return;
+  }
+
+  // Simular salvamento
+  console.log('Sugestão salva:', {
+    radio,
+    nome: document.getElementById('sugestaoNome').value.trim(),
+    tipo,
+    texto,
+    observacoes: document.getElementById('sugestaoObservacoes').value.trim()
+  });
+
+  showToast('✓ Sugestão enviada com sucesso!', 'success');
+  closeSugestaoModal();
+}
