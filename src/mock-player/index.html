@@ -150,10 +150,9 @@
         }
 
         .custom-select-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
+            position: fixed;
+            left: auto;
+            right: auto;
             margin-top: 0.5rem;
             background: white;
             border: 2px solid #e5e7eb;
@@ -161,15 +160,14 @@
             max-height: 320px;
             overflow: hidden;
             display: none;
-            z-index: 2000;
+            z-index: 10000;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             animation: dropdownSlideIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 200px;
         }
 
         /* Make dropdown appear above if near bottom */
         .custom-select.dropdown-up .custom-select-dropdown {
-            top: auto;
-            bottom: 100%;
             margin-top: 0;
             margin-bottom: 0.5rem;
         }
@@ -1216,27 +1214,43 @@
 
                     // Close other selects
                     document.querySelectorAll('.custom-select.active').forEach(s => {
-                        if (s !== select) s.classList.remove('active');
+                        if (s !== select) {
+                            s.classList.remove('active');
+                            const otherDropdown = s.querySelector('.custom-select-dropdown');
+                            if (otherDropdown) otherDropdown.style.display = 'none';
+                        }
                     });
 
                     const wasActive = select.classList.contains('active');
                     select.classList.toggle('active');
                     
                     if (!wasActive) {
-                        // Check if dropdown should open upward
+                        // Position dropdown using fixed positioning
                         const rect = trigger.getBoundingClientRect();
-                        const dropdownHeight = 320; // max-height of dropdown
+                        const dropdownHeight = 320;
                         const spaceBelow = window.innerHeight - rect.bottom;
                         const spaceAbove = rect.top;
                         
-                        // If not enough space below but more space above, open upward
+                        // Set dropdown width to match trigger
+                        dropdown.style.width = rect.width + 'px';
+                        dropdown.style.left = rect.left + 'px';
+                        
+                        // Decide if dropdown should open upward or downward
                         if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+                            // Open upward
+                            dropdown.style.top = 'auto';
+                            dropdown.style.bottom = (window.innerHeight - rect.top + 8) + 'px';
                             select.classList.add('dropdown-up');
                         } else {
+                            // Open downward
+                            dropdown.style.top = (rect.bottom + 8) + 'px';
+                            dropdown.style.bottom = 'auto';
                             select.classList.remove('dropdown-up');
                         }
                         
-                        // Scroll select into view smoothly
+                        dropdown.style.display = 'block';
+                        
+                        // Scroll into view if needed
                         setTimeout(() => {
                             const drawer = select.closest('[id^="drawer"]');
                             if (drawer) {
@@ -1245,7 +1259,6 @@
                                     const selectRect = select.getBoundingClientRect();
                                     const containerRect = scrollContainer.getBoundingClientRect();
                                     
-                                    // If select is near bottom of container, scroll it into view
                                     if (selectRect.bottom > containerRect.bottom - 100) {
                                         select.scrollIntoView({ 
                                             behavior: 'smooth', 
@@ -1257,6 +1270,8 @@
                         }, 50);
                         
                         searchInput.focus();
+                    } else {
+                        dropdown.style.display = 'none';
                     }
                 });
 
@@ -1282,6 +1297,7 @@
 
                         // Close dropdown
                         select.classList.remove('active', 'dropdown-up');
+                        dropdown.style.display = 'none';
 
                         // Reset search
                         searchInput.value = '';
@@ -1293,6 +1309,30 @@
                 dropdown.addEventListener('click', (e) => {
                     e.stopPropagation();
                 });
+                
+                // Reposition on window resize/scroll
+                const repositionDropdown = () => {
+                    if (select.classList.contains('active')) {
+                        const rect = trigger.getBoundingClientRect();
+                        dropdown.style.width = rect.width + 'px';
+                        dropdown.style.left = rect.left + 'px';
+                        
+                        const dropdownHeight = 320;
+                        const spaceBelow = window.innerHeight - rect.bottom;
+                        const spaceAbove = rect.top;
+                        
+                        if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+                            dropdown.style.top = 'auto';
+                            dropdown.style.bottom = (window.innerHeight - rect.top + 8) + 'px';
+                        } else {
+                            dropdown.style.top = (rect.bottom + 8) + 'px';
+                            dropdown.style.bottom = 'auto';
+                        }
+                    }
+                };
+                
+                window.addEventListener('resize', repositionDropdown);
+                window.addEventListener('scroll', repositionDropdown, true);
             });
         }
 
@@ -1303,6 +1343,8 @@
         document.addEventListener('click', () => {
             document.querySelectorAll('.custom-select.active').forEach(s => {
                 s.classList.remove('active', 'dropdown-up');
+                const dropdown = s.querySelector('.custom-select-dropdown');
+                if (dropdown) dropdown.style.display = 'none';
             });
         });
 
