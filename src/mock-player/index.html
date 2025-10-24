@@ -1112,6 +1112,71 @@
         </div>
     </div>
 
+    <!-- Edit File Modal -->
+    <div id="editFileModal" class="hidden fixed inset-0 bg-black/50 z-[70] items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-2xl w-full max-w-md flex flex-col">
+            <div class="bg-green-600 dark:bg-green-700 p-4 flex items-center justify-between rounded-t-lg flex-shrink-0">
+                <h3 class="text-xl font-bold text-white">EDITAR ANÚNCIO</h3>
+                <button onclick="closeEditFileModal()" class="text-white hover:bg-white/20 rounded-full p-2 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nome do Áudio</label>
+                    <input 
+                        type="text" 
+                        id="editFileName"
+                        maxlength="100"
+                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        placeholder="Digite o nome do áudio">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Data de Início</label>
+                    <input 
+                        type="date" 
+                        id="editFileStart"
+                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Data de Vencimento</label>
+                    <div class="space-y-2">
+                        <input 
+                            type="date" 
+                            id="editFileEnd"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input 
+                                type="checkbox" 
+                                id="editFileIndeterminate"
+                                onchange="toggleIndeterminate()"
+                                class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Indeterminado</span>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Arquivo de Áudio</label>
+                    <input 
+                        type="file" 
+                        id="editFileUpload"
+                        accept="audio/*"
+                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 dark:file:bg-green-900/30 dark:file:text-green-400">
+                </div>
+            </div>
+            <div class="p-6 pt-0 flex gap-3">
+                <button onclick="closeEditFileModal()" class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                    Cancelar
+                </button>
+                <button onclick="saveFileEdit()" class="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors font-medium">
+                    Salvar
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Files Modal -->
     <div id="filesModal" class="hidden fixed inset-0 bg-black/50 z-[60] items-center justify-center p-4">
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-2xl w-full max-w-4xl max-h-[80vh] flex flex-col">
@@ -1751,7 +1816,7 @@
                                     <path d="M8 5v14l11-7z"></path>
                                 </svg>
                             </button>
-                            <button class="p-2 bg-gray-400 hover:bg-gray-500 text-white rounded-lg transition-colors">
+                            <button onclick="openEditFileModal('${category}', '${file.name}', '${file.start}', '${file.end}')" class="p-2 bg-gray-400 hover:bg-gray-500 text-white rounded-lg transition-colors">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                                 </svg>
@@ -1795,7 +1860,7 @@
                             </svg>
                             <span class="text-sm font-medium">Play</span>
                         </button>
-                        <button class="p-2 bg-gray-400 hover:bg-gray-500 text-white rounded-lg transition-colors">
+                        <button onclick="openEditFileModal('${category}', '${file.name}', '${file.start}', '${file.end}')" class="p-2 bg-gray-400 hover:bg-gray-500 text-white rounded-lg transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                             </svg>
@@ -1824,6 +1889,140 @@
             showToast(`🎵 Reproduzindo ${fileName}...`, 'success');
         }
 
+        // Edit file modal functionality
+        let currentEditFile = { category: '', originalName: '' };
+
+        function openEditFileModal(category, name, start, end) {
+            const modal = document.getElementById('editFileModal');
+            const nameInput = document.getElementById('editFileName');
+            const startInput = document.getElementById('editFileStart');
+            const endInput = document.getElementById('editFileEnd');
+            const indeterminateCheckbox = document.getElementById('editFileIndeterminate');
+            
+            // Store current file info
+            currentEditFile = { category, originalName: name };
+            
+            // Populate fields
+            nameInput.value = name;
+            
+            // Convert date format from DD/MM/YYYY to YYYY-MM-DD
+            const [dayStart, monthStart, yearStart] = start.split('/');
+            startInput.value = `${yearStart}-${monthStart}-${dayStart}`;
+            
+            if (end === 'Indeterminado') {
+                endInput.value = '';
+                endInput.disabled = true;
+                indeterminateCheckbox.checked = true;
+            } else {
+                const [dayEnd, monthEnd, yearEnd] = end.split('/');
+                endInput.value = `${yearEnd}-${monthEnd}-${dayEnd}`;
+                endInput.disabled = false;
+                indeterminateCheckbox.checked = false;
+            }
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeEditFileModal() {
+            const modal = document.getElementById('editFileModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            
+            // Reset form
+            document.getElementById('editFileName').value = '';
+            document.getElementById('editFileStart').value = '';
+            document.getElementById('editFileEnd').value = '';
+            document.getElementById('editFileIndeterminate').checked = false;
+            document.getElementById('editFileUpload').value = '';
+        }
+
+        function toggleIndeterminate() {
+            const endInput = document.getElementById('editFileEnd');
+            const indeterminateCheckbox = document.getElementById('editFileIndeterminate');
+            
+            if (indeterminateCheckbox.checked) {
+                endInput.value = '';
+                endInput.disabled = true;
+            } else {
+                endInput.disabled = false;
+            }
+        }
+
+        function saveFileEdit() {
+            const nameInput = document.getElementById('editFileName');
+            const startInput = document.getElementById('editFileStart');
+            const endInput = document.getElementById('editFileEnd');
+            const indeterminateCheckbox = document.getElementById('editFileIndeterminate');
+            const fileUpload = document.getElementById('editFileUpload');
+            
+            // Validation
+            const name = nameInput.value.trim();
+            if (!name || name.length === 0) {
+                showToast('⚠️ Nome do áudio é obrigatório', 'error');
+                nameInput.focus();
+                return;
+            }
+            
+            if (name.length > 100) {
+                showToast('⚠️ Nome não pode ter mais de 100 caracteres', 'error');
+                nameInput.focus();
+                return;
+            }
+            
+            if (!startInput.value) {
+                showToast('⚠️ Data de início é obrigatória', 'error');
+                startInput.focus();
+                return;
+            }
+            
+            if (!indeterminateCheckbox.checked && !endInput.value) {
+                showToast('⚠️ Data de vencimento é obrigatória ou marque como indeterminado', 'error');
+                endInput.focus();
+                return;
+            }
+            
+            // Check if end date is after start date
+            if (!indeterminateCheckbox.checked && endInput.value) {
+                const startDate = new Date(startInput.value);
+                const endDate = new Date(endInput.value);
+                
+                if (endDate < startDate) {
+                    showToast('⚠️ Data de vencimento não pode ser anterior à data de início', 'error');
+                    endInput.focus();
+                    return;
+                }
+            }
+            
+            // Update the data (in real app, this would be an API call)
+            const file = filesData[currentEditFile.category].find(f => f.name === currentEditFile.originalName);
+            if (file) {
+                file.name = name;
+                
+                // Convert date format back to DD/MM/YYYY
+                const [yearStart, monthStart, dayStart] = startInput.value.split('-');
+                file.start = `${dayStart}/${monthStart}/${yearStart}`;
+                
+                if (indeterminateCheckbox.checked) {
+                    file.end = 'Indeterminado';
+                } else {
+                    const [yearEnd, monthEnd, dayEnd] = endInput.value.split('-');
+                    file.end = `${dayEnd}/${monthEnd}/${yearEnd}`;
+                }
+            }
+            
+            // Show success message
+            if (fileUpload.files.length > 0) {
+                showToast(`✓ Anúncio "${name}" atualizado com novo arquivo!`, 'success');
+            } else {
+                showToast(`✓ Anúncio "${name}" atualizado com sucesso!`, 'success');
+            }
+            
+            // Close modal and refresh the files modal
+            closeEditFileModal();
+            openFilesModal(currentEditFile.category);
+        }
+
         // Make functions global so onclick can access them
         window.openDrawer = openDrawer;
         window.closeDrawer = closeDrawer;
@@ -1837,6 +2036,10 @@
         window.openFilesModal = openFilesModal;
         window.closeFilesModal = closeFilesModal;
         window.playFile = playFile;
+        window.openEditFileModal = openEditFileModal;
+        window.closeEditFileModal = closeEditFileModal;
+        window.toggleIndeterminate = toggleIndeterminate;
+        window.saveFileEdit = saveFileEdit;
     </script>
 </body>
 </html>
