@@ -60,6 +60,20 @@
                     >
                         Cadastrar
                     </button>
+                    <button 
+                        id="recoverTab" 
+                        onclick="switchTab('recover')" 
+                        class="hidden flex-1 px-6 py-4 text-sm font-semibold text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-200"
+                    >
+                        Recuperar senha
+                    </button>
+                    <button 
+                        id="successTab" 
+                        onclick="switchTab('success')" 
+                        class="hidden flex-1 px-6 py-4 text-sm font-semibold text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-200"
+                    >
+                        Instruções
+                    </button>
                 </div>
 
                 <!-- Forms Container -->
@@ -104,7 +118,7 @@
                                     <input type="checkbox" class="w-4 h-4 rounded border-gray-300 dark:border-gray-600 text-blue-600 focus:ring-blue-500">
                                     <span class="ml-2 text-gray-600 dark:text-gray-400">Lembrar-me</span>
                                 </label>
-                                <button type="button" onclick="openRecoverModal()" class="text-blue-600 dark:text-blue-400 hover:underline">
+                                <button type="button" onclick="switchTab('recover')" class="text-blue-600 dark:text-blue-400 hover:underline">
                                     Esqueceu a senha?
                                 </button>
                             </div>
@@ -195,6 +209,87 @@
                         </button>
                     </form>
 
+                    <!-- Recover Password Form -->
+                    <form id="recoverForm" class="space-y-6 hidden">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Recuperar senha</h2>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Informe seu e-mail para receber as instruções de recuperação.</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label for="recoverEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    E-mail
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="recoverEmail" 
+                                    required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400 focus:border-transparent transition-all duration-200"
+                                    placeholder="seu@email.com"
+                                >
+                            </div>
+
+                            <div class="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                                <div class="flex gap-3">
+                                    <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <p class="text-sm text-blue-800 dark:text-blue-300">
+                                        Você receberá um e-mail com um link para criar uma nova senha. Verifique também sua caixa de spam.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <button 
+                                type="button"
+                                onclick="switchTab('login')"
+                                class="flex-1 px-6 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-200"
+                            >
+                                Voltar
+                            </button>
+                            <button 
+                                type="submit"
+                                class="flex-1 px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
+                            >
+                                Enviar
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Success/Instructions View -->
+                    <div id="successView" class="space-y-6 hidden">
+                        <div class="text-center py-8">
+                            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/20 mb-4">
+                                <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2" id="successTitle">Sucesso!</h2>
+                            <p class="text-gray-600 dark:text-gray-400" id="successMessage">Operação realizada com sucesso.</p>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                            <div class="flex gap-3">
+                                <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <p class="text-sm text-blue-800 dark:text-blue-300" id="successInstructions">
+                                    Instruções detalhadas foram enviadas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <button 
+                            onclick="switchTab('login')"
+                            class="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
+                        >
+                            Voltar para login
+                        </button>
+                    </div>
+
                 </div>
             </div>
 
@@ -204,68 +299,6 @@
                     ← Voltar para a página inicial
                 </a>
             </div>
-        </div>
-    </div>
-
-    <!-- Recover Password Modal -->
-    <div id="recoverModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-fade-in">
-            <!-- Modal Header -->
-            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Recuperar senha</h3>
-                <button onclick="closeRecoverModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Modal Body -->
-            <form id="recoverModalForm" class="p-6 space-y-4">
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                    Informe seu e-mail para receber as instruções de recuperação.
-                </p>
-
-                <div>
-                    <label for="recoverEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        E-mail
-                    </label>
-                    <input 
-                        type="email" 
-                        id="recoverEmail" 
-                        required
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400 focus:border-transparent transition-all duration-200"
-                        placeholder="seu@email.com"
-                    >
-                </div>
-
-                <div class="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-                    <div class="flex gap-3">
-                        <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <p class="text-sm text-blue-800 dark:text-blue-300">
-                            Você receberá um e-mail com um link para criar uma nova senha. Verifique também sua caixa de spam.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex gap-3 pt-2">
-                    <button 
-                        type="button"
-                        onclick="closeRecoverModal()"
-                        class="flex-1 px-6 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-200"
-                    >
-                        Cancelar
-                    </button>
-                    <button 
-                        type="submit"
-                        class="flex-1 px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
-                    >
-                        Enviar
-                    </button>
-                </div>
-            </form>
         </div>
     </div>
 
@@ -292,11 +325,25 @@
 
         // Tab Switching
         function switchTab(tab) {
-            const tabs = ['login', 'signup'];
+            const tabs = ['login', 'signup', 'recover', 'success'];
+            const forms = {
+                'login': document.getElementById('loginForm'),
+                'signup': document.getElementById('signupForm'),
+                'recover': document.getElementById('recoverForm'),
+                'success': document.getElementById('successView')
+            };
+            
+            // Show/hide tab buttons
+            document.getElementById('loginTab').classList.toggle('hidden', tab === 'success');
+            document.getElementById('signupTab').classList.toggle('hidden', tab === 'success' || tab === 'recover');
+            document.getElementById('recoverTab').classList.toggle('hidden', tab !== 'recover');
+            document.getElementById('successTab').classList.toggle('hidden', tab !== 'success');
             
             tabs.forEach(t => {
                 const tabButton = document.getElementById(`${t}Tab`);
-                const form = document.getElementById(`${t}Form`);
+                const form = forms[t];
+                
+                if (!tabButton || !form) return;
                 
                 if (t === tab) {
                     // Active tab
@@ -307,6 +354,10 @@
                         tabButton.classList.add('text-blue-600', 'dark:text-blue-400', 'border-blue-600', 'dark:border-blue-400', 'bg-blue-50', 'dark:bg-blue-900/20');
                     } else if (tab === 'signup') {
                         tabButton.classList.add('text-green-600', 'dark:text-green-400', 'border-green-600', 'dark:border-green-400', 'bg-green-50', 'dark:bg-green-900/20');
+                    } else if (tab === 'recover') {
+                        tabButton.classList.add('text-orange-600', 'dark:text-orange-400', 'border-orange-600', 'dark:border-orange-400', 'bg-orange-50', 'dark:bg-orange-900/20');
+                    } else if (tab === 'success') {
+                        tabButton.classList.add('text-green-600', 'dark:text-green-400', 'border-green-600', 'dark:border-green-400', 'bg-green-50', 'dark:bg-green-900/20');
                     }
                     
                     form.classList.remove('hidden');
@@ -314,7 +365,8 @@
                     // Inactive tabs
                     tabButton.classList.remove('border-b-2', 'text-blue-600', 'dark:text-blue-400', 'border-blue-600', 'dark:border-blue-400');
                     tabButton.classList.remove('text-green-600', 'dark:text-green-400', 'border-green-600', 'dark:border-green-400');
-                    tabButton.classList.remove('bg-blue-50', 'dark:bg-blue-900/20', 'bg-green-50', 'dark:bg-green-900/20');
+                    tabButton.classList.remove('text-orange-600', 'dark:text-orange-400', 'border-orange-600', 'dark:border-orange-400');
+                    tabButton.classList.remove('bg-blue-50', 'dark:bg-blue-900/20', 'bg-green-50', 'dark:bg-green-900/20', 'bg-orange-50', 'dark:bg-orange-900/20');
                     tabButton.classList.add('text-gray-600', 'dark:text-gray-400', 'hover:bg-gray-50', 'dark:hover:bg-gray-700/50');
                     form.classList.add('hidden');
                 }
@@ -343,31 +395,21 @@
                 return;
             }
             
-            alert('Conta criada com sucesso! (Funcionalidade mock)');
-            switchTab('login');
+            // Show success tab
+            document.getElementById('successTitle').textContent = 'Conta criada com sucesso!';
+            document.getElementById('successMessage').textContent = 'Seu cadastro foi realizado com sucesso.';
+            document.getElementById('successInstructions').textContent = 'Você já pode fazer login usando suas credenciais. Um e-mail de confirmação foi enviado para seu endereço.';
+            switchTab('success');
         });
 
-        // Recover Modal Functions
-        function openRecoverModal() {
-            document.getElementById('recoverModal').classList.remove('hidden');
-        }
-
-        function closeRecoverModal() {
-            document.getElementById('recoverModal').classList.add('hidden');
-            document.getElementById('recoverModalForm').reset();
-        }
-
-        // Close modal on background click
-        document.getElementById('recoverModal').addEventListener('click', (e) => {
-            if (e.target.id === 'recoverModal') {
-                closeRecoverModal();
-            }
-        });
-
-        document.getElementById('recoverModalForm').addEventListener('submit', (e) => {
+        document.getElementById('recoverForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Instruções de recuperação enviadas para seu e-mail! (Funcionalidade mock)');
-            closeRecoverModal();
+            
+            // Show success tab
+            document.getElementById('successTitle').textContent = 'E-mail enviado!';
+            document.getElementById('successMessage').textContent = 'Instruções de recuperação foram enviadas.';
+            document.getElementById('successInstructions').textContent = 'Você receberá um e-mail com um link para criar uma nova senha. Verifique também sua caixa de spam. O link expira em 24 horas.';
+            switchTab('success');
         });
     </script>
 
