@@ -1,5 +1,94 @@
 // Main initialization and event listeners
 
+// User dropdown functions
+function toggleUserDropdown() {
+    const dropdown = document.getElementById('userDropdownContainer');
+    dropdown.classList.toggle('hidden');
+}
+
+function handleUpgradePlan() {
+    showToast('Upgrade do plano em desenvolvimento', 'info');
+    toggleUserDropdown();
+}
+
+function handlePersonalizacao() {
+    showToast('Personalização em desenvolvimento', 'info');
+    toggleUserDropdown();
+}
+
+function handleConfiguracoes() {
+    showToast('Configurações em desenvolvimento', 'info');
+    toggleUserDropdown();
+}
+
+function handleAjuda() {
+    showToast('Ajuda em desenvolvimento', 'info');
+    toggleUserDropdown();
+}
+
+function handleSair() {
+    if (confirm('Deseja realmente sair?')) {
+        showToast('Saindo...', 'success');
+        setTimeout(() => {
+            window.location.href = 'auth.html';
+        }, 1000);
+    }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('userDropdownContainer');
+    const avatarBtn = document.getElementById('userAvatarBtn');
+    if (dropdown && avatarBtn && !dropdown.contains(e.target) && !avatarBtn.contains(e.target)) {
+        dropdown.classList.add('hidden');
+    }
+});
+
+// Funções para novos drawers
+function openAdicionarTextoModal() {
+    showToast('Modal Adicionar Texto em desenvolvimento', 'info');
+}
+
+function playLocucao() {
+    showToast('Reproduzindo locução...', 'info');
+}
+
+function editLink(id) {
+    showToast('Editar Link ' + id + ' em desenvolvimento', 'info');
+}
+
+function deleteLink(id) {
+    if (confirm('Deseja realmente excluir este link?')) {
+        showToast('Link excluído com sucesso', 'success');
+    }
+}
+
+function openIncorporarLinkModal() {
+    showToast('Modal Incorporar Link em desenvolvimento', 'info');
+}
+
+function openNovoLinkModal() {
+    showToast('Modal Novo Link em desenvolvimento', 'info');
+}
+
+function reiniciarLinks() {
+    showToast('Reiniciando links...', 'info');
+}
+
+function atualizarLinks() {
+    showToast('Atualizando links...', 'success');
+}
+
+function alterarLogoRadio() {
+    showToast('Alterar Logo em desenvolvimento', 'info');
+}
+
+function reiniciarTransmissao() {
+    if (confirm('Deseja realmente reiniciar a transmissão?')) {
+        showToast('Reiniciando transmissão...', 'info');
+    }
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize custom selects
