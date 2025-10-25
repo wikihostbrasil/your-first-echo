@@ -26,13 +26,18 @@ function handleAjuda() {
     toggleUserDropdown();
 }
 
-function handleSair() {
-    if (confirm('Deseja realmente sair?')) {
-        showToast('Saindo...', 'success');
-        setTimeout(() => {
-            window.location.href = 'auth.html';
-        }, 1000);
-    }
+function confirmLogout() {
+    showConfirmModal(
+        'Sair do Sistema',
+        'Deseja realmente sair? Você precisará fazer login novamente.',
+        () => {
+            toggleUserDropdown();
+            showToast('Saindo...', 'success');
+            setTimeout(() => {
+                window.location.href = 'auth.html';
+            }, 1000);
+        }
+    );
 }
 
 // Close dropdown when clicking outside
@@ -114,9 +119,13 @@ function editLink(id) {
 }
 
 function deleteLink(id) {
-    if (confirm('Deseja realmente excluir este link?')) {
-        showToast('Link excluído com sucesso', 'success');
-    }
+    showConfirmModal(
+        'Excluir Link',
+        'Deseja realmente excluir este link? Esta ação não pode ser desfeita.',
+        () => {
+            showToast('Link excluído com sucesso', 'success');
+        }
+    );
 }
 
 function openIncorporarLinkModal() {

@@ -1,0 +1,134 @@
+<!-- Modal Gerenciar Nomes e Chamadas (Funcionários) -->
+<div id="modalGerenciarFuncionarios" class="hidden fixed inset-0 bg-black/50 z-[70] items-center justify-center p-4 modal-backdrop modal-closable-esc">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col modal-content">
+        <div class="bg-blue-600 dark:bg-blue-700 p-6 rounded-t-2xl flex-shrink-0">
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-bold text-white">Gerenciar Funcionários</h3>
+                <button onclick="closeGerenciarFuncionariosModal()" class="text-white hover:bg-white/20 rounded-full p-2 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Tabs -->
+        <div class="flex border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+            <button onclick="switchFuncionarioTab('nomes')" data-tab="nomes" class="func-tab-btn flex-1 px-6 py-4 font-semibold transition-colors border-b-2 border-blue-600 text-blue-600">
+                <div class="flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                    Nomes
+                </div>
+            </button>
+            <button onclick="switchFuncionarioTab('chamadas')" data-tab="chamadas" class="func-tab-btn flex-1 px-6 py-4 font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors border-b-2 border-transparent">
+                <div class="flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                    </svg>
+                    Chamadas
+                </div>
+            </button>
+        </div>
+        
+        <!-- Tab Content -->
+        <div class="flex-1 overflow-y-auto p-6">
+            <!-- Tab Nomes -->
+            <div id="funcTabNomes" class="func-tab-content">
+                <div class="mb-4 flex gap-3">
+                    <input 
+                        type="text" 
+                        id="inputNovoNome"
+                        placeholder="Digite o nome do funcionário"
+                        class="flex-1 px-4 py-3 bg-gray-100 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-lg text-gray-800 dark:text-gray-200 focus:outline-none focus:border-blue-500"
+                    />
+                    <button 
+                        onclick="adicionarNomeFuncionario()"
+                        class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+                
+                <!-- Lista de Nomes -->
+                <div class="space-y-2" id="listaNomesFuncionarios">
+                    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <span class="font-medium text-gray-800 dark:text-gray-200">João Silva</span>
+                        <button onclick="removerNomeFuncionario(this)" class="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <span class="font-medium text-gray-800 dark:text-gray-200">Maria Santos</span>
+                        <button onclick="removerNomeFuncionario(this)" class="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab Chamadas -->
+            <div id="funcTabChamadas" class="func-tab-content hidden">
+                <div class="mb-4 flex gap-3">
+                    <input 
+                        type="text" 
+                        id="inputNovaChamada"
+                        placeholder="Digite o texto da chamada"
+                        class="flex-1 px-4 py-3 bg-gray-100 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-lg text-gray-800 dark:text-gray-200 focus:outline-none focus:border-blue-500"
+                    />
+                    <button 
+                        onclick="adicionarChamadaFuncionario()"
+                        class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+                
+                <!-- Lista de Chamadas -->
+                <div class="space-y-2" id="listaChamadasFuncionarios">
+                    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <span class="font-medium text-gray-800 dark:text-gray-200">Compareça ao RH imediatamente</span>
+                        <div class="flex gap-2">
+                            <button onclick="playPreviewChamada(this)" class="px-3 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <button onclick="removerChamadaFuncionario(this)" class="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <span class="font-medium text-gray-800 dark:text-gray-200">Seu veículo está bloqueando a saída</span>
+                        <div class="flex gap-2">
+                            <button onclick="playPreviewChamada(this)" class="px-3 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <button onclick="removerChamadaFuncionario(this)" class="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

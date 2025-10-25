@@ -1,0 +1,124 @@
+<!-- Modal Pasta de Locuções -->
+<div id="modalPastaLocucoes" class="hidden fixed inset-0 bg-black/50 z-[70] items-center justify-center p-4 modal-backdrop modal-closable-esc">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] flex flex-col modal-content">
+        <div class="bg-purple-600 dark:bg-purple-700 p-6 rounded-t-2xl flex-shrink-0">
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-bold text-white">Pasta de Locuções Virtuais</h3>
+                <button onclick="closePastaLocucoesModal()" class="text-white hover:bg-white/20 rounded-full p-2 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="flex-1 overflow-auto p-6">
+            <!-- Desktop Table -->
+            <div class="hidden md:block overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-100 dark:bg-gray-700">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Título</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Conteúdo</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Início</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Vencimento</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Pasta</th>
+                            <th class="px-4 py-3 text-center text-sm font-semibold text-gray-700 dark:text-gray-200">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                            <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-200 font-medium">Promoção Black Friday</td>
+                            <td class="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">
+                                <div class="max-w-xs truncate">Aproveite descontos de até 70% em toda loja...</div>
+                            </td>
+                            <td class="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">01/11/2024</td>
+                            <td class="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">30/11/2024</td>
+                            <td class="px-4 py-3 text-sm">
+                                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs">Promocionais</span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center justify-center gap-2">
+                                    <button onclick="ouvirLocucao('1')" class="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors" title="Ouvir">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </button>
+                                    <button onclick="bloquearLocucao('1')" class="p-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors" title="Bloquear">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                        </svg>
+                                    </button>
+                                    <button onclick="excluirLocucao('1')" class="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors" title="Excluir">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                            <td class="px-4 py-3 text-sm text-gray-900 dark:text-gray-200 font-medium">Vinheta Institucional</td>
+                            <td class="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">
+                                <div class="max-w-xs truncate">Rádio Mix FM, a melhor música para você...</div>
+                            </td>
+                            <td class="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">15/10/2024</td>
+                            <td class="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">-</td>
+                            <td class="px-4 py-3 text-sm">
+                                <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs">Vinhetas</span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center justify-center gap-2">
+                                    <button onclick="ouvirLocucao('2')" class="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors" title="Ouvir">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </button>
+                                    <button onclick="bloquearLocucao('2')" class="p-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors" title="Bloquear">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                        </svg>
+                                    </button>
+                                    <button onclick="excluirLocucao('2')" class="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors" title="Excluir">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Mobile Cards -->
+            <div class="md:hidden space-y-4">
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl">
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-gray-900 dark:text-white mb-1">Promoção Black Friday</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Aproveite descontos de até 70% em toda loja...</p>
+                        <div class="flex gap-2 text-xs text-gray-500 dark:text-gray-400">
+                            <span>Início: 01/11/2024</span>
+                            <span>•</span>
+                            <span>Venc: 30/11/2024</span>
+                        </div>
+                        <div class="mt-2">
+                            <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs">Promocionais</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="ouvirLocucao('1')" class="flex-1 px-3 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm">
+                            Ouvir
+                        </button>
+                        <button onclick="bloquearLocucao('1')" class="flex-1 px-3 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors text-sm">
+                            Bloquear
+                        </button>
+                        <button onclick="excluirLocucao('1')" class="flex-1 px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm">
+                            Excluir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
