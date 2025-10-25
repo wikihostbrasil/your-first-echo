@@ -750,6 +750,22 @@ if (typeof document !== 'undefined') {
       </div>
       
       <div class="p-6">
+        <!-- Search Bar -->
+        <div class="mb-6">
+          <div class="relative">
+            <input 
+              type="text" 
+              id="agendamentosSearch" 
+              placeholder="Buscar por arquivo ou categoria..." 
+              class="w-full px-4 py-3 pl-11 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onkeyup="filterAgendamentos()"
+            >
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+        </div>
+        
         <!-- Desktop Table -->
         <div class="hidden md:block overflow-x-auto">
           <table class="w-full">
@@ -768,6 +784,42 @@ if (typeof document !== 'undefined') {
         
         <!-- Mobile Cards -->
         <div id="agendamentosCardsContainer" class="md:hidden space-y-4"></div>
+        
+        <!-- No Results Message -->
+        <div id="agendamentosNoResults" class="hidden text-center py-8">
+          <svg class="w-16 h-16 mx-auto text-gray-300 dark:text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <p class="text-gray-500 dark:text-gray-400 text-lg">Nenhum agendamento encontrado</p>
+        </div>
+        
+        <!-- Pagination -->
+        <div id="agendamentosPagination" class="flex items-center justify-between mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div class="text-sm text-gray-600 dark:text-gray-400">
+            Mostrando <span id="agendamentosShowingStart">0</span> - <span id="agendamentosShowingEnd">0</span> de <span id="agendamentosTotal">0</span> agendamentos
+          </div>
+          <div class="flex items-center gap-2">
+            <button 
+              id="agendamentosPrevBtn" 
+              onclick="previousPageAgendamentos()" 
+              class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <div id="agendamentosPageNumbers" class="flex items-center gap-1"></div>
+            <button 
+              id="agendamentosNextBtn" 
+              onclick="nextPageAgendamentos()" 
+              class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
       
       <div class="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700">
@@ -923,17 +975,67 @@ function closeFaturasModal() {
 // ===== MODAL DE ANÚNCIOS AGENDADOS =====
 const agendamentosData = [
   { id: 1, arquivo: 'Anúncio Promoção Verão', categoria: 'Promocional', dataInicio: '01/11/2024', dataFim: '31/12/2024' },
-  { id: 2, arquivo: 'Institucional Rádio', categoria: 'Institucional', dataInicio: '15/10/2024', dataFim: 'Indeterminado' }
+  { id: 2, arquivo: 'Institucional Rádio', categoria: 'Institucional', dataInicio: '15/10/2024', dataFim: 'Indeterminado' },
+  { id: 3, arquivo: 'Black Friday 2024', categoria: 'Promocional', dataInicio: '20/11/2024', dataFim: '30/11/2024' },
+  { id: 4, arquivo: 'Natal Mix FM', categoria: 'Institucional', dataInicio: '01/12/2024', dataFim: '25/12/2024' },
+  { id: 5, arquivo: 'Ano Novo', categoria: 'Vinheta', dataInicio: '26/12/2024', dataFim: '02/01/2025' },
+  { id: 6, arquivo: 'Ofertas Semanais', categoria: 'Promocional', dataInicio: '01/11/2024', dataFim: 'Indeterminado' },
+  { id: 7, arquivo: 'Institucional Empresa X', categoria: 'Institucional', dataInicio: '10/10/2024', dataFim: '10/12/2024' },
+  { id: 8, arquivo: 'Verão 2025', categoria: 'Promocional', dataInicio: '01/01/2025', dataFim: '31/03/2025' },
+  { id: 9, arquivo: 'Avisos Gerais', categoria: 'Aviso Geral', dataInicio: '01/11/2024', dataFim: 'Indeterminado' },
+  { id: 10, arquivo: 'Carnaval 2025', categoria: 'Vinheta', dataInicio: '01/02/2025', dataFim: '28/02/2025' },
+  { id: 11, arquivo: 'Páscoa 2025', categoria: 'Promocional', dataInicio: '01/04/2025', dataFim: '20/04/2025' },
+  { id: 12, arquivo: 'Dia das Mães', categoria: 'Promocional', dataInicio: '01/05/2025', dataFim: '12/05/2025' }
 ];
 
-function openAgendamentosModal() {
-  const modal = document.getElementById('agendamentosModal');
+let agendamentosCurrentPage = 1;
+const agendamentosPerPage = 10;
+let agendamentosSearchTerm = '';
+
+function filterAgendamentos() {
+  agendamentosSearchTerm = document.getElementById('agendamentosSearch').value.toLowerCase();
+  agendamentosCurrentPage = 1; // Reset to first page when searching
+  renderAgendamentos();
+}
+
+function getFilteredAgendamentos() {
+  if (!agendamentosSearchTerm) return agendamentosData;
+  
+  return agendamentosData.filter(item => 
+    item.arquivo.toLowerCase().includes(agendamentosSearchTerm) ||
+    item.categoria.toLowerCase().includes(agendamentosSearchTerm)
+  );
+}
+
+function renderAgendamentos() {
+  const filteredData = getFilteredAgendamentos();
+  const totalItems = filteredData.length;
+  const totalPages = Math.ceil(totalItems / agendamentosPerPage);
+  const startIndex = (agendamentosCurrentPage - 1) * agendamentosPerPage;
+  const endIndex = Math.min(startIndex + agendamentosPerPage, totalItems);
+  const currentPageData = filteredData.slice(startIndex, endIndex);
+  
   const tbody = document.getElementById('agendamentosTableBody');
   const cardsContainer = document.getElementById('agendamentosCardsContainer');
+  const noResults = document.getElementById('agendamentosNoResults');
+  const pagination = document.getElementById('agendamentosPagination');
+  
+  // Clear existing content
+  tbody.innerHTML = '';
+  cardsContainer.innerHTML = '';
+  
+  // Show/hide no results message
+  if (currentPageData.length === 0) {
+    noResults.classList.remove('hidden');
+    pagination.classList.add('hidden');
+    return;
+  } else {
+    noResults.classList.add('hidden');
+    pagination.classList.remove('hidden');
+  }
   
   // Populate desktop table
-  tbody.innerHTML = '';
-  agendamentosData.forEach(item => {
+  currentPageData.forEach(item => {
     const row = document.createElement('tr');
     row.className = 'border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50';
     row.innerHTML = `
@@ -960,8 +1062,7 @@ function openAgendamentosModal() {
   });
   
   // Populate mobile cards
-  cardsContainer.innerHTML = '';
-  agendamentosData.forEach(item => {
+  currentPageData.forEach(item => {
     const card = document.createElement('div');
     card.className = 'bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:shadow-lg transition-shadow';
     card.innerHTML = `
@@ -1000,6 +1101,81 @@ function openAgendamentosModal() {
     `;
     cardsContainer.appendChild(card);
   });
+  
+  // Update pagination info
+  document.getElementById('agendamentosShowingStart').textContent = totalItems > 0 ? startIndex + 1 : 0;
+  document.getElementById('agendamentosShowingEnd').textContent = endIndex;
+  document.getElementById('agendamentosTotal').textContent = totalItems;
+  
+  // Update pagination buttons
+  const prevBtn = document.getElementById('agendamentosPrevBtn');
+  const nextBtn = document.getElementById('agendamentosNextBtn');
+  prevBtn.disabled = agendamentosCurrentPage === 1;
+  nextBtn.disabled = agendamentosCurrentPage === totalPages || totalPages === 0;
+  
+  // Render page numbers
+  renderPageNumbers(totalPages);
+}
+
+function renderPageNumbers(totalPages) {
+  const pageNumbersContainer = document.getElementById('agendamentosPageNumbers');
+  pageNumbersContainer.innerHTML = '';
+  
+  if (totalPages <= 1) return;
+  
+  const maxVisiblePages = 5;
+  let startPage = Math.max(1, agendamentosCurrentPage - Math.floor(maxVisiblePages / 2));
+  let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+  
+  // Adjust if we're near the end
+  if (endPage - startPage < maxVisiblePages - 1) {
+    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+  }
+  
+  for (let i = startPage; i <= endPage; i++) {
+    const pageBtn = document.createElement('button');
+    pageBtn.textContent = i;
+    pageBtn.className = `px-3 py-2 rounded-lg transition-colors ${
+      i === agendamentosCurrentPage
+        ? 'bg-blue-500 text-white font-semibold'
+        : 'border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600'
+    }`;
+    pageBtn.onclick = () => goToPageAgendamentos(i);
+    pageNumbersContainer.appendChild(pageBtn);
+  }
+}
+
+function goToPageAgendamentos(page) {
+  agendamentosCurrentPage = page;
+  renderAgendamentos();
+}
+
+function previousPageAgendamentos() {
+  if (agendamentosCurrentPage > 1) {
+    agendamentosCurrentPage--;
+    renderAgendamentos();
+  }
+}
+
+function nextPageAgendamentos() {
+  const filteredData = getFilteredAgendamentos();
+  const totalPages = Math.ceil(filteredData.length / agendamentosPerPage);
+  if (agendamentosCurrentPage < totalPages) {
+    agendamentosCurrentPage++;
+    renderAgendamentos();
+  }
+}
+
+function openAgendamentosModal() {
+  const modal = document.getElementById('agendamentosModal');
+  
+  // Reset search
+  document.getElementById('agendamentosSearch').value = '';
+  agendamentosSearchTerm = '';
+  agendamentosCurrentPage = 1;
+  
+  // Render the list
+  renderAgendamentos();
   
   modal.classList.remove('hidden');
   modal.classList.add('flex');
@@ -1120,7 +1296,7 @@ function deleteAgendamento(id) {
     if (index > -1) {
       agendamentosData.splice(index, 1);
       showToast('✓ Agendamento excluído com sucesso!', 'success');
-      openAgendamentosModal(); // Refresh the list
+      renderAgendamentos(); // Refresh the list
     }
   }
 }
