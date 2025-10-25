@@ -297,87 +297,68 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Início:</label>
-                    <div class="flex items-center gap-2">
-                        <button onclick="togglePreviewPlay(this, 'inicio')" class="flex-shrink-0 p-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                        </button>
-                        <div class="custom-select flex-1" data-name="inicio">
-                            <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
-                            <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="Buscar..." class="custom-select-search-input">
-                            </div>
-                                <div class="custom-select-options text-gray-900 dark:text-white">
-                                    <div class="custom-select-option" data-value="atencao">Atenção Colaborador</div>
-                                    <div class="custom-select-option" data-value="urgente">Urgente</div>
-                                    <div class="custom-select-option" data-value="aviso">Aviso</div>
-                                </div>
+                    <div class="custom-select" data-name="inicio">
+                        <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
+                        <div class="custom-select-dropdown">
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar..." class="custom-select-search-input">
+                        </div>
+                            <div class="custom-select-options text-gray-900 dark:text-white">
+                                <div class="custom-select-option" data-value="atencao">Atenção Colaborador</div>
+                                <div class="custom-select-option" data-value="urgente">Urgente</div>
+                                <div class="custom-select-option" data-value="aviso">Aviso</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nome:</label>
-                    <div class="flex items-center gap-2">
-                        <button onclick="togglePreviewPlay(this, 'nome')" class="flex-shrink-0 p-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                        </button>
-                        <div class="custom-select flex-1" data-name="nome">
-                            <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
-                            <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="Buscar nome..." class="custom-select-search-input">
-                            </div>
-                                <div class="custom-select-options text-gray-900 dark:text-white">
-                                    <div class="custom-select-option" data-value="teste01">Teste 01</div>
-                                    <div class="custom-select-option" data-value="joao">João Silva</div>
-                                    <div class="custom-select-option" data-value="maria">Maria Santos</div>
-                                    <div class="custom-select-option" data-value="pedro">Pedro Oliveira</div>
-                                    <div class="custom-select-option" data-value="ana">Ana Costa</div>
-                                </div>
+                    <div class="custom-select" data-name="nome">
+                        <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
+                        <div class="custom-select-dropdown">
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar nome..." class="custom-select-search-input">
+                        </div>
+                            <div class="custom-select-options text-gray-900 dark:text-white">
+                                <div class="custom-select-option" data-value="teste01">Teste 01</div>
+                                <div class="custom-select-option" data-value="joao">João Silva</div>
+                                <div class="custom-select-option" data-value="maria">Maria Santos</div>
+                                <div class="custom-select-option" data-value="pedro">Pedro Oliveira</div>
+                                <div class="custom-select-option" data-value="ana">Ana Costa</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Chamada:</label>
-                    <div class="flex items-center gap-2">
-                        <button onclick="togglePreviewPlay(this, 'chamada')" class="flex-shrink-0 p-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                        </button>
-                        <div class="custom-select flex-1" data-name="chamada">
-                            <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
-                            <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="Buscar chamada..." class="custom-select-search-input">
-                            </div>
-                                <div class="custom-select-options text-gray-900 dark:text-white">
-                                    <div class="custom-select-option" data-value="atendimento">Favor comparecer à área de atendimento ao cliente</div>
-                                    <div class="custom-select-option" data-value="recepcao">Dirija-se à recepção</div>
-                                    <div class="custom-select-option" data-value="rh">Compareça ao setor de RH</div>
-                                </div>
+                    <div class="custom-select" data-name="chamada">
+                        <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
+                        <div class="custom-select-dropdown">
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar chamada..." class="custom-select-search-input">
+                        </div>
+                            <div class="custom-select-options text-gray-900 dark:text-white">
+                                <div class="custom-select-option" data-value="atendimento">Favor comparecer à área de atendimento ao cliente</div>
+                                <div class="custom-select-option" data-value="recepcao">Dirija-se à recepção</div>
+                                <div class="custom-select-option" data-value="rh">Compareça ao setor de RH</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Prioridade:</label>
-                    <div class="flex items-center gap-2">
-                        <button onclick="togglePreviewPlay(this, 'prioridade')" class="flex-shrink-0 p-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                        </button>
-                        <div class="custom-select flex-1" data-name="prioridade">
-                            <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
-                            <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="Buscar..." class="custom-select-search-input">
+                    <div class="custom-select" data-name="prioridade">
+                        <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
+                        <div class="custom-select-dropdown">
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar..." class="custom-select-search-input">
+                        </div>
+                            <div class="custom-select-options text-gray-900 dark:text-white">
+                                <div class="custom-select-option" data-value="normal">Normal</div>
+                                <div class="custom-select-option" data-value="alta">Alta</div>
+                                <div class="custom-select-option" data-value="urgente">Urgente</div>
                             </div>
-                                <div class="custom-select-options text-gray-900 dark:text-white">
-                                    <div class="custom-select-option" data-value="normal">Normal</div>
-                                    <div class="custom-select-option" data-value="alta">Alta</div>
-                                    <div class="custom-select-option" data-value="urgente">Urgente</div>
-                                </div>
-                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -411,48 +392,38 @@
             <div class="flex flex-wrap items-end gap-4 mb-4">
                 <div class="flex-1 min-w-[200px]">
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Modelo:</label>
-                    <div class="flex items-center gap-2">
-                        <button onclick="togglePreviewPlay(this, 'modelo')" class="flex-shrink-0 p-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                        </button>
-                        <div class="custom-select flex-1" data-name="modelo">
-                            <div class="custom-select-trigger text-gray-900 dark:text-white">Modelo...</div>
-                            <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="Buscar modelo..." class="custom-select-search-input">
-                            </div>
-                                <div class="custom-select-options text-gray-900 dark:text-white">
-                                    <div class="custom-select-option" data-value="carro">Carro</div>
-                                    <div class="custom-select-option" data-value="moto">Moto</div>
-                                    <div class="custom-select-option" data-value="caminhao">Caminhão</div>
-                                    <div class="custom-select-option" data-value="van">Van</div>
-                                    <div class="custom-select-option" data-value="onibus">Ônibus</div>
-                                </div>
+                    <div class="custom-select" data-name="modelo">
+                        <div class="custom-select-trigger text-gray-900 dark:text-white">Modelo...</div>
+                        <div class="custom-select-dropdown">
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar modelo..." class="custom-select-search-input">
+                        </div>
+                            <div class="custom-select-options text-gray-900 dark:text-white">
+                                <div class="custom-select-option" data-value="carro">Carro</div>
+                                <div class="custom-select-option" data-value="moto">Moto</div>
+                                <div class="custom-select-option" data-value="caminhao">Caminhão</div>
+                                <div class="custom-select-option" data-value="van">Van</div>
+                                <div class="custom-select-option" data-value="onibus">Ônibus</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="flex-1 min-w-[200px]">
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Cor:</label>
-                    <div class="flex items-center gap-2">
-                        <button onclick="togglePreviewPlay(this, 'cor')" class="flex-shrink-0 p-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                        </button>
-                        <div class="custom-select flex-1" data-name="cor">
-                            <div class="custom-select-trigger text-gray-900 dark:text-white">Cor...</div>
-                            <div class="custom-select-dropdown">
-                            <div class="custom-select-search">
-                                <input type="text" placeholder="Buscar cor..." class="custom-select-search-input">
-                            </div>
-                                <div class="custom-select-options text-gray-900 dark:text-white">
-                                    <div class="custom-select-option" data-value="branco">Branco</div>
-                                    <div class="custom-select-option" data-value="preto">Preto</div>
-                                    <div class="custom-select-option" data-value="prata">Prata</div>
-                                    <div class="custom-select-option" data-value="vermelho">Vermelho</div>
-                                    <div class="custom-select-option" data-value="azul">Azul</div>
-                                    <div class="custom-select-option" data-value="verde">Verde</div>
-                                    <div class="custom-select-option" data-value="amarelo">Amarelo</div>
-                                </div>
+                    <div class="custom-select" data-name="cor">
+                        <div class="custom-select-trigger text-gray-900 dark:text-white">Cor...</div>
+                        <div class="custom-select-dropdown">
+                        <div class="custom-select-search">
+                            <input type="text" placeholder="Buscar cor..." class="custom-select-search-input">
+                        </div>
+                            <div class="custom-select-options text-gray-900 dark:text-white">
+                                <div class="custom-select-option" data-value="branco">Branco</div>
+                                <div class="custom-select-option" data-value="preto">Preto</div>
+                                <div class="custom-select-option" data-value="prata">Prata</div>
+                                <div class="custom-select-option" data-value="vermelho">Vermelho</div>
+                                <div class="custom-select-option" data-value="azul">Azul</div>
+                                <div class="custom-select-option" data-value="verde">Verde</div>
+                                <div class="custom-select-option" data-value="amarelo">Amarelo</div>
                             </div>
                         </div>
                     </div>
