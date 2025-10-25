@@ -127,40 +127,34 @@ function adicionarAnuncioProgramado() {
     if (!container) return;
     
     const novaLinha = document.createElement('div');
-    novaLinha.className = 'anuncio-programado-item bg-white/5 rounded-lg p-3 border border-white/10';
+    novaLinha.className = 'flex flex-wrap items-center gap-3';
     novaLinha.innerHTML = `
-        <div class="grid grid-cols-1 gap-3">
-            <div class="flex items-center gap-2">
-                <button onclick="togglePreviewPlay(this, 'anuncio-programado')" class="flex-shrink-0 p-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                </button>
-                <div class="flex-1 custom-select" data-name="anuncio-programado">
-                    <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione o tipo</div>
-                    <div class="custom-select-dropdown">
-                        <div class="custom-select-search">
-                            <input type="text" placeholder="Buscar..." class="custom-select-search-input">
-                        </div>
-                        <div class="custom-select-options text-gray-900 dark:text-white">
-                            <div class="custom-select-option" data-value="vinheta">Vinhetas</div>
-                            <div class="custom-select-option" data-value="geral">Avisos Gerais</div>
-                            <div class="custom-select-option" data-value="institucional">Institucionais</div>
-                            <div class="custom-select-option" data-value="promocional">Promocionais</div>
-                            <div class="custom-select-option" data-value="exclusivo">Exclusivos</div>
-                        </div>
-                    </div>
+        <button onclick="togglePreviewPlay(this, 'anuncio-programado')" class="flex-shrink-0 p-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+        </button>
+        <div class="flex-1 min-w-[200px] custom-select" data-name="anuncio-programado">
+            <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione o tipo</div>
+            <div class="custom-select-dropdown">
+                <div class="custom-select-search">
+                    <input type="text" placeholder="Buscar..." class="custom-select-search-input">
+                </div>
+                <div class="custom-select-options text-gray-900 dark:text-white">
+                    <div class="custom-select-option" data-value="vinheta">Vinhetas</div>
+                    <div class="custom-select-option" data-value="geral">Avisos Gerais</div>
+                    <div class="custom-select-option" data-value="institucional">Institucionais</div>
+                    <div class="custom-select-option" data-value="promocional">Promocionais</div>
+                    <div class="custom-select-option" data-value="exclusivo">Exclusivos</div>
                 </div>
             </div>
-            <div class="flex items-center gap-2">
-                <span class="text-gray-700 dark:text-gray-300">a cada</span>
-                <div class="flex items-center gap-1 border border-gray-300 dark:border-gray-600 rounded-lg">
-                    <button onclick="changeCounter(this, -1)" class="px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">−</button>
-                    <span class="px-2 text-gray-800 dark:text-white font-medium min-w-[2rem] text-center">3</span>
-                    <button onclick="changeCounter(this, 1)" class="px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">+</button>
-                </div>
-                <span class="text-gray-700 dark:text-gray-300">músicas</span>
-            </div>
-            <button onclick="removerAnuncioProgramado(this)" class="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">Remover</button>
         </div>
+        <span class="text-gray-700 dark:text-gray-300">a cada</span>
+        <div class="flex items-center gap-1 border border-gray-300 dark:border-gray-600 rounded-lg">
+            <button onclick="changeCounter(this, -1)" class="px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">−</button>
+            <span class="px-2 text-gray-800 dark:text-white font-medium min-w-[2rem] text-center">3</span>
+            <button onclick="changeCounter(this, 1)" class="px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">+</button>
+        </div>
+        <span class="text-gray-700 dark:text-gray-300">músicas</span>
+        <button onclick="removerAnuncioProgramado(this)" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">Remover</button>
     `;
     
     container.appendChild(novaLinha);
@@ -171,8 +165,10 @@ function adicionarAnuncioProgramado() {
 // Remover anúncio programado
 function removerAnuncioProgramado(button) {
     const linha = button.closest('.flex.flex-wrap.items-center.gap-3');
-    linha.remove();
-    showToast('Item removido!', 'success');
+    if (linha) {
+        linha.remove();
+        showToast('Item removido!', 'success');
+    }
 }
 
 // Preview play/pause functionality
