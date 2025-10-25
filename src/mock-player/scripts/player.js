@@ -164,16 +164,9 @@ function adicionarAnuncioProgramado() {
 
 // Remover anúncio programado
 function removerAnuncioProgramado(button) {
-    const container = document.getElementById('anuncios-programados-container');
     const linha = button.closest('.flex.flex-wrap.items-center.gap-3');
-    
-    // Verificar se há mais de uma linha
-    if (container.children.length > 1) {
-        linha.remove();
-        showToast('Item removido!', 'success');
-    } else {
-        showToast('Deve haver pelo menos um anúncio programado!', 'warning');
-    }
+    linha.remove();
+    showToast('Item removido!', 'success');
 }
 
 // Preview play/pause functionality
