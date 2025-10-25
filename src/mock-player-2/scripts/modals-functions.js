@@ -211,6 +211,86 @@ function excluirLocucao(id) {
     });
 }
 
+// Sugestão de Veículos Modal
+function openSugestaoVeiculosModal() {
+    const modal = document.getElementById('modalSugestaoVeiculos');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+}
+
+function closeSugestaoVeiculosModal() {
+    const modal = document.getElementById('modalSugestaoVeiculos');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        // Reset form
+        document.getElementById('sugestaoVeiculosTipo').value = '';
+        document.getElementById('sugestaoVeiculosTexto').value = '';
+        document.getElementById('sugestaoVeiculosEmail').value = '';
+    }
+}
+
+function enviarSugestaoVeiculos() {
+    const tipo = document.getElementById('sugestaoVeiculosTipo').value;
+    const texto = document.getElementById('sugestaoVeiculosTexto').value.trim();
+    
+    if (!tipo) {
+        showToast('Por favor, selecione o tipo de sugestão.', 'error');
+        return;
+    }
+    
+    if (!texto) {
+        showToast('Por favor, descreva sua sugestão.', 'error');
+        return;
+    }
+    
+    // Simulate sending
+    showToast('Enviando sugestão...', 'info');
+    
+    setTimeout(() => {
+        closeSugestaoVeiculosModal();
+        setTimeout(() => {
+            showSucessoModal('Sugestão Enviada!', 'Sua sugestão foi enviada com sucesso! Agradecemos seu feedback.');
+        }, 300);
+    }, 1000);
+}
+
+// Handle Sugestões Drawer Submit
+function enviarSugestao() {
+    const textarea = document.querySelector('#drawerSugestoes textarea');
+    if (textarea && textarea.value.trim()) {
+        showToast('Enviando sugestão...', 'info');
+        
+        setTimeout(() => {
+            closeDrawer('sugestoes');
+            setTimeout(() => {
+                showSucessoModal('Sugestão Enviada!', 'Sua sugestão foi enviada com sucesso! Agradecemos seu feedback.');
+            }, 300);
+        }, 1000);
+    } else {
+        showToast('Por favor, escreva sua sugestão.', 'error');
+    }
+}
+
+// Handle Upload Drawer Submit  
+function enviarUpload() {
+    const fileInput = document.querySelector('#drawerUpload input[type="file"]');
+    if (fileInput && fileInput.files && fileInput.files.length > 0) {
+        showToast('Enviando arquivo...', 'info');
+        
+        setTimeout(() => {
+            closeDrawer('upload');
+            setTimeout(() => {
+                showSucessoModal('Upload Concluído!', 'Seu anúncio foi enviado com sucesso e será processado em breve.');
+            }, 300);
+        }, 1500);
+    } else {
+        showToast('Por favor, selecione um arquivo para enviar.', 'error');
+    }
+}
+
 // Loading Screen
 window.addEventListener('load', () => {
     const loadingScreen = document.getElementById('loadingScreen');
@@ -255,3 +335,8 @@ window.closePastaLocucoesModal = closePastaLocucoesModal;
 window.ouvirLocucao = ouvirLocucao;
 window.bloquearLocucao = bloquearLocucao;
 window.excluirLocucao = excluirLocucao;
+window.openSugestaoVeiculosModal = openSugestaoVeiculosModal;
+window.closeSugestaoVeiculosModal = closeSugestaoVeiculosModal;
+window.enviarSugestaoVeiculos = enviarSugestaoVeiculos;
+window.enviarSugestao = enviarSugestao;
+window.enviarUpload = enviarUpload;

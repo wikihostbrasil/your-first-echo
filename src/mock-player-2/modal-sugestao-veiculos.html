@@ -1,0 +1,91 @@
+<!-- Modal Sugestão de Veículos -->
+<div id="modalSugestaoVeiculos" class="hidden fixed inset-0 bg-black/50 z-[70] items-center justify-center p-4 modal-backdrop modal-closable-esc">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col modal-content">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-green-600 to-emerald-600 p-6 flex-shrink-0">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                    </svg>
+                    <h3 class="text-2xl font-bold text-white">Sugestão para Chamada de Veículos</h3>
+                </div>
+                <button onclick="closeSugestaoVeiculosModal()" class="text-white hover:bg-white/20 rounded-full p-2 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="p-6 overflow-y-auto flex-1">
+            <p class="text-gray-600 dark:text-gray-400 mb-6">
+                Envie sua sugestão para melhorias no sistema de chamada de veículos. Sua opinião é muito importante!
+            </p>
+
+            <!-- Form -->
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Tipo de Sugestão *
+                    </label>
+                    <select id="sugestaoVeiculosTipo" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        <option value="">Selecione...</option>
+                        <option value="novo-modelo">Novo Modelo de Veículo</option>
+                        <option value="nova-cor">Nova Cor</option>
+                        <option value="novo-recurso">Novo Recurso</option>
+                        <option value="melhoria">Melhoria</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Sua Sugestão *
+                    </label>
+                    <textarea 
+                        id="sugestaoVeiculosTexto"
+                        rows="6"
+                        placeholder="Descreva sua sugestão com detalhes..."
+                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+                    ></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Seu E-mail (opcional)
+                    </label>
+                    <input 
+                        type="email"
+                        id="sugestaoVeiculosEmail"
+                        placeholder="seu@email.com"
+                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    />
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        Informe seu e-mail se desejar receber retorno sobre sua sugestão
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3 flex-shrink-0">
+            <button 
+                onclick="closeSugestaoVeiculosModal()" 
+                class="flex-1 px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors font-medium"
+            >
+                Cancelar
+            </button>
+            <button 
+                onclick="enviarSugestaoVeiculos()" 
+                class="flex-1 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 font-medium flex items-center justify-center gap-2 transform hover:scale-105"
+            >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+                Enviar Sugestão
+            </button>
+        </div>
+    </div>
+</div>

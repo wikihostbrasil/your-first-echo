@@ -249,5 +249,9 @@ function enviarPedido() {
   
   setTimeout(() => {
     closePedidosModal();
+    // Show success modal after closing pedidos modal
+    setTimeout(() => {
+      showSucessoModal('Pedido Enviado!', 'Seu pedido de gravação foi enviado com sucesso e será processado em breve.');
+    }, 300);
   }, 1500);
 }

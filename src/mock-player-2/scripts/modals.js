@@ -364,6 +364,11 @@ function saveUpload() {
     
     // Close modal
     closeUploadModal();
+    
+    // Show success modal after closing upload modal
+    setTimeout(() => {
+        showSucessoModal('Upload Concluído!', 'Seu anúncio foi enviado com sucesso e será processado em breve.');
+    }, 300);
 }
 
 // ===== MODAL DE SUGESTÃO =====
@@ -416,6 +421,11 @@ function saveSugestao() {
 
   showToast('✓ Sugestão enviada com sucesso!', 'success');
   closeSugestaoModal();
+  
+  // Show success modal after closing sugestao modal
+  setTimeout(() => {
+      showSucessoModal('Sugestão Enviada!', 'Sua sugestão foi enviada com sucesso! Agradecemos seu feedback.');
+  }, 300);
 }
 
 // ===== MODAL DE DADOS CADASTRAIS =====

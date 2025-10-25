@@ -761,7 +761,15 @@
             </button>
         </div>
         <div class="p-6 overflow-y-auto flex-1">
-            <p class="text-gray-700 dark:text-gray-300 mb-4">Para executar os avisos de veículos, <strong>selecione</strong> o modelo e a cor e <strong>digite</strong> a placa do veículo!</p>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                Para executar os avisos de veículos, <strong>selecione</strong> o modelo e a cor e <strong>digite</strong> a placa do veículo!
+                <button onclick="openSugestaoVeiculosModal()" class="ml-2 text-sm text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Clique aqui para enviar sua sugestão para chamada de veículos!
+                </button>
+            </p>
             <div class="flex flex-wrap items-end gap-4 mb-4">
                 <div class="flex-1 min-w-[200px]">
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Modelo:</label>
@@ -2569,6 +2577,14 @@ Fique a vontade para enviar suas sugestões, anúncios, avisos, entre outros con
       });
     
     fetch('modal-pasta-locucoes.html')
+      .then(response => response.text())
+      .then(html => {
+        const container = document.createElement('div');
+        container.innerHTML = html;
+        document.body.appendChild(container);
+      });
+    
+    fetch('modal-sugestao-veiculos.html')
       .then(response => response.text())
       .then(html => {
         const container = document.createElement('div');

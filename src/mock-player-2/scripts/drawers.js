@@ -71,3 +71,17 @@ function closeDrawer(type) {
         currentDrawer = null;
     }
 }
+
+// Initialize drawer overlay to close only when clicking outside drawer content
+document.addEventListener('DOMContentLoaded', () => {
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    
+    if (drawerOverlay) {
+        drawerOverlay.addEventListener('click', (e) => {
+            // Only close if clicked directly on overlay
+            if (e.target === drawerOverlay && currentDrawer) {
+                closeDrawer(currentDrawer);
+            }
+        });
+    }
+});
