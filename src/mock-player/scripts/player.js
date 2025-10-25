@@ -128,6 +128,9 @@ function adicionarAnuncioProgramado() {
     const novaLinha = document.createElement('div');
     novaLinha.className = 'flex flex-wrap items-center gap-3';
     novaLinha.innerHTML = `
+        <button onclick="togglePreviewPlay(this, 'anuncio-programado')" class="flex-shrink-0 p-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+        </button>
         <div class="flex-1 min-w-[200px] custom-select" data-name="anuncio-programado">
             <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione</div>
             <div class="custom-select-dropdown">
@@ -170,5 +173,47 @@ function removerAnuncioProgramado(button) {
         showToast('Item removido!', 'success');
     } else {
         showToast('Deve haver pelo menos um anúncio programado!', 'warning');
+    }
+}
+
+// Preview play/pause functionality
+let currentlyPlayingPreview = null;
+
+function togglePreviewPlay(button, selectName) {
+    const selectElement = button.nextElementSibling;
+    const trigger = selectElement.querySelector('.custom-select-trigger');
+    const selectedValue = trigger.textContent.trim();
+    
+    if (selectedValue === 'Selecione...' || selectedValue === 'Modelo...' || selectedValue === 'Cor...') {
+        showToast('⚠️ Selecione um item primeiro', 'warning');
+        return;
+    }
+    
+    const playIcon = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>';
+    const pauseIcon = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"></path></svg>';
+    
+    // Se já está tocando este preview
+    if (currentlyPlayingPreview === button) {
+        button.innerHTML = playIcon;
+        currentlyPlayingPreview = null;
+        showToast('⏸️ Preview pausado', 'info');
+    } else {
+        // Parar qualquer preview anterior
+        if (currentlyPlayingPreview) {
+            currentlyPlayingPreview.innerHTML = playIcon;
+        }
+        
+        // Tocar novo preview
+        button.innerHTML = pauseIcon;
+        currentlyPlayingPreview = button;
+        showToast(`🎵 Reproduzindo preview: ${selectedValue}`, 'success');
+        
+        // Simular fim da reprodução após 3 segundos
+        setTimeout(() => {
+            if (currentlyPlayingPreview === button) {
+                button.innerHTML = playIcon;
+                currentlyPlayingPreview = null;
+            }
+        }, 3000);
     }
 }

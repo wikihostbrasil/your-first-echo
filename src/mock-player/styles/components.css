@@ -238,7 +238,7 @@
 /* Toast Notifications - Enhanced */
 .toast-container {
     position: fixed;
-    bottom: 100px;
+    top: 20px;
     right: 20px;
     z-index: 999999;
     display: flex;
@@ -249,7 +249,7 @@
 
 @media (max-width: 640px) {
     .toast-container {
-        bottom: 200px;
+        top: 20px;
         left: 20px;
         right: 20px;
     }
