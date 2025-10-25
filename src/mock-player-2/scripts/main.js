@@ -44,9 +44,65 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Funções para novos drawers
+// Funções para novos drawers e modals
 function openAdicionarTextoModal() {
-    showToast('Modal Adicionar Texto em desenvolvimento', 'info');
+    const modal = document.getElementById('modalAdicionarTexto');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+}
+
+function closeAdicionarTextoModal() {
+    const modal = document.getElementById('modalAdicionarTexto');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+}
+
+function salvarTextoLocucao() {
+    const titulo = document.getElementById('tituloLocucao')?.value;
+    const texto = document.getElementById('textoLocucao')?.value;
+    const voz = document.getElementById('vozLocucao')?.value;
+    
+    if (!titulo || !texto) {
+        showToast('Preencha todos os campos obrigatórios', 'error');
+        return;
+    }
+    
+    showToast('Locução gerada com sucesso!', 'success');
+    closeAdicionarTextoModal();
+}
+
+function openAdicionarLinkModal() {
+    const modal = document.getElementById('modalAdicionarLink');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+}
+
+function closeAdicionarLinkModal() {
+    const modal = document.getElementById('modalAdicionarLink');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+}
+
+function salvarNovoLink() {
+    const titulo = document.getElementById('tituloLink')?.value;
+    const url = document.getElementById('urlLink')?.value;
+    const descricao = document.getElementById('descricaoLink')?.value;
+    
+    if (!titulo || !url) {
+        showToast('Preencha o título e URL do link', 'error');
+        return;
+    }
+    
+    showToast('Link adicionado com sucesso!', 'success');
+    closeAdicionarLinkModal();
 }
 
 function playLocucao() {
@@ -68,7 +124,7 @@ function openIncorporarLinkModal() {
 }
 
 function openNovoLinkModal() {
-    showToast('Modal Novo Link em desenvolvimento', 'info');
+    openAdicionarLinkModal();
 }
 
 function reiniciarLinks() {
@@ -303,5 +359,11 @@ window.openUploadModal = openUploadModal;
   window.closeProgramacaoModal = closeProgramacaoModal;
   window.openRelatorioPedidosModal = openRelatorioPedidosModal;
   window.closeRelatorioPedidosModal = closeRelatorioPedidosModal;
-  window.openFaturasModal = openFaturasModal;
+window.openFaturasModal = openFaturasModal;
   window.closeFaturasModal = closeFaturasModal;
+  window.openAdicionarTextoModal = openAdicionarTextoModal;
+  window.closeAdicionarTextoModal = closeAdicionarTextoModal;
+  window.salvarTextoLocucao = salvarTextoLocucao;
+  window.openAdicionarLinkModal = openAdicionarLinkModal;
+  window.closeAdicionarLinkModal = closeAdicionarLinkModal;
+  window.salvarNovoLink = salvarNovoLink;
