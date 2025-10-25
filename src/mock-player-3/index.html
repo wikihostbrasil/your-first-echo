@@ -697,7 +697,150 @@
       </div>
     </div>
 
-    <!-- Additional modals like sugestaoModal, pedidosModal, etc. should be included here as in the original modals.js -->
+    <!-- Modal de Sugestão -->
+    <div id="sugestaoModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Sugestão de Conteúdo</h2>
+                </div>
+                <button onclick="closeSugestaoModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Rádio:</label>
+                    <input type="text" id="sugestaoRadio" placeholder="Ex: Mix FM" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Seu nome:</label>
+                    <input type="text" id="sugestaoNome" placeholder="Digite seu nome" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Sugestão:</label>
+                    <select id="sugestaoTipo" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white">
+                        <option value="">Selecione...</option>
+                        <option value="musica">Música</option>
+                        <option value="anuncio">Anúncio</option>
+                        <option value="programacao">Programação</option>
+                        <option value="melhoria">Melhoria</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea id="sugestaoTexto" rows="6" placeholder="Digite aqui sua sugestão..." class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white resize-none"></textarea>
+                </div>
+                <div>
+                    <textarea id="sugestaoObservacoes" rows="3" placeholder="Observações" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white resize-none"></textarea>
+                </div>
+            </div>
+            <div class="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700">
+                <button onclick="closeSugestaoModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors">Fechar</button>
+                <button onclick="saveSugestao()" class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Pedidos -->
+    <div id="pedidosModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Pedidos de Gravação</h2>
+                </div>
+                <button onclick="closePedidosModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1">
+                <p class="text-gray-700 dark:text-gray-300 mb-4">Faça seu pedido de gravação de conteúdo.</p>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Responsável:</label>
+                        <input type="text" id="pedidoResponsavel" placeholder="Nome do responsável" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Data de Início:</label>
+                            <input type="date" id="pedidoDataInicio" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Data de Vencimento:</label>
+                            <input type="date" id="pedidoDataVencimento" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Descrição do Pedido:</label>
+                        <textarea id="pedidoDescricao" rows="6" placeholder="Descreva detalhadamente o que você precisa..." class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white resize-none"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700">
+                <button onclick="closePedidosModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors">Cancelar</button>
+                <button onclick="savePedido()" class="px-6 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors">Enviar Pedido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals de Perfil -->
+    <div id="dadosCadastraisModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Dados Cadastrais</h2>
+                <button onclick="closeDadosCadastraisModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <p class="text-gray-700 dark:text-gray-300">Funcionalidade de dados cadastrais em desenvolvimento.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="alterarSenhaModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Alterar Senha</h2>
+                <button onclick="closeAlterarSenhaModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <p class="text-gray-700 dark:text-gray-300">Funcionalidade de alterar senha em desenvolvimento.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="alterarLogoModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Alterar Logo</h2>
+                <button onclick="closeAlterarLogoModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <p class="text-gray-700 dark:text-gray-300">Funcionalidade de alterar logo em desenvolvimento.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="scripts/config.js"></script>

@@ -1,36 +1,26 @@
 /* Desktop Styles (1024px+) */
 
 @media (min-width: 1024px) {
-    /* Sidebar Desktop - Fixed Full */
-    .sidebar-tablet-mini {
-        width: 280px;
+    /* Hide Mobile Header */
+    .header-mobile {
+        display: none;
     }
 
-    .sidebar-tablet-logo {
-        height: 48px;
-        width: auto;
-    }
-
-    .sidebar-tablet-item {
-        justify-content: flex-start;
-    }
-
-    .sidebar-tablet-text {
-        display: block;
-    }
-
-    /* Header Desktop - Cover Style */
+    /* Show Desktop Header Cover - FIXED */
     .header-desktop-cover {
+        display: flex !important;
+        position: fixed;
+        top: 0;
+        left: 280px;
+        right: 0;
         height: 180px;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 0 0 1.5rem 1.5rem;
         padding: 2rem;
-        display: flex;
         gap: 2rem;
         align-items: flex-start;
-        position: relative;
         overflow: hidden;
         box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+        z-index: 40;
     }
 
     .header-desktop-cover::before {
@@ -39,6 +29,35 @@
         inset: 0;
         background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,96C1248,75,1344,53,1392,42.7L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') center/cover;
         opacity: 0.3;
+    }
+
+    /* Sidebar Desktop - FIXED Always Visible */
+    .sidebar-mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100vh;
+        transform: translateX(0);
+        background: white;
+        border-right: 2px solid #e5e7eb;
+        z-index: 50;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .dark .sidebar-mobile {
+        background: #1f2937;
+        border-right-color: #374151;
+    }
+
+    .sidebar-header {
+        display: none;
+    }
+
+    .sidebar-overlay {
+        display: none;
     }
 
     /* Radio Logo Section */
@@ -212,11 +231,13 @@
         transform: translateY(0);
     }
 
-    /* Main Content Desktop */
+    /* Main Content Desktop - Adjusted for FIXED sidebar and header */
     .main-content-mobile {
-        margin-top: 0;
+        margin-top: 180px;
         margin-left: 280px;
+        margin-bottom: 100px;
         padding: 2rem;
+        min-height: calc(100vh - 280px);
     }
 
     /* Breadcrumb */
@@ -286,10 +307,14 @@
         border: none;
     }
 
-    /* Footer Player Desktop */
+    /* Footer Player Desktop - FIXED */
     .footer-player-mobile {
+        position: fixed;
         height: 100px;
         left: 280px;
+        right: 0;
+        bottom: 0;
+        z-index: 49;
     }
 
     .player-controls-mobile {
