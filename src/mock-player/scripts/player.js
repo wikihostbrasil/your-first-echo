@@ -120,3 +120,55 @@ function changeCounter(button, delta) {
     
     counterSpan.textContent = newValue;
 }
+
+// Adicionar novo anúncio programado
+function adicionarAnuncioProgramado() {
+    const container = document.getElementById('anuncios-programados-container');
+    
+    const novaLinha = document.createElement('div');
+    novaLinha.className = 'flex flex-wrap items-center gap-3';
+    novaLinha.innerHTML = `
+        <div class="flex-1 min-w-[200px] custom-select" data-name="anuncio-programado">
+            <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione</div>
+            <div class="custom-select-dropdown">
+                <div class="custom-select-search">
+                    <input type="text" placeholder="Buscar anúncio..." class="custom-select-search-input">
+                </div>
+                <div class="custom-select-options text-gray-900 dark:text-white">
+                    <div class="custom-select-option" data-value="anuncio1">Anúncio 1</div>
+                    <div class="custom-select-option" data-value="anuncio2">Anúncio 2</div>
+                    <div class="custom-select-option" data-value="anuncio3">Anúncio 3</div>
+                </div>
+            </div>
+        </div>
+        <span class="text-gray-700 dark:text-gray-300">a cada</span>
+        <div class="flex items-center gap-1 border border-gray-300 dark:border-gray-600 rounded-lg">
+            <button onclick="changeCounter(this, -1)" class="px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">−</button>
+            <span class="px-2 text-gray-800 dark:text-white font-medium min-w-[2rem] text-center">5</span>
+            <button onclick="changeCounter(this, 1)" class="px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">+</button>
+        </div>
+        <span class="text-gray-700 dark:text-gray-300">músicas</span>
+        <button onclick="removerAnuncioProgramado(this)" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">Remover</button>
+    `;
+    
+    container.appendChild(novaLinha);
+    
+    // Reinicializar custom selects para o novo elemento
+    initCustomSelects();
+    
+    showToast('Item adicionado!', 'success');
+}
+
+// Remover anúncio programado
+function removerAnuncioProgramado(button) {
+    const container = document.getElementById('anuncios-programados-container');
+    const linha = button.closest('.flex.flex-wrap.items-center.gap-3');
+    
+    // Verificar se há mais de uma linha
+    if (container.children.length > 1) {
+        linha.remove();
+        showToast('Item removido!', 'success');
+    } else {
+        showToast('Deve haver pelo menos um anúncio programado!', 'warning');
+    }
+}

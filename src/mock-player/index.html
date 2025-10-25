@@ -1015,27 +1015,34 @@
             </div>
             <div class="border-t border-gray-200 dark:border-gray-700 pt-4">
                 <h4 class="font-semibold text-gray-800 dark:text-white mb-3">Programe seus anúncios gerais ou exclusivos a cada "x" músicas:</h4>
-                <div class="flex flex-wrap items-center gap-3 mb-3">
-                    <div class="flex-1 min-w-[200px] custom-select" data-name="anuncio-programado">
-                        <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione</div>
-                        <div class="custom-select-dropdown">
-                        <div class="custom-select-search">
-                            <input type="text" placeholder="Buscar anúncio..." class="custom-select-search-input">
-                        </div>
-                            <div class="custom-select-options text-gray-900 dark:text-white">
-                                <div class="custom-select-option" data-value="anuncio1">Anúncio 1</div>
-                                <div class="custom-select-option" data-value="anuncio2">Anúncio 2</div>
-                                <div class="custom-select-option" data-value="anuncio3">Anúncio 3</div>
+                <div id="anuncios-programados-container" class="space-y-3 mb-3">
+                    <!-- Linha inicial -->
+                    <div class="flex flex-wrap items-center gap-3">
+                        <div class="flex-1 min-w-[200px] custom-select" data-name="anuncio-programado">
+                            <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione</div>
+                            <div class="custom-select-dropdown">
+                                <div class="custom-select-search">
+                                    <input type="text" placeholder="Buscar anúncio..." class="custom-select-search-input">
+                                </div>
+                                <div class="custom-select-options text-gray-900 dark:text-white">
+                                    <div class="custom-select-option" data-value="anuncio1">Anúncio 1</div>
+                                    <div class="custom-select-option" data-value="anuncio2">Anúncio 2</div>
+                                    <div class="custom-select-option" data-value="anuncio3">Anúncio 3</div>
+                                </div>
                             </div>
                         </div>
+                        <span class="text-gray-700 dark:text-gray-300">a cada</span>
+                        <div class="flex items-center gap-1 border border-gray-300 dark:border-gray-600 rounded-lg">
+                            <button onclick="changeCounter(this, -1)" class="px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">−</button>
+                            <span class="px-2 text-gray-800 dark:text-white font-medium min-w-[2rem] text-center">5</span>
+                            <button onclick="changeCounter(this, 1)" class="px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">+</button>
+                        </div>
+                        <span class="text-gray-700 dark:text-gray-300">músicas</span>
+                        <button onclick="removerAnuncioProgramado(this)" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">Remover</button>
                     </div>
-                    <span class="text-gray-700 dark:text-gray-300">A cada</span>
-                    <input type="number" value="1" min="1" class="w-20 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-center focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                    <span class="text-gray-700 dark:text-gray-300">músicas</span>
-                    <button class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">Remover</button>
                 </div>
                 <div class="flex gap-3">
-                    <button onclick="showToast('Item adicionado!', 'success')" class="px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 transform hover:scale-105">+ Adicionar</button>
+                    <button onclick="adicionarAnuncioProgramado()" class="px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 transform hover:scale-105">+ Adicionar</button>
                     <button onclick="salvarAnuncios()" class="px-6 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform hover:scale-105 hover:shadow-lg">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
