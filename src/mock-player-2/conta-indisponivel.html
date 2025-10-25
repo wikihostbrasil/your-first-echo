@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conta Indisponível</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center p-4">
+    
+    <div class="w-full max-w-2xl">
+        <!-- Alert Box -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg border-t-4 border-orange-500 overflow-hidden">
+            <!-- Alert Content -->
+            <div class="p-8 flex gap-4">
+                <!-- Warning Icon -->
+                <div class="flex-shrink-0">
+                    <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                
+                <!-- Text Content -->
+                <div class="flex-1">
+                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                        Esta conta não pode ser acessada neste momento.
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Se você é o administrador, por favor, entre em contato com nossa central de atendimento.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Info (Optional) -->
+        <div class="mt-6 text-center">
+            <a href="/" class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+                ← Voltar para a página inicial
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

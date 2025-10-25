@@ -1,0 +1,60 @@
+/* Custom Scrollbar Styling */
+#drawerEstilosMusicais .p-6::-webkit-scrollbar,
+#sidebar::-webkit-scrollbar,
+.overflow-x-auto::-webkit-scrollbar {
+    width: 8px;
+    height: 6px;
+}
+
+#drawerEstilosMusicais .p-6::-webkit-scrollbar-track,
+#sidebar::-webkit-scrollbar-track,
+.overflow-x-auto::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 4px;
+}
+
+.dark #drawerEstilosMusicais .p-6::-webkit-scrollbar-track,
+.dark #sidebar::-webkit-scrollbar-track,
+.dark .overflow-x-auto::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+#drawerEstilosMusicais .p-6::-webkit-scrollbar-thumb,
+#sidebar::-webkit-scrollbar-thumb,
+.overflow-x-auto::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.dark #drawerEstilosMusicais .p-6::-webkit-scrollbar-thumb,
+.dark #sidebar::-webkit-scrollbar-thumb,
+.dark .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: #4b5563;
+}
+
+#drawerEstilosMusicais .p-6::-webkit-scrollbar-thumb:hover,
+#sidebar::-webkit-scrollbar-thumb:hover,
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+.dark #drawerEstilosMusicais .p-6::-webkit-scrollbar-thumb:hover,
+.dark #sidebar::-webkit-scrollbar-thumb:hover,
+.dark .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* Firefox scrollbar styling */
+#drawerEstilosMusicais .p-6,
+#sidebar,
+.overflow-x-auto {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db #f3f4f6;
+}
+
+.dark #drawerEstilosMusicais .p-6,
+.dark #sidebar,
+.dark .overflow-x-auto {
+    scrollbar-color: #4b5563 #1f2937;
+}

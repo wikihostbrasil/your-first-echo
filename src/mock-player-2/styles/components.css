@@ -1,0 +1,358 @@
+/* Custom Select with Search - Enhanced for touch */
+.custom-select {
+    position: relative;
+    min-height: 56px;
+}
+
+.custom-select-trigger {
+    width: 100%;
+    padding: 0.875rem 3rem 0.875rem 1.25rem;
+    border: 2px solid #d1d5db;
+    border-radius: 0.875rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+}
+
+.dark .custom-select-trigger {
+    background: #374151;
+    border-color: #4b5563;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.custom-select-trigger:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.25);
+    transform: translateY(-2px);
+}
+
+.custom-select-trigger:active {
+    transform: translateY(0);
+}
+
+.dark .custom-select-trigger:hover {
+    border-color: #60a5fa;
+}
+
+.custom-select-trigger::after {
+    content: '▼';
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #6b7280;
+}
+
+.dark .custom-select-trigger::after {
+    color: #9ca3af;
+}
+
+.custom-select.active .custom-select-trigger {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 4px 8px rgba(59, 130, 246, 0.25);
+}
+
+.dark .custom-select.active .custom-select-trigger {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15), 0 4px 8px rgba(96, 165, 250, 0.25);
+}
+
+.custom-select.active .custom-select-trigger::after {
+    transform: translateY(-50%) rotate(180deg);
+    color: #3b82f6;
+}
+
+.dark .custom-select.active .custom-select-trigger::after {
+    color: #60a5fa;
+}
+
+.custom-select-dropdown {
+    position: fixed;
+    left: auto;
+    right: auto;
+    margin-top: 0.75rem;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 1rem;
+    max-height: 360px;
+    overflow: hidden;
+    display: none;
+    z-index: 10000;
+    box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.15), 0 10px 15px -5px rgba(0, 0, 0, 0.08);
+    animation: dropdownSlideIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 240px;
+}
+
+/* Make dropdown appear above if near bottom */
+.custom-select.dropdown-up .custom-select-dropdown {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.dark .custom-select-dropdown {
+    background: #1f2937;
+    border-color: #374151;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.custom-select.active .custom-select-dropdown {
+    display: block;
+}
+
+/* Mobile adjustments for drawers */
+@media (max-width: 640px) {
+    .custom-select-dropdown {
+        max-height: 180px;
+    }
+}
+
+/* Drawer contrast when select is active */
+.drawer-content.select-active {
+    background: rgba(0, 0, 0, 0.03);
+    transition: background 0.3s ease;
+}
+
+.dark .drawer-content.select-active {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced select styling when active in drawer */
+.drawer-content .custom-select.active .custom-select-trigger {
+    background: white;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 10px 20px rgba(59, 130, 246, 0.3);
+    transform: scale(1.02);
+}
+
+.dark .drawer-content .custom-select.active .custom-select-trigger {
+    background: #1f2937;
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15), 0 10px 20px rgba(96, 165, 250, 0.3);
+}
+
+.custom-select-search {
+    padding: 0.875rem;
+    border-bottom: 2px solid #e5e7eb;
+    background: #f9fafb;
+}
+
+.dark .custom-select-search {
+    border-color: #374151;
+    background: #111827;
+}
+
+.custom-select-search input {
+    width: 100%;
+    padding: 0.625rem 2.75rem 0.625rem 2.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    background: white;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.dark .custom-select-search input {
+    background: #1f2937;
+    border-color: #374151;
+    color: white;
+}
+
+.custom-select-search input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.dark .custom-select-search input:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+.custom-select-search input::placeholder {
+    color: #9ca3af;
+    font-weight: 400;
+}
+
+/* Search icon */
+.custom-select-search {
+    position: relative;
+}
+
+.custom-select-search::before {
+    content: '🔍';
+    position: absolute;
+    left: 1.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.custom-select-options {
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.custom-select-option {
+    padding: 0.875rem 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    border-left: 3px solid transparent;
+}
+
+.custom-select-option:hover {
+    background: #eff6ff;
+    border-left-color: #3b82f6;
+    padding-left: 1.5rem;
+}
+
+.dark .custom-select-option:hover {
+    background: #1e3a8a;
+    border-left-color: #60a5fa;
+}
+
+.custom-select-option.selected {
+    background: #dbeafe;
+    color: #1e40af;
+    border-left-color: #2563eb;
+    font-weight: 600;
+}
+
+.dark .custom-select-option.selected {
+    background: #1e3a8a;
+    color: #93c5fd;
+    border-left-color: #60a5fa;
+}
+
+.custom-select-option.selected::after {
+    content: '✓';
+    float: right;
+    font-weight: bold;
+}
+
+.custom-select-option.hidden {
+    display: none;
+}
+
+/* Toast Notifications - Enhanced */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+}
+
+@media (max-width: 640px) {
+    .toast-container {
+        top: 20px;
+        left: 20px;
+        right: 20px;
+    }
+}
+
+.toast {
+    background: white;
+    color: #1f2937;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateX(400px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto;
+    min-width: 320px;
+    border-left: 4px solid;
+    backdrop-filter: blur(10px);
+    animation: toastSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 640px) {
+    .toast {
+        min-width: unset;
+        width: 100%;
+    }
+}
+
+.dark .toast {
+    background: rgba(55, 65, 81, 0.95);
+    color: white;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast-success { 
+    border-left-color: #10b981;
+    background: linear-gradient(to right, rgba(16, 185, 129, 0.1), white);
+}
+
+.dark .toast-success {
+    background: linear-gradient(to right, rgba(16, 185, 129, 0.2), rgba(55, 65, 81, 0.95));
+}
+
+.toast-error { 
+    border-left-color: #ef4444;
+    background: linear-gradient(to right, rgba(239, 68, 68, 0.1), white);
+}
+
+.dark .toast-error {
+    background: linear-gradient(to right, rgba(239, 68, 68, 0.2), rgba(55, 65, 81, 0.95));
+}
+
+.toast-info { 
+    border-left-color: #3b82f6;
+    background: linear-gradient(to right, rgba(59, 130, 246, 0.1), white);
+}
+
+.dark .toast-info {
+    background: linear-gradient(to right, rgba(59, 130, 246, 0.2), rgba(55, 65, 81, 0.95));
+}
+
+.toast-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Audio Visualizer */
+.audio-visualizer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    height: 24px;
+}
+
+.audio-bar {
+    width: 3px;
+    background: currentColor;
+    border-radius: 2px;
+    animation: audioWave 1s ease-in-out infinite;
+}
+
+.audio-bar:nth-child(1) { animation-delay: 0s; height: 40%; }
+.audio-bar:nth-child(2) { animation-delay: 0.1s; height: 60%; }
+.audio-bar:nth-child(3) { animation-delay: 0.2s; height: 80%; }
+.audio-bar:nth-child(4) { animation-delay: 0.3s; height: 100%; }
+.audio-bar:nth-child(5) { animation-delay: 0.4s; height: 70%; }
