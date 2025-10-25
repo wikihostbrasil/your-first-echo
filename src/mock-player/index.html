@@ -55,6 +55,66 @@
     <!-- Drawer Overlay -->
     <div id="drawerOverlay" class="fixed inset-0 bg-black/20 backdrop-blur-md z-[45] hidden opacity-0 transition-all duration-300"></div>
 
+    <!-- Drawer Programação de Anúncios -->
+    <div id="drawerProgramacaoAnuncios" class="fixed bottom-0 left-0 right-0 z-[46] bg-white dark:bg-gray-800 shadow-2xl transform translate-y-full transition-transform duration-300 flex flex-col" style="max-height: 85vh;">
+        <div class="bg-indigo-600 dark:bg-indigo-700 p-4 flex items-center justify-between flex-shrink-0">
+            <div class="flex items-center space-x-2">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <h3 class="text-xl font-bold text-white">PROGRAMAÇÃO DE ANÚNCIOS</h3>
+            </div>
+            <button onclick="closeDrawer('programacaoAnuncios')" class="text-white hover:bg-white/20 rounded-full p-2 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="p-6 overflow-y-auto flex-1">
+            <p class="text-gray-700 dark:text-gray-300 mb-4">Configure anúncios específicos para tocar automaticamente a cada número de músicas determinado.</p>
+            <div id="programacaoAnunciosContainer" class="space-y-3 mb-3">
+                <!-- Linha inicial -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <button onclick="togglePreviewPlay(this, 'anuncio-programado')" class="flex-shrink-0 p-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                    </button>
+                    <div class="flex-1 min-w-[200px] custom-select" data-name="anuncio-programado">
+                        <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione o tipo</div>
+                        <div class="custom-select-dropdown">
+                            <div class="custom-select-search">
+                                <input type="text" placeholder="Buscar..." class="custom-select-search-input">
+                            </div>
+                            <div class="custom-select-options text-gray-900 dark:text-white">
+                                <div class="custom-select-option" data-value="vinheta">Vinhetas</div>
+                                <div class="custom-select-option" data-value="geral">Avisos Gerais</div>
+                                <div class="custom-select-option" data-value="institucional">Institucionais</div>
+                                <div class="custom-select-option" data-value="promocional">Promocionais</div>
+                                <div class="custom-select-option" data-value="exclusivo">Exclusivos</div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-gray-700 dark:text-gray-300">a cada</span>
+                    <div class="flex items-center gap-1 border border-gray-300 dark:border-gray-600 rounded-lg">
+                        <button onclick="changeCounter(this, -1)" class="px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">−</button>
+                        <span class="px-2 text-gray-800 dark:text-white font-medium min-w-[2rem] text-center">3</span>
+                        <button onclick="changeCounter(this, 1)" class="px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors">+</button>
+                    </div>
+                    <span class="text-gray-700 dark:text-gray-300">músicas</span>
+                    <button onclick="removerAnuncioProgramado(this)" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">Remover</button>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="adicionarAnuncioProgramado()" class="px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 transform hover:scale-105">+ Adicionar</button>
+                <button onclick="salvarAnuncios()" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-all duration-200 flex items-center space-x-2 transform hover:scale-105 hover:shadow-lg">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                    </svg>
+                    <span>Salvar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Sidebar -->
     <div id="sidebar" class="fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-800 shadow-2xl transform translate-x-full transition-transform duration-300 z-40 flex flex-col">
         <div class="flex-shrink-0 p-6 pt-20">
