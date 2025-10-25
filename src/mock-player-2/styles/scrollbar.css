@@ -1,3 +1,45 @@
+/* Main Content Scrollbar */
+#mainContentWrapper::-webkit-scrollbar {
+    width: 10px;
+}
+
+#mainContentWrapper::-webkit-scrollbar-track {
+    background: rgba(243, 244, 246, 0.5);
+    border-radius: 5px;
+}
+
+.dark #mainContentWrapper::-webkit-scrollbar-track {
+    background: rgba(31, 41, 55, 0.5);
+}
+
+#mainContentWrapper::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+
+.dark #mainContentWrapper::-webkit-scrollbar-thumb {
+    background: #4b5563;
+}
+
+#mainContentWrapper::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+.dark #mainContentWrapper::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* Firefox scrollbar for main content */
+#mainContentWrapper {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db rgba(243, 244, 246, 0.5);
+}
+
+.dark #mainContentWrapper {
+    scrollbar-color: #4b5563 rgba(31, 41, 55, 0.5);
+}
+
 /* Custom Scrollbar Styling */
 #drawerEstilosMusicais .p-6::-webkit-scrollbar,
 #sidebar::-webkit-scrollbar,

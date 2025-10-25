@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="styles/animations.css">
     <link rel="stylesheet" href="styles/scrollbar.css">
 </head>
-<body class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-screen text-gray-900 dark:text-white transition-colors duration-200 text-touch-base antialiased">
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 h-screen overflow-hidden text-gray-900 dark:text-white transition-colors duration-200 text-touch-base antialiased">
     
     <!-- Platform Logo -->
     <div class="fixed top-6 left-6 z-50">
@@ -334,8 +334,9 @@
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="relative z-10 flex flex-col items-center min-h-screen p-4 sm:p-8 pb-40 sm:pb-32">
+    <!-- Main Content Wrapper with Scroll -->
+    <div id="mainContentWrapper" class="relative z-10 h-screen overflow-y-auto pb-[180px] sm:pb-32">
+        <div class="flex flex-col items-center p-4 sm:p-8">
         
         <!-- Radio Logo Section -->
         <div class="flex justify-center items-center py-8 sm:py-12 px-4 mt-12 sm:mt-16">
@@ -539,8 +540,8 @@
             </div>
         </div>
     </div>
-</div>
     </div>
+    <!-- End Main Content Wrapper -->
 
     <!-- Drawers -->
     <div id="drawerFuncionarios" class="fixed bottom-0 left-0 right-0 z-[46] bg-white dark:bg-gray-800 shadow-2xl transform translate-y-full transition-transform duration-300 flex flex-col" style="max-height: 85vh;">
