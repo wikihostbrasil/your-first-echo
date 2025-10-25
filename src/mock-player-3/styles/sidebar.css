@@ -1,0 +1,201 @@
+/* Sidebar Collapsible Menu Styles */
+
+.sidebar-collapse-section {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-collapse-header {
+    min-height: 56px;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+}
+
+.dark .sidebar-collapse-header {
+    color: #9ca3af;
+}
+
+.sidebar-collapse-header:hover {
+    background: #f3f4f6;
+}
+
+.dark .sidebar-collapse-header:hover {
+    background: #374151;
+}
+
+.sidebar-collapse-header:active {
+    transform: scale(0.99);
+}
+
+.sidebar-collapse-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sidebar-collapse-chevron {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 16px;
+    height: 16px;
+}
+
+.sidebar-collapse-chevron.rotated {
+    transform: rotate(180deg);
+}
+
+.sidebar-collapse-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-collapse-content.expanded {
+    max-height: 600px;
+}
+
+.sidebar-collapse-item {
+    min-height: 48px;
+    padding: 0 1.5rem 0 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9375rem;
+    color: #374151;
+}
+
+.dark .sidebar-collapse-item {
+    color: #d1d5db;
+}
+
+.sidebar-collapse-item:hover {
+    background: #f3f4f6;
+    padding-left: 3.25rem;
+}
+
+.dark .sidebar-collapse-item:hover {
+    background: #374151;
+}
+
+.sidebar-collapse-item:active {
+    transform: scale(0.99);
+}
+
+.sidebar-collapse-item.active {
+    background: #dbeafe;
+    color: #1e40af;
+    font-weight: 600;
+    border-left: 4px solid #2563eb;
+}
+
+.dark .sidebar-collapse-item.active {
+    background: #1e3a8a;
+    color: #93c5fd;
+    border-left-color: #60a5fa;
+}
+
+/* Tablet Mini Mode Adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .sidebar-tablet-mini .sidebar-collapse-header {
+        padding: 0 1rem;
+        justify-content: center;
+    }
+
+    .sidebar-tablet-mini .sidebar-collapse-title span {
+        display: none;
+    }
+
+    .sidebar-tablet-mini .sidebar-collapse-chevron {
+        display: none;
+    }
+
+    .sidebar-tablet-mini .sidebar-collapse-content {
+        display: none;
+    }
+
+    .sidebar-tablet-mini:hover .sidebar-collapse-header {
+        justify-content: space-between;
+        padding: 0 1.5rem;
+    }
+
+    .sidebar-tablet-mini:hover .sidebar-collapse-title span {
+        display: inline;
+    }
+
+    .sidebar-tablet-mini:hover .sidebar-collapse-chevron {
+        display: block;
+    }
+
+    .sidebar-tablet-mini:hover .sidebar-collapse-content.expanded {
+        display: block;
+    }
+}
+
+/* Divider */
+.sidebar-divider {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 1rem 1.5rem;
+}
+
+.dark .sidebar-divider {
+    background: #374151;
+}
+
+/* Sidebar Footer (if needed) */
+.sidebar-footer {
+    margin-top: auto;
+    padding: 1.5rem;
+    border-top: 2px solid #e5e7eb;
+}
+
+.dark .sidebar-footer {
+    border-top-color: #374151;
+}
+
+/* Smooth scroll for sidebar */
+.sidebar-mobile,
+.sidebar-tablet-mini {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for sidebar */
+.sidebar-mobile::-webkit-scrollbar,
+.sidebar-tablet-mini::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-mobile::-webkit-scrollbar-track,
+.sidebar-tablet-mini::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-mobile::-webkit-scrollbar-thumb,
+.sidebar-tablet-mini::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+
+.dark .sidebar-mobile::-webkit-scrollbar-thumb,
+.dark .sidebar-tablet-mini::-webkit-scrollbar-thumb {
+    background: #4b5563;
+}
+
+.sidebar-mobile::-webkit-scrollbar-thumb:hover,
+.sidebar-tablet-mini::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+.dark .sidebar-mobile::-webkit-scrollbar-thumb:hover,
+.dark .sidebar-tablet-mini::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}

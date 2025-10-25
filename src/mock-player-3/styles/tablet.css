@@ -1,0 +1,303 @@
+/* Tablet Styles (768px - 1023px) */
+
+@media (min-width: 768px) {
+    /* Header Tablet */
+    .header-mobile {
+        height: 100px;
+        padding: 1rem 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .header-mobile-title {
+        font-size: 1.25rem;
+        width: 100%;
+        order: -1;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .header-tablet-actions {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .action-btn-tablet {
+        min-height: 44px;
+        padding: 0 1.25rem;
+        border-radius: 0.75rem;
+        background: #2563eb;
+        color: white;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .action-btn-tablet:hover {
+        background: #1e40af;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    }
+
+    .action-btn-tablet:active {
+        transform: translateY(0);
+    }
+
+    /* Sidebar Tablet - Mini Mode */
+    .sidebar-tablet-mini {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80px;
+        height: 100vh;
+        background: white;
+        border-right: 2px solid #e5e7eb;
+        z-index: 40;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 0;
+        transition: all 0.3s;
+    }
+
+    .dark .sidebar-tablet-mini {
+        background: #1f2937;
+        border-right-color: #374151;
+    }
+
+    .sidebar-tablet-mini:hover {
+        width: 280px;
+    }
+
+    .sidebar-tablet-logo {
+        height: 48px;
+        width: 48px;
+        margin: 0 auto 1.5rem;
+    }
+
+    .sidebar-tablet-mini:hover .sidebar-tablet-logo {
+        height: 48px;
+        width: auto;
+    }
+
+    .sidebar-tablet-item {
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+        justify-content: center;
+    }
+
+    .sidebar-tablet-mini:hover .sidebar-tablet-item {
+        justify-content: flex-start;
+    }
+
+    .sidebar-tablet-item:hover {
+        background: #f3f4f6;
+    }
+
+    .dark .sidebar-tablet-item:hover {
+        background: #374151;
+    }
+
+    .sidebar-tablet-item.active {
+        background: #dbeafe;
+        color: #1e40af;
+    }
+
+    .dark .sidebar-tablet-item.active {
+        background: #1e3a8a;
+        color: #93c5fd;
+    }
+
+    .sidebar-tablet-item.active::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: #2563eb;
+    }
+
+    .dark .sidebar-tablet-item.active::before {
+        background: #60a5fa;
+    }
+
+    .sidebar-tablet-text {
+        display: none;
+        font-weight: 500;
+    }
+
+    .sidebar-tablet-mini:hover .sidebar-tablet-text {
+        display: block;
+    }
+
+    /* Main Content Tablet */
+    .main-content-mobile {
+        margin-top: 100px;
+        margin-left: 80px;
+        padding: 1.5rem;
+    }
+
+    /* Section Tablet (In Content Area) */
+    .section-mobile {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        background: transparent;
+        z-index: auto;
+    }
+
+    .section-header-mobile {
+        background: white;
+        border: 2px solid #e5e7eb;
+        border-radius: 0.75rem 0.75rem 0 0;
+        height: 64px;
+    }
+
+    .dark .section-header-mobile {
+        background: #1f2937;
+        border-color: #374151;
+    }
+
+    .section-content-mobile {
+        background: white;
+        border: 2px solid #e5e7eb;
+        border-top: none;
+        border-radius: 0 0 0.75rem 0.75rem;
+        padding: 1.5rem;
+    }
+
+    .dark .section-content-mobile {
+        background: #1f2937;
+        border-color: #374151;
+    }
+
+    /* Footer Player Tablet */
+    .footer-player-mobile {
+        height: 90px;
+        left: 80px;
+    }
+
+    .player-controls-mobile {
+        padding: 0 1.5rem;
+        gap: 1rem;
+    }
+
+    .player-artwork-mobile {
+        width: 56px;
+        height: 56px;
+    }
+
+    .player-title-mobile {
+        font-size: 1rem;
+    }
+
+    .player-artist-mobile {
+        font-size: 0.875rem;
+    }
+
+    /* Volume Control Tablet */
+    .player-volume-tablet {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 120px;
+    }
+
+    .player-volume-slider {
+        width: 100%;
+        height: 4px;
+        -webkit-appearance: none;
+        appearance: none;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+        outline: none;
+    }
+
+    .dark .player-volume-slider {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .player-volume-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        background: #2563eb;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .player-volume-slider::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        background: #2563eb;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+    }
+
+    /* Hide FAB on Tablet */
+    .fab-container {
+        display: none;
+    }
+
+    /* Avatar Dropdown Tablet (Positioned) */
+    .avatar-modal-mobile {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 280px;
+        height: auto;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        transform: scale(0.95);
+        opacity: 0;
+        margin-top: 0.5rem;
+    }
+
+    .dark .avatar-modal-mobile {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .avatar-modal-mobile.active {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .avatar-modal-header {
+        display: none;
+    }
+
+    .avatar-modal-content {
+        padding: 0.5rem;
+    }
+
+    .avatar-modal-item {
+        min-height: 44px;
+        font-size: 0.9375rem;
+        border-radius: 0.5rem;
+        padding: 0 0.75rem;
+    }
+
+    .avatar-modal-item:hover {
+        background: #f3f4f6;
+    }
+
+    .dark .avatar-modal-item:hover {
+        background: #374151;
+    }
+}
