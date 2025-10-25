@@ -730,6 +730,159 @@ if (typeof document !== 'undefined') {
         <button class="px-6 py-2 bg-rose-500 hover:bg-rose-600 text-white font-semibold rounded-lg transition-colors duration-200">Gerar Relatório</button>
       </div>
     </div>
+  </div>
+  
+  <!-- Modal de Anúncios Agendados -->
+  <div id="agendamentosModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Anúncios Agendados</h2>
+        </div>
+        <button onclick="closeAgendamentosModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="p-6">
+        <!-- Desktop Table -->
+        <div class="hidden md:block overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-gray-50 dark:bg-gray-700">
+              <tr>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Arquivo</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Categoria</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Data Início</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Data Fim</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="agendamentosTableBody"></tbody>
+          </table>
+        </div>
+        
+        <!-- Mobile Cards -->
+        <div id="agendamentosCardsContainer" class="md:hidden space-y-4"></div>
+      </div>
+      
+      <div class="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700">
+        <button onclick="closeAgendamentosModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">Fechar</button>
+        <button onclick="closeAgendamentosModal(); openAgendarAnuncioModal();" class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          Adicionar
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal de Agendar Anúncio -->
+  <div id="agendarAnuncioModal" class="fixed inset-0 bg-black bg-opacity-50 z-[99999] hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Agendar Anúncio</h2>
+        </div>
+        <button onclick="closeAgendarAnuncioModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="p-6 space-y-4">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Descrição: <span class="text-red-500">*</span></label>
+          <input type="text" id="agendarDescricao" placeholder="Ex: Promoção de Verão" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Mídia: <span class="text-red-500">*</span></label>
+          <select id="agendarMidia" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="">Selecione...</option>
+            <option value="promocional">Promocional</option>
+            <option value="institucional">Institucional</option>
+            <option value="vinheta">Vinheta</option>
+            <option value="geral">Aviso Geral</option>
+          </select>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Data Início: <span class="text-red-500">*</span></label>
+            <input type="date" id="agendarDataInicio" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Data Fim: <span class="text-red-500">*</span></label>
+            <input type="date" id="agendarDataFim" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Horário Início: <span class="text-red-500">*</span></label>
+            <input type="time" id="agendarHorarioInicio" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Horário Fim: <span class="text-red-500">*</span></label>
+            <input type="time" id="agendarHorarioFim" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">Dias da Semana: <span class="text-red-500">*</span></label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="diaSeg" class="w-4 h-4 text-blue-500 border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-blue-500">
+              <span class="text-sm text-gray-700 dark:text-gray-200">Seg</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="diaTer" class="w-4 h-4 text-blue-500 border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-blue-500">
+              <span class="text-sm text-gray-700 dark:text-gray-200">Ter</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="diaQua" class="w-4 h-4 text-blue-500 border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-blue-500">
+              <span class="text-sm text-gray-700 dark:text-gray-200">Qua</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="diaQui" class="w-4 h-4 text-blue-500 border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-blue-500">
+              <span class="text-sm text-gray-700 dark:text-gray-200">Qui</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="diaSex" class="w-4 h-4 text-blue-500 border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-blue-500">
+              <span class="text-sm text-gray-700 dark:text-gray-200">Sex</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="diaSab" class="w-4 h-4 text-blue-500 border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-blue-500">
+              <span class="text-sm text-gray-700 dark:text-gray-200">Sáb</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="diaDom" class="w-4 h-4 text-blue-500 border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-blue-500">
+              <span class="text-sm text-gray-700 dark:text-gray-200">Dom</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700">
+        <button onclick="closeAgendarAnuncioModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">Cancelar</button>
+        <button onclick="saveAgendamento()" class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          Salvar
+        </button>
+      </div>
+    </div>
   </div>`;
   document.body.insertAdjacentHTML('beforeend', reportsModalsHTML);
 }
@@ -765,4 +918,209 @@ function openFaturasModal() {
 function closeFaturasModal() {
   document.getElementById('faturasModal').classList.remove('flex');
   document.getElementById('faturasModal').classList.add('hidden');
+}
+
+// ===== MODAL DE ANÚNCIOS AGENDADOS =====
+const agendamentosData = [
+  { id: 1, arquivo: 'Anúncio Promoção Verão', categoria: 'Promocional', dataInicio: '01/11/2024', dataFim: '31/12/2024' },
+  { id: 2, arquivo: 'Institucional Rádio', categoria: 'Institucional', dataInicio: '15/10/2024', dataFim: 'Indeterminado' }
+];
+
+function openAgendamentosModal() {
+  const modal = document.getElementById('agendamentosModal');
+  const tbody = document.getElementById('agendamentosTableBody');
+  const cardsContainer = document.getElementById('agendamentosCardsContainer');
+  
+  // Populate desktop table
+  tbody.innerHTML = '';
+  agendamentosData.forEach(item => {
+    const row = document.createElement('tr');
+    row.className = 'border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50';
+    row.innerHTML = `
+      <td class="px-4 py-3 text-gray-800 dark:text-white">${item.arquivo}</td>
+      <td class="px-4 py-3 text-gray-600 dark:text-gray-300">${item.categoria}</td>
+      <td class="px-4 py-3 text-gray-600 dark:text-gray-300">${item.dataInicio}</td>
+      <td class="px-4 py-3 text-gray-600 dark:text-gray-300">${item.dataFim}</td>
+      <td class="px-4 py-3">
+        <div class="flex items-center gap-2">
+          <button onclick="editAgendamento(${item.id})" class="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+            </svg>
+          </button>
+          <button onclick="deleteAgendamento(${item.id})" class="p-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+            </svg>
+          </button>
+        </div>
+      </td>
+    `;
+    tbody.appendChild(row);
+  });
+  
+  // Populate mobile cards
+  cardsContainer.innerHTML = '';
+  agendamentosData.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:shadow-lg transition-shadow';
+    card.innerHTML = `
+      <div class="flex items-start justify-between mb-3">
+        <div class="flex-1">
+          <h4 class="font-semibold text-gray-800 dark:text-white mb-2">${item.arquivo}</h4>
+          <div class="space-y-1 text-sm">
+            <div class="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+              <span class="font-medium">Categoria:</span>
+              <span>${item.categoria}</span>
+            </div>
+            <div class="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+              <span class="font-medium">Início:</span>
+              <span>${item.dataInicio}</span>
+            </div>
+            <div class="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+              <span class="font-medium">Fim:</span>
+              <span>${item.dataFim}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 pt-3 border-t border-gray-200 dark:border-gray-600">
+        <button onclick="editAgendamento(${item.id})" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+          </svg>
+          <span class="text-sm font-medium">Editar</span>
+        </button>
+        <button onclick="deleteAgendamento(${item.id})" class="p-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+          </svg>
+        </button>
+      </div>
+    `;
+    cardsContainer.appendChild(card);
+  });
+  
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function closeAgendamentosModal() {
+  document.getElementById('agendamentosModal').classList.remove('flex');
+  document.getElementById('agendamentosModal').classList.add('hidden');
+}
+
+function openAgendarAnuncioModal() {
+  const modal = document.getElementById('agendarAnuncioModal');
+  
+  // Set default dates
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('agendarDataInicio').value = today;
+  document.getElementById('agendarDataFim').value = today;
+  
+  // Initialize checkboxes
+  ['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'].forEach(day => {
+    document.getElementById(`dia${day.charAt(0).toUpperCase() + day.slice(1)}`).checked = false;
+  });
+  
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function closeAgendarAnuncioModal() {
+  const modal = document.getElementById('agendarAnuncioModal');
+  modal.classList.remove('flex');
+  modal.classList.add('hidden');
+  
+  // Reset form
+  document.getElementById('agendarDescricao').value = '';
+  document.getElementById('agendarMidia').value = '';
+  document.getElementById('agendarDataInicio').value = '';
+  document.getElementById('agendarDataFim').value = '';
+  document.getElementById('agendarHorarioInicio').value = '';
+  document.getElementById('agendarHorarioFim').value = '';
+  ['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'].forEach(day => {
+    document.getElementById(`dia${day.charAt(0).toUpperCase() + day.slice(1)}`).checked = false;
+  });
+}
+
+function saveAgendamento() {
+  const descricao = document.getElementById('agendarDescricao').value.trim();
+  const midia = document.getElementById('agendarMidia').value;
+  const dataInicio = document.getElementById('agendarDataInicio').value;
+  const dataFim = document.getElementById('agendarDataFim').value;
+  const horarioInicio = document.getElementById('agendarHorarioInicio').value;
+  const horarioFim = document.getElementById('agendarHorarioFim').value;
+  
+  // Validation
+  if (!descricao) {
+    showToast('⚠️ Descrição é obrigatória', 'error');
+    return;
+  }
+  
+  if (!midia) {
+    showToast('⚠️ Selecione uma mídia', 'error');
+    return;
+  }
+  
+  if (!dataInicio || !dataFim) {
+    showToast('⚠️ Datas de início e fim são obrigatórias', 'error');
+    return;
+  }
+  
+  if (new Date(dataFim) < new Date(dataInicio)) {
+    showToast('⚠️ Data fim não pode ser anterior à data início', 'error');
+    return;
+  }
+  
+  if (!horarioInicio || !horarioFim) {
+    showToast('⚠️ Horários são obrigatórios', 'error');
+    return;
+  }
+  
+  // Check if at least one day is selected
+  const diasSelecionados = ['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'].filter(day => 
+    document.getElementById(`dia${day.charAt(0).toUpperCase() + day.slice(1)}`).checked
+  );
+  
+  if (diasSelecionados.length === 0) {
+    showToast('⚠️ Selecione pelo menos um dia da semana', 'error');
+    return;
+  }
+  
+  // Save (in real app, this would be an API call)
+  console.log('Agendamento salvo:', {
+    descricao,
+    midia,
+    dataInicio,
+    dataFim,
+    horarioInicio,
+    horarioFim,
+    dias: diasSelecionados
+  });
+  
+  showToast('✓ Agendamento salvo com sucesso!', 'success');
+  closeAgendarAnuncioModal();
+}
+
+function editAgendamento(id) {
+  const agendamento = agendamentosData.find(a => a.id === id);
+  if (!agendamento) return;
+  
+  showToast(`Editando: ${agendamento.arquivo}`, 'info');
+  openAgendarAnuncioModal();
+}
+
+function deleteAgendamento(id) {
+  const agendamento = agendamentosData.find(a => a.id === id);
+  if (!agendamento) return;
+  
+  if (confirm(`Tem certeza que deseja excluir "${agendamento.arquivo}"?`)) {
+    const index = agendamentosData.findIndex(a => a.id === id);
+    if (index > -1) {
+      agendamentosData.splice(index, 1);
+      showToast('✓ Agendamento excluído com sucesso!', 'success');
+      openAgendamentosModal(); // Refresh the list
+    }
+  }
 }
