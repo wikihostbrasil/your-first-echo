@@ -201,13 +201,34 @@ function ouvirLocucao(id) {
     showToast('Reproduzindo locução...', 'info');
 }
 
-function bloquearLocucao(id) {
-    showToast('Locução bloqueada', 'success');
+async function bloquearLocucao(id) {
+    try {
+        const response = await API.locucoes.toggleBlock(id);
+        if (response.status === 'success') {
+            showToast('Locução bloqueada/desbloqueada', 'success');
+        } else {
+            showToast(response.message || 'Erro ao bloquear locução', 'error');
+        }
+    } catch (error) {
+        console.error('Erro ao bloquear locução:', error);
+        showToast('Erro ao bloquear locução', 'error');
+    }
 }
 
-function excluirLocucao(id) {
-    showConfirmModal('Excluir Locução', 'Deseja realmente excluir esta locução?', () => {
-        showToast('Locução excluída com sucesso', 'success');
+async function excluirLocucao(id) {
+    showConfirmModal('Excluir Locução', 'Deseja realmente excluir esta locução?', async () => {
+        try {
+            const response = await API.locucoes.delete(id);
+            if (response.status === 'success') {
+                showToast('Locução excluída com sucesso', 'success');
+                // Reload list if needed
+            } else {
+                showToast(response.message || 'Erro ao excluir locução', 'error');
+            }
+        } catch (error) {
+            console.error('Erro ao excluir locução:', error);
+            showToast('Erro ao excluir locução', 'error');
+        }
     });
 }
 
@@ -232,9 +253,10 @@ function closeSugestaoVeiculosModal() {
     }
 }
 
-function enviarSugestaoVeiculos() {
+async function enviarSugestaoVeiculos() {
     const tipo = document.getElementById('sugestaoVeiculosTipo').value;
     const texto = document.getElementById('sugestaoVeiculosTexto').value.trim();
+    const email = document.getElementById('sugestaoVeiculosEmail').value.trim();
     
     if (!tipo) {
         showToast('Por favor, selecione o tipo de sugestão.', 'error');
@@ -246,15 +268,29 @@ function enviarSugestaoVeiculos() {
         return;
     }
     
-    // Simulate sending
-    showToast('Enviando sugestão...', 'info');
-    
-    setTimeout(() => {
-        closeSugestaoVeiculosModal();
-        setTimeout(() => {
-            showSucessoModal('Sugestão Enviada!', 'Sua sugestão foi enviada com sucesso! Agradecemos seu feedback.');
-        }, 300);
-    }, 1000);
+    try {
+        showToast('Enviando sugestão...', 'info');
+        
+        const sugestaoData = {
+            tipo: tipo,
+            texto: texto,
+            email: email || null
+        };
+        
+        const response = await API.veiculos.createSugestao(sugestaoData);
+        
+        if (response.status === 'success') {
+            closeSugestaoVeiculosModal();
+            setTimeout(() => {
+                showSucessoModal('Sugestão Enviada!', 'Sua sugestão foi enviada com sucesso! Agradecemos seu feedback.');
+            }, 300);
+        } else {
+            showToast(response.message || 'Erro ao enviar sugestão', 'error');
+        }
+    } catch (error) {
+        console.error('Erro ao enviar sugestão:', error);
+        showToast('Erro ao enviar sugestão. Tente novamente.', 'error');
+    }
 }
 
 // Handle Sugestões Drawer Submit

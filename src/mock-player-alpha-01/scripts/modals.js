@@ -282,7 +282,7 @@ function toggleIndeterminateUpload() {
     }
 }
 
-function saveUpload() {
+async function saveUpload() {
     const radioInput = document.getElementById('uploadRadio');
     const nameInput = document.getElementById('uploadName');
     const categorySelect = document.getElementById('uploadCategory');
@@ -335,40 +335,54 @@ function saveUpload() {
         return;
     }
     
-    // Convert date format to DD/MM/YYYY
-    const [yearStart, monthStart, dayStart] = startInput.value.split('-');
-    const startFormatted = `${dayStart}/${monthStart}/${yearStart}`;
-    
-    let endFormatted = 'Indeterminado';
-    if (!indeterminateCheckbox.checked) {
-        const [yearEnd, monthEnd, dayEnd] = endInput.value.split('-');
-        endFormatted = `${dayEnd}/${monthEnd}/${yearEnd}`;
+    try {
+        // Convert date format to DD/MM/YYYY
+        const [yearStart, monthStart, dayStart] = startInput.value.split('-');
+        const startFormatted = `${dayStart}/${monthStart}/${yearStart}`;
+        
+        let endFormatted = 'Indeterminado';
+        if (!indeterminateCheckbox.checked) {
+            const [yearEnd, monthEnd, dayEnd] = endInput.value.split('-');
+            endFormatted = `${dayEnd}/${monthEnd}/${yearEnd}`;
+        }
+        
+        const category = categorySelect.value;
+        const audioName = nameInput.value.trim() || file.name.replace('.mp3', '');
+        
+        // Send to API
+        const uploadData = {
+            nome_arquivo: audioName,
+            arquivo_url: `/uploads/${file.name}`,
+            tipo_mime: file.type,
+            tamanho: file.size
+        };
+        
+        const response = await API.uploads.create(uploadData);
+        
+        if (response.status === 'success') {
+            if (!filesData[category]) {
+                filesData[category] = [];
+            }
+            
+            filesData[category].push({
+                name: audioName,
+                start: startFormatted,
+                end: endFormatted
+            });
+            
+            showToast(`✓ Anúncio "${audioName}" enviado com sucesso!`, 'success');
+            closeUploadModal();
+            
+            setTimeout(() => {
+                showSucessoModal('Upload Concluído!', 'Seu anúncio foi enviado com sucesso e será processado em breve.');
+            }, 300);
+        } else {
+            showToast(response.message || 'Erro ao fazer upload', 'error');
+        }
+    } catch (error) {
+        console.error('Erro ao fazer upload:', error);
+        showToast('Erro ao fazer upload. Tente novamente.', 'error');
     }
-    
-    // Add to data (in real app, this would be an API call)
-    const category = categorySelect.value;
-    const audioName = nameInput.value.trim() || file.name.replace('.mp3', '');
-    
-    if (!filesData[category]) {
-        filesData[category] = [];
-    }
-    
-    filesData[category].push({
-        name: audioName,
-        start: startFormatted,
-        end: endFormatted
-    });
-    
-    // Show success message
-    showToast(`✓ Anúncio "${audioName}" enviado com sucesso!`, 'success');
-    
-    // Close modal
-    closeUploadModal();
-    
-    // Show success modal after closing upload modal
-    setTimeout(() => {
-        showSucessoModal('Upload Concluído!', 'Seu anúncio foi enviado com sucesso e será processado em breve.');
-    }, 300);
 }
 
 // ===== MODAL DE SUGESTÃO =====
@@ -389,7 +403,7 @@ function closeSugestaoModal() {
   document.getElementById('sugestaoObservacoes').value = '';
 }
 
-function saveSugestao() {
+async function saveSugestao() {
   const radio = document.getElementById('sugestaoRadio').value.trim();
   const tipo = document.getElementById('sugestaoTipo').value;
   const texto = document.getElementById('sugestaoTexto').value.trim();
@@ -410,22 +424,29 @@ function saveSugestao() {
     return;
   }
 
-  // Simular salvamento
-  console.log('Sugestão salva:', {
-    radio,
-    nome: document.getElementById('sugestaoNome').value.trim(),
-    tipo,
-    texto,
-    observacoes: document.getElementById('sugestaoObservacoes').value.trim()
-  });
-
-  showToast('✓ Sugestão enviada com sucesso!', 'success');
-  closeSugestaoModal();
-  
-  // Show success modal after closing sugestao modal
-  setTimeout(() => {
-      showSucessoModal('Sugestão Enviada!', 'Sua sugestão foi enviada com sucesso! Agradecemos seu feedback.');
-  }, 300);
+  try {
+    // Send to API
+    const sugestaoData = {
+      texto: `[${radio}] ${texto}`,
+      tipo: tipo
+    };
+    
+    const response = await API.sugestoes.create(sugestaoData);
+    
+    if (response.status === 'success') {
+      showToast('✓ Sugestão enviada com sucesso!', 'success');
+      closeSugestaoModal();
+      
+      setTimeout(() => {
+        showSucessoModal('Sugestão Enviada!', 'Sua sugestão foi enviada com sucesso! Agradecemos seu feedback.');
+      }, 300);
+    } else {
+      showToast(response.message || 'Erro ao enviar sugestão', 'error');
+    }
+  } catch (error) {
+    console.error('Erro ao enviar sugestão:', error);
+    showToast('Erro ao enviar sugestão. Tente novamente.', 'error');
+  }
 }
 
 // ===== MODAL DE DADOS CADASTRAIS =====

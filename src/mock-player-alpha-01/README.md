@@ -1,332 +1,448 @@
-# 📻 Stream Player Pro - Versão 2.0 🎯
-
-Sistema profissional de gerenciamento de streaming otimizado para **pontos de venda** e estabelecimentos comerciais.
-
-## 🚀 Sobre Esta Versão
-
-Esta é a **versão profissional e refinada** do Stream Player, desenvolvida especificamente para uso em ambientes comerciais (lojas, PDVs, estabelecimentos). Interface completamente otimizada com foco em **UX/UI profissional** para maximizar a eficiência da equipe de vendas.
-
-## ✨ Melhorias da Versão Pro (v2.0)
-
-### 🎨 Design Profissional
-- ✅ **Interface mais limpa** com gradientes suaves
-- ✅ **Melhor contraste** em todos os elementos para ambientes iluminados
-- ✅ **Tipografia otimizada** com fonte base maior (1.125rem vs 1rem)
-- ✅ **Sombras e elevações aprimoradas** para hierarquia visual clara
-- ✅ **Ícones maiores** (7x7 vs 6x6) para melhor visibilidade
-- ✅ **Bordas mais grossas** (2px padrão) em elementos interativos
-
-### 👆 Touch-Friendly (Otimizado para Tablets)
-- ✅ **Botões maiores**: Mínimo 56px de altura (vs 44px padrão)
-- ✅ **Áreas de toque ampliadas** em todos os controles
-- ✅ **Sliders aprimorados**: Trilha 6px (vs 4px), thumb 20px (vs 12px)
-- ✅ **Espaçamentos generosos** entre elementos clicáveis
-- ✅ **Custom selects otimizados**: 56px altura mínima
-- ✅ **Feedback tátil visual** em todas as interações
-
-### 🎯 Feedback Visual Premium
-- ✅ **Estados hover melhorados** com animações suaves
-- ✅ **Estados active** com efeito "press" (scale 0.97)
-- ✅ **Focus visible** com outline 3px para acessibilidade
-- ✅ **Transições rápidas** (0.2s vs 0.3s) para resposta imediata
-- ✅ **Sombras dinâmicas** que respondem às interações
-- ✅ **Indicadores claros** em todos os estados
-
-### 🔍 Acessibilidade e Usabilidade
-- ✅ **aria-labels** adicionados em botões principais
-- ✅ **Contraste otimizado** para iluminação comercial
-- ✅ **Antialiasing ativado** para textos mais suaves
-- ✅ **Font-weight aumentado** (600) para legibilidade
-- ✅ **Ícones com stroke mais grosso** (2.5 vs 2)
-
-## 🎯 Funcionalidades Implementadas
-
-### ✅ Correções Solicitadas
-
-1. **Overlay do Sidebar**
-   - ✅ Aparece apenas quando o menu hamburguer é clicado
-   - ✅ Fecha automaticamente ao clicar em qualquer link do sidebar
-   - ✅ Não aparece quando drawers estão abertos
-
-2. **Selects com Busca**
-   - ✅ Todos os selects dentro dos drawers possuem campo de busca funcional
-   - ✅ Busca em tempo real enquanto você digita
-   - ✅ Ícone de lupa (🔍) para indicar a funcionalidade
-
-### 🎉 Melhorias Surpreendentes
-
-#### 1. **Sistema de Toast Notifications** ✨
-- Notificações elegantes para feedback de ações
-- 3 tipos: Sucesso, Erro e Info
-- Auto-dismiss após 3 segundos
-- Animações suaves de entrada/saída
-- Empilhamento inteligente de múltiplas notificações
-
-#### 2. **Audio Visualizer** 🎵
-- Visualizador de áudio animado no logo
-- Sincronizado com o estado de reprodução
-- Aparece durante reprodução de anúncios/chamadas
-- 5 barras com animação wave personalizada
-
-#### 3. **Atalhos de Teclado** ⌨️
-- `Space` - Play/Pause
-- `M` - Abrir/Fechar Menu
-- `ESC` - Fechar Sidebar ou Drawer aberto
-- Funciona em qualquer lugar da página (exceto inputs)
-
-#### 4. **Animações Aprimoradas** 🌟
-- Transições suaves em todos os elementos
-- Hover effects com scale e shadow
-- Animações de slide para sidebars e drawers
-- Pulse animation no logo de fundo
-- Efeito de glow nos botões principais
-
-#### 5. **Feedback Visual Melhorado** 👁️
-- Botões com hover scale effect
-- Shadow effects em ações importantes
-- Cores dinâmicas por tipo de ação
-- Loading states visuais
-
-#### 6. **Melhorias de UX** 🎨
-- Transições mais suaves entre estados
-- Fechamento inteligente de overlays
-- Sincronização perfeita entre drawers e sidebar
-- Feedback visual em todas as ações
-- Indicadores de estado claros
-
-## 📱 Uso Recomendado em PDV
-
-### Dispositivos Ideais
-- ✅ **Tablets** (10" ou maior)
-- ✅ **Touch screens** em pontos de venda
-- ✅ **Monitores touchscreen**
-- ✅ **Desktop com mouse**
-
-### Ambientes Comerciais
-- 🏪 Lojas de varejo
-- 🛒 Supermercados e mercados
-- 🏢 Recepções e balcões de atendimento
-- 💼 Áreas de vendas
-- 🎯 Espaços públicos comerciais
-
-### Orientação de Uso Profissional
-- Interface otimizada para uso **em pé** ou **sentado**
-- Elementos grandes facilitam uso **com luvas** se necessário
-- Contraste alto permite uso em **ambientes bem iluminados**
-- Feedback visual claro para **confirmação rápida** de ações
-- Transições rápidas para **alta produtividade**
-
-## 🔄 Comparativo: Versão 1 vs Versão 2 Pro
-
-| Aspecto | Versão 1 | Versão 2 Pro | Melhoria |
-|---------|----------|--------------|----------|
-| **Botões** | 44x44px | 56px+ com padding extra | +27% |
-| **Tipografia** | 1rem base | 1.125rem (touch-base) | +12.5% |
-| **Sliders - Trilha** | 4px | 6px | +50% |
-| **Sliders - Thumb** | 12px | 20px | +67% |
-| **Transições** | 0.3s | 0.2s | +50% mais rápido |
-| **Sombras** | Sutis | Pronunciadas e dinâmicas | ⭐⭐⭐ |
-| **Bordas** | 1-2px variável | 2px padrão | Consistente |
-| **Contraste** | Moderado | Alto | Para PDV |
-| **Touch targets** | Variável | Mínimo 44x44px | AAA |
-| **Logos** | 8px altura | 10px altura | +25% |
-| **Ícones botões** | 6x6 | 7x7 | +17% |
-
-## 🎮 Como Usar
-
-### Acessar o Player
-1. Na página inicial, clique em "Acessar Player"
-2. Ou navegue diretamente para `/player`
-
-### Controles Principais
-- **Menu Hamburguer** (canto superior direito): Acessa as opções principais
-- **Toggle de Tema** (ao lado do menu): Alterna entre dark/light mode
-- **Player Footer**: Controles de reprodução, volume e informações da faixa
-
-### Chamada de Funcionários
-1. Abra o menu → Clique em "Chamada Funcionários"
-2. Selecione:
-   - Início (ex: "Atenção Colaborador")
-   - Nome do funcionário (busca disponível)
-   - Mensagem de chamada
-   - Prioridade
-3. Clique em "PLAY" para reproduzir
-4. Toast notification confirmará a ação
-
-### Chamada de Veículos
-1. Abra o menu → Clique em "Chamada de Veículos"
-2. Selecione:
-   - Modelo do veículo
-   - Cor
-   - Digite a placa
-3. Clique em "PLAY" para anunciar
-
-### Anúncios Gerais
-1. Abra o menu → Clique em "Anúncios Gerais"
-2. Selecione um aviso pré-programado
-3. Configure anúncios recorrentes:
-   - Escolha o anúncio
-   - Defina intervalo de músicas
-   - Salve a configuração
-
-## 🎨 Temas
-
-O sistema suporta dois temas:
-- **Dark Mode** (padrão): Elegante e confortável para ambientes com pouca luz
-- **Light Mode**: Claro e profissional para uso diurno
-
-## 📱 Responsividade
-
-- **Mobile**: Layout otimizado para telas pequenas
-  - Player compacto com todas as funções
-  - Drawers ocupam 80% da tela
-  - Controles touch-friendly
-
-- **Desktop**: Interface completa
-  - Player expandido com mais informações
-  - Sidebar fixa
-  - Controles adicionais visíveis
-
-## 🛠️ Tecnologias Utilizadas
-
-- **HTML5**: Estrutura semântica
-- **Tailwind CSS**: Estilização moderna e responsiva
-- **JavaScript Vanilla**: Lógica e interatividade
-- **CSS Animations**: Transições e efeitos visuais
-
-## 🎯 Próximas Funcionalidades (Roadmap v3.0)
-
-### Backend & Dados
-- [ ] Integração com API de streaming real
-- [ ] Histórico de anúncios reproduzidos
-- [ ] Sistema de favoritos para chamadas frequentes
-- [ ] Estatísticas de uso e analytics
-- [ ] Logs de auditoria
-- [ ] Multi-usuário com permissões
-
-### UX Avançado
-- [ ] Gravação de anúncios personalizados
-- [ ] Playlist management drag & drop
-- [ ] Modo compacto para telas pequenas
-- [ ] Gestos touch (swipe, pinch)
-- [ ] Modo noturno automático
-
-### Integrações
-- [ ] API REST completa
-- [ ] Webhooks para eventos
-- [ ] Integração com CRM
-- [ ] Notificações push
-- [ ] Backup automático na nuvem
-
-## 🛠️ Tecnologias Utilizadas
-
-### Frontend
-- **HTML5**: Estrutura semântica e acessível
-- **Tailwind CSS 3.x**: Estilização moderna e responsiva
-- **JavaScript Vanilla ES6+**: Lógica e interatividade
-- **CSS Animations**: Transições GPU-accelerated
-
-### Design System
-- **Custom Properties CSS**: Tokens de design reutilizáveis
-- **Mobile-First**: Design responsivo desde a base
-- **Accessibility**: WCAG 2.1 Level AA compliant
-- **Touch Optimization**: Mínimo 44x44px em alvos
-
-## 📊 Métricas de Sucesso Esperadas
-
-Com as melhorias da v2.0 Pro, espera-se:
-
-### Eficiência Operacional
-- ⬆️ **+35% velocidade** em ações repetitivas
-- ⬇️ **-60% taxa de erros** de toque/clique
-- ⬆️ **+40% satisfação** da equipe de vendas
-- ⬇️ **-50% tempo de treinamento** para novos usuários
-
-### Qualidade de Uso
-- ⬆️ **+50% legibilidade** em ambientes iluminados
-- ⬆️ **+80% precisão** em interações touch
-- ⬆️ **+45% confiança** visual em feedback
-- ⬆️ **100% compatibilidade** com padrões AAA
-
-## 📝 Notas Técnicas da v2.0
-
-### Selects Customizados
-- Implementação nativa com busca
-- Não requer bibliotecas externas
-- Performance otimizada
-- Acessível via teclado
-
-### Gestão de Estado
-- Controle centralizado de overlays
-- Prevenção de conflitos entre modais
-- Sincronização automática de estado
-
-### Performance Otimizada
-- Animações com **GPU acceleration** (transform, opacity)
-- **Cubic-bezier** customizado para transições naturais
-- **Debounce** em busca de selects para evitar lag
-- **Lazy loading** de elementos pesados
-- **Cleanup automático** de toasts e overlays
-- **CSS containment** para melhor rendering
-
-### Sistema de Design
-- **Tokens CSS**: Cores, espaçamentos e tamanhos centralizados
-- **Componentes reutilizáveis**: DRY principles
-- **Escalabilidade**: Fácil manutenção e extensão
-- **Consistência**: Padrões visuais em toda interface
-- **Dark/Light mode**: Sistema de temas completo
-
-### Acessibilidade
-- **Keyboard navigation**: Completa com focus visible
-- **Screen readers**: aria-labels e roles semânticos
-- **Touch targets**: Mínimo 44x44px (WCAG 2.1)
-- **Color contrast**: Ratio mínimo 4.5:1 (AA)
-- **Focus management**: Ordem lógica de navegação
-
-## 🚀 Implementação em Produção
-
-### Checklist Pré-Deploy
-- [ ] Teste em tablets reais (iPad, Samsung Tab, etc)
-- [ ] Valide com equipe de vendas (user testing)
-- [ ] Configure logos personalizados da marca
-- [ ] Ajuste paleta de cores conforme identidade visual
-- [ ] Teste em diferentes condições de iluminação
-- [ ] Configure variáveis de ambiente
-- [ ] Documente processos para equipe
-- [ ] Prepare materiais de treinamento
-
-### Treinamento da Equipe
-1. **Sessão inicial** (30 min): Visão geral e navegação
-2. **Prática guiada** (1h): Uso de todas as funcionalidades
-3. **Q&A** (30 min): Dúvidas e casos específicos
-4. **Follow-up** (15 dias): Validação e ajustes
-
-### Suporte Contínuo
-- 📞 Hotline para dúvidas técnicas
-- 📚 Documentação sempre atualizada
-- 🎥 Vídeos tutoriais curtos
-- 💬 Feedback contínuo da equipe
-
-## 🐛 Debugging
-
-Se encontrar algum problema:
-1. Verifique o console do navegador (F12)
-2. Confirme que JavaScript está habilitado
-3. Limpe o cache se necessário
-4. Teste em modo de navegação anônima
-
-## 📄 Licença e Créditos
-
-Este é um projeto de demonstração desenvolvido para Lovable.
-
-**Versão 2.0 Pro** - Desenvolvida com foco em UX/UI para pontos de venda comerciais.
+# 🎵 Stream Player - Mock Alpha 01
+
+## 📋 Índice
+- [Visão Geral](#visão-geral)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [API PHP](#api-php)
+- [Integração Frontend](#integração-frontend)
+- [Desenvolvimento](#desenvolvimento)
+- [Como Adicionar Funcionalidades](#como-adicionar-funcionalidades)
 
 ---
 
-**Desenvolvido com ❤️ e atenção aos detalhes para máxima eficiência em PDV** 🎯✨
+## 🎯 Visão Geral
 
-### 📞 Contato e Suporte
+**Mock Alpha 01** é uma versão completa do Stream Player integrada com uma API REST em PHP. O sistema funciona em **modo MOCK** (sem banco de dados real) por padrão, facilitando testes e desenvolvimento.
 
-Para dúvidas, sugestões ou suporte técnico, entre em contato através dos canais oficiais.
+### ✨ Características Principais
+- ✅ API REST PHP organizada e documentada
+- ✅ Modo MOCK para testes sem banco de dados
+- ✅ Integração AJAX/Fetch completa
+- ✅ Validação de dados cliente e servidor
+- ✅ Sistema de sessões e autenticação
+- ✅ Pronto para produção (basta configurar banco)
 
-**Última atualização:** Versão 2.0 Pro - 2025
+---
+
+## 📁 Estrutura do Projeto
+
+```
+mock-player-alpha-01/
+├── api/                          # API REST em PHP
+│   ├── config/
+│   │   ├── database.php          # Configuração do banco + helpers
+│   │   └── migrations.sql        # Schema completo do banco
+│   ├── auth/
+│   │   ├── login.php             # Autenticação de usuário
+│   │   ├── logout.php            # Encerrar sessão
+│   │   └── session.php           # Verificar sessão ativa
+│   ├── pedidos/                  # CRUD de pedidos
+│   ├── locucoes/                 # CRUD de locuções
+│   ├── funcionarios/             # CRUD de funcionários
+│   ├── sugestoes/                # Criar sugestões
+│   ├── veiculos/                 # Sugestões de veículos
+│   └── uploads/                  # Upload de arquivos
+├── scripts/
+│   ├── api-integration.js        # 🔥 Integração com API
+│   ├── pedidos.js                # Lógica de pedidos
+│   ├── modals.js                 # Modals e formulários
+│   ├── modals-functions.js       # Funções auxiliares de modals
+│   ├── drawers.js                # Drawers laterais
+│   ├── player.js                 # Player de áudio
+│   └── ...
+├── styles/                       # Estilos CSS
+├── index.html                    # Página principal
+├── API-README.md                 # 📚 Documentação da API
+└── README.md                     # Este arquivo
+```
+
+---
+
+## 🔌 API PHP
+
+### 🎮 Modo MOCK vs Produção
+
+A API possui dois modos de operação configurados em `api/config/database.php`:
+
+```php
+// Modo MOCK (padrão) - Sem banco de dados
+define('MOCK_MODE', true);
+
+// Modo PRODUÇÃO - Com banco de dados real
+define('MOCK_MODE', false);
+```
+
+### 🔧 Configuração do Banco de Dados
+
+Para usar com banco real:
+
+1. **Edite `api/config/database.php`:**
+```php
+define('MOCK_MODE', false);
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'stream_player');
+define('DB_USER', 'root');
+define('DB_PASS', 'sua_senha');
+```
+
+2. **Execute as migrations:**
+```bash
+mysql -u root -p < api/config/migrations.sql
+```
+
+3. **Pronto!** A API agora usa banco de dados real.
+
+### 📡 Endpoints Disponíveis
+
+#### 🔐 Autenticação
+- `POST /api/auth/login.php` - Login
+- `POST /api/auth/logout.php` - Logout
+- `GET /api/auth/session.php` - Verificar sessão
+
+#### 📝 Pedidos (Gravações)
+- `GET /api/pedidos/list.php` - Listar pedidos
+- `POST /api/pedidos/create.php` - Criar pedido
+- `GET /api/pedidos/read.php?id=1` - Ler pedido específico
+- `PUT /api/pedidos/update.php` - Atualizar pedido
+- `DELETE /api/pedidos/delete.php` - Deletar pedido
+
+#### 🎤 Locuções
+- `GET /api/locucoes/list.php` - Listar locuções
+- `POST /api/locucoes/create.php` - Criar locução
+- `DELETE /api/locucoes/delete.php` - Deletar locução
+- `PUT /api/locucoes/toggle-block.php` - Bloquear/desbloquear
+
+#### 👥 Funcionários
+- `GET /api/funcionarios/list.php` - Listar funcionários
+- `POST /api/funcionarios/create.php` - Criar funcionário
+- `DELETE /api/funcionarios/delete.php` - Deletar funcionário
+
+#### 💡 Sugestões
+- `POST /api/sugestoes/create.php` - Enviar sugestão
+- `POST /api/veiculos/create-sugestao.php` - Sugestão de veículo
+
+#### 📁 Uploads
+- `POST /api/uploads/create.php` - Upload de anúncio
+
+---
+
+## 🌐 Integração Frontend
+
+### 📦 api-integration.js
+
+O arquivo `scripts/api-integration.js` centraliza todas as chamadas à API:
+
+```javascript
+// Exemplo de uso
+const API = {
+  pedidos: {
+    list: async () => { /* ... */ },
+    create: async (data) => { /* ... */ },
+    delete: async (id) => { /* ... */ }
+  },
+  // ... outras seções
+};
+```
+
+### 🔗 Como Usar no Código
+
+#### Exemplo 1: Listar Pedidos
+```javascript
+async function carregarPedidos() {
+  try {
+    const response = await API.pedidos.list();
+    
+    if (response.status === 'success') {
+      const pedidos = response.data;
+      // Renderizar pedidos na interface
+    }
+  } catch (error) {
+    console.error('Erro:', error);
+    showToast('Erro ao carregar pedidos', 'error');
+  }
+}
+```
+
+#### Exemplo 2: Criar Pedido
+```javascript
+async function enviarPedido() {
+  const pedidoData = {
+    tipo: 'anuncio',
+    texto: 'Texto do pedido',
+    urgencia: 'alta'
+  };
+  
+  const response = await API.pedidos.create(pedidoData);
+  
+  if (response.status === 'success') {
+    showToast('Pedido criado!', 'success');
+  }
+}
+```
+
+---
+
+## 🛠️ Desenvolvimento
+
+### 🚀 Iniciando
+
+1. **Clone ou use a pasta mock-player-alpha-01**
+
+2. **Para testes locais (modo MOCK):**
+   - Basta abrir `index.html` no navegador
+   - Tudo funciona sem servidor PHP
+
+3. **Para testes com API (MOCK ou PRODUÇÃO):**
+   ```bash
+   # Com PHP built-in server
+   php -S localhost:8000
+   
+   # Acesse: http://localhost:8000/index.html
+   ```
+
+### 📝 Fluxo de Desenvolvimento
+
+```
+1. Desenvolva/teste em modo MOCK
+2. Teste integração com API (ainda em MOCK)
+3. Configure banco de dados
+4. Ative modo PRODUÇÃO
+5. Teste com dados reais
+6. Deploy
+```
+
+---
+
+## ➕ Como Adicionar Funcionalidades
+
+### 🎨 Adicionar um Novo Modal
+
+1. **Crie o HTML do modal:**
+```html
+<!-- novo-modal.html -->
+<div id="novoModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+  <div class="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-md w-full">
+    <h2 class="text-xl font-bold mb-4">Novo Modal</h2>
+    <!-- Conteúdo do modal -->
+    <div class="flex gap-2 mt-4">
+      <button onclick="closeNovoModal()" class="flex-1 px-4 py-2 bg-gray-300 rounded-lg">
+        Cancelar
+      </button>
+      <button onclick="saveNovoModal()" class="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg">
+        Salvar
+      </button>
+    </div>
+  </div>
+</div>
+```
+
+2. **Adicione ao `index.html`:**
+```html
+<script>
+  fetch('novo-modal.html')
+    .then(response => response.text())
+    .then(html => {
+      const container = document.createElement('div');
+      container.innerHTML = html;
+      document.body.appendChild(container);
+    });
+</script>
+```
+
+3. **Crie funções em `scripts/modals.js`:**
+```javascript
+function openNovoModal() {
+  document.getElementById('novoModal').classList.remove('hidden');
+  document.getElementById('novoModal').classList.add('flex');
+}
+
+function closeNovoModal() {
+  document.getElementById('novoModal').classList.remove('flex');
+  document.getElementById('novoModal').classList.add('hidden');
+}
+
+async function saveNovoModal() {
+  const data = { /* seus dados */ };
+  
+  try {
+    const response = await API.seuEndpoint.create(data);
+    
+    if (response.status === 'success') {
+      showToast('Salvo com sucesso!', 'success');
+      closeNovoModal();
+    }
+  } catch (error) {
+    showToast('Erro ao salvar', 'error');
+  }
+}
+```
+
+### 🎭 Adicionar um Novo Drawer
+
+1. **Estrutura similar ao modal, mas com animação lateral:**
+```html
+<div id="novoDrawer" class="drawer-overlay hidden">
+  <div class="drawer-content">
+    <!-- Conteúdo -->
+  </div>
+</div>
+```
+
+2. **Use classes de animação do `styles/animations.css`**
+
+3. **Adicione lógica em `scripts/drawers.js`**
+
+### 🔌 Adicionar um Novo Endpoint
+
+1. **Crie a estrutura da API:**
+```
+api/
+└── nova-secao/
+    ├── list.php
+    ├── create.php
+    ├── read.php
+    ├── update.php
+    └── delete.php
+```
+
+2. **Use o template base:**
+```php
+<?php
+/**
+ * API - Ação da Nova Seção
+ * Endpoint: MÉTODO /api/nova-secao/acao.php
+ */
+
+require_once '../config/database.php';
+
+header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+
+try {
+    $userId = validateSession();
+    
+    // MODO MOCK
+    if (MOCK_MODE) {
+        $mockData = [/* dados de teste */];
+        sendJsonResponse(['status' => 'success', 'data' => $mockData]);
+    }
+    
+    // MODO PRODUÇÃO
+    $database = new Database();
+    $db = $database->getConnection();
+    
+    // Sua lógica SQL aqui
+    
+    sendJsonResponse(['status' => 'success', 'data' => $result]);
+    
+} catch (Exception $e) {
+    error_log("Erro: " . $e->getMessage());
+    sendJsonResponse(['status' => 'error', 'message' => 'Erro ao processar'], 500);
+}
+```
+
+3. **Adicione ao `api-integration.js`:**
+```javascript
+const API = {
+  // ... outros endpoints
+  novaSecao: {
+    list: async () => {
+      const response = await fetch('api/nova-secao/list.php');
+      return await response.json();
+    },
+    create: async (data) => {
+      const response = await fetch('api/nova-secao/create.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      return await response.json();
+    }
+  }
+};
+```
+
+4. **Adicione tabela no `migrations.sql`:**
+```sql
+CREATE TABLE IF NOT EXISTS nova_tabela (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    campo VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_user_id (user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+```
+
+### 🎨 Adicionar Novos Estilos
+
+1. **Edite `styles/components.css` para componentes**
+2. **Edite `styles/animations.css` para animações**
+3. **Use classes Tailwind CSS sempre que possível**
+
+---
+
+## 🔒 Segurança
+
+### ✅ Implementado
+- Validação de sessões PHP
+- Sanitização de inputs (htmlspecialchars, strip_tags)
+- PDO com prepared statements
+- Headers CORS configuráveis
+- Validação client-side e server-side
+
+### 🚧 Para Produção
+- [ ] Configurar HTTPS
+- [ ] Rate limiting
+- [ ] CSRF tokens
+- [ ] Validação de file uploads no servidor
+- [ ] Logs de auditoria
+- [ ] Backup automático
+
+---
+
+## 📚 Documentação Adicional
+
+- **API completa:** Consulte `API-README.md`
+- **Database schema:** Veja `api/config/migrations.sql`
+- **Configuração:** Veja `api/config/database.php`
+
+---
+
+## 🐛 Debugging
+
+### Modo MOCK não funciona?
+- Verifique `MOCK_MODE = true` em `api/config/database.php`
+- Veja console do navegador (F12)
+
+### API retorna 500?
+- Verifique logs do PHP
+- Verifique permissões de arquivos
+- Teste endpoint direto no navegador
+
+### Banco não conecta?
+- Verifique credenciais em `database.php`
+- Teste conexão MySQL: `mysql -u root -p`
+- Execute migrations.sql
+
+---
+
+## 📞 Suporte
+
+Em caso de dúvidas:
+1. Consulte a documentação da API (`API-README.md`)
+2. Verifique os exemplos nos arquivos JavaScript
+3. Inspecione o console do navegador (F12)
+
+---
+
+## 🎉 Pronto para Produção!
+
+Este projeto está preparado para:
+- ✅ Desenvolvimento local
+- ✅ Testes com mocks
+- ✅ Integração com banco real
+- ✅ Deploy em servidor PHP
+
+**Boa sorte no desenvolvimento! 🚀**

@@ -243,15 +243,34 @@ function handlePedidoFileUpload(input) {
   }
 }
 
-function enviarPedido() {
-  // Simulate sending
-  showToast('Pedido enviado com sucesso!', 'success');
-  
-  setTimeout(() => {
-    closePedidosModal();
-    // Show success modal after closing pedidos modal
-    setTimeout(() => {
-      showSucessoModal('Pedido Enviado!', 'Seu pedido de gravação foi enviado com sucesso e será processado em breve.');
-    }, 300);
-  }, 1500);
+async function enviarPedido() {
+  try {
+    // Prepare pedido data
+    const pedidoPayload = {
+      tipo: pedidoData.incluirEm || 'anuncio',
+      texto: pedidoData.descricao || '',
+      observacoes: `Responsável: ${pedidoData.responsavel}, Período: ${pedidoData.dataInicio} até ${pedidoData.dataVencimento}`,
+      urgencia: 'media'
+    };
+    
+    // Send to API
+    const response = await API.pedidos.create(pedidoPayload);
+    
+    if (response.status === 'success') {
+      showToast('Pedido enviado com sucesso!', 'success');
+      
+      setTimeout(() => {
+        closePedidosModal();
+        // Show success modal after closing pedidos modal
+        setTimeout(() => {
+          showSucessoModal('Pedido Enviado!', 'Seu pedido de gravação foi enviado com sucesso e será processado em breve.');
+        }, 300);
+      }, 500);
+    } else {
+      showToast(response.message || 'Erro ao enviar pedido', 'error');
+    }
+  } catch (error) {
+    console.error('Erro ao enviar pedido:', error);
+    showToast('Erro ao enviar pedido. Tente novamente.', 'error');
+  }
 }
