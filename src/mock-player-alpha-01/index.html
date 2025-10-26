@@ -647,104 +647,219 @@
     <!-- End Main Content Wrapper -->
 
     <!-- Drawers -->
-    <div id="drawerFuncionarios" class="fixed bottom-0 left-0 right-0 z-[46] bg-white dark:bg-gray-800 shadow-2xl transform translate-y-full transition-transform duration-300 flex flex-col" style="max-height: 85vh;">
-        <div class="bg-blue-600 dark:bg-blue-700 p-4 flex items-center justify-between flex-shrink-0">
-            <div class="flex items-center space-x-2">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                </svg>
-                <h3 class="text-xl font-bold text-white">CHAMADA FUNCIONÁRIOS</h3>
-            </div>
-            <button onclick="closeDrawer('funcionarios')" class="text-white hover:bg-white/20 rounded-full p-2 transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
+    <div
+    id="drawerFuncionarios"
+    class="fixed bottom-0 left-0 right-0 z-[46] bg-white dark:bg-gray-800 shadow-2xl transform translate-y-full transition-transform duration-300 flex flex-col"
+    style="max-height: 85vh;"
+    >
+    <!-- Cabeçalho -->
+    <div class="bg-blue-600 dark:bg-blue-700 p-4 flex items-center justify-between flex-shrink-0">
+        <div class="flex items-center space-x-2">
+        <svg
+            class="w-6 h-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+            ></path>
+        </svg>
+        <h3 class="text-xl font-bold text-white">CHAMADA FUNCIONÁRIOS</h3>
         </div>
-        <div class="p-6 overflow-y-auto flex-1">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Início:</label>
-                    <div class="custom-select" data-name="inicio">
-                        <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
-                        <div class="custom-select-dropdown">
-                        <div class="custom-select-search">
-                            <input type="text" placeholder="Buscar..." class="custom-select-search-input">
-                        </div>
-                            <div class="custom-select-options text-gray-900 dark:text-white">
-                                <div class="custom-select-option" data-value="atencao">Atenção Colaborador</div>
-                                <div class="custom-select-option" data-value="urgente">Urgente</div>
-                                <div class="custom-select-option" data-value="aviso">Aviso</div>
-                            </div>
-                        </div>
-                    </div>
+
+        <button
+        onclick="closeDrawer('funcionarios')"
+        class="text-white hover:bg-white/20 rounded-full p-2 transition-colors"
+        >
+        <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+            ></path>
+        </svg>
+        </button>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="p-6 overflow-y-auto flex-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+        <!-- Início -->
+        <div>
+            <label
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >Início:</label
+            >
+            <div class="custom-select" data-name="inicio">
+            <div class="custom-select-trigger text-gray-900 dark:text-white">
+                Selecione...
+            </div>
+            <div class="custom-select-dropdown">
+                <div class="custom-select-search">
+                <input
+                    type="text"
+                    placeholder="Buscar..."
+                    class="custom-select-search-input"
+                />
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nome:</label>
-                    <div class="custom-select" data-name="nome">
-                        <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
-                        <div class="custom-select-dropdown">
-                        <div class="custom-select-search">
-                            <input type="text" placeholder="Buscar nome..." class="custom-select-search-input">
-                        </div>
-                            <div class="custom-select-options text-gray-900 dark:text-white">
-                                <div class="custom-select-option" data-value="teste01">Teste 01</div>
-                                <div class="custom-select-option" data-value="joao">João Silva</div>
-                                <div class="custom-select-option" data-value="maria">Maria Santos</div>
-                                <div class="custom-select-option" data-value="pedro">Pedro Oliveira</div>
-                                <div class="custom-select-option" data-value="ana">Ana Costa</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="custom-select-options text-gray-900 dark:text-white">
+                <div class="custom-select-option" data-value="atencao">
+                    Atenção Colaborador
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Chamada:</label>
-                    <div class="custom-select" data-name="chamada">
-                        <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
-                        <div class="custom-select-dropdown">
-                        <div class="custom-select-search">
-                            <input type="text" placeholder="Buscar chamada..." class="custom-select-search-input">
-                        </div>
-                            <div class="custom-select-options text-gray-900 dark:text-white">
-                                <div class="custom-select-option" data-value="atendimento">Favor comparecer à área de atendimento ao cliente</div>
-                                <div class="custom-select-option" data-value="recepcao">Dirija-se à recepção</div>
-                                <div class="custom-select-option" data-value="rh">Compareça ao setor de RH</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="custom-select-option" data-value="urgente">
+                    Urgente
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Prioridade:</label>
-                    <div class="custom-select" data-name="prioridade">
-                        <div class="custom-select-trigger text-gray-900 dark:text-white">Selecione...</div>
-                        <div class="custom-select-dropdown">
-                        <div class="custom-select-search">
-                            <input type="text" placeholder="Buscar..." class="custom-select-search-input">
-                        </div>
-                            <div class="custom-select-options text-gray-900 dark:text-white">
-                                <div class="custom-select-option" data-value="normal">Normal</div>
-                                <div class="custom-select-option" data-value="alta">Alta</div>
-                                <div class="custom-select-option" data-value="urgente">Urgente</div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
+                <div class="custom-select-option" data-value="aviso">Aviso</div>
                 </div>
             </div>
-            <div class="flex flex-wrap gap-3">
-                <button onclick="playFuncionarios()" class="px-6 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform hover:scale-105 hover:shadow-lg">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                    <span>PLAY</span>
-                </button>
-                <button onclick="openModalFuncionarios()" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 flex items-center space-x-2 transform hover:scale-105">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    <span>Adicionar Nomes e Chamadas</span>
-                </button>
             </div>
+        </div>
+
+        <!-- Nome -->
+        <div>
+            <label
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >Nome:</label
+            >
+            <div class="custom-select" data-name="nome">
+            <div class="custom-select-trigger text-gray-900 dark:text-white">
+                Selecione...
+            </div>
+            <div class="custom-select-dropdown">
+                <div class="custom-select-search">
+                <input
+                    type="text"
+                    placeholder="Buscar nome..."
+                    class="custom-select-search-input"
+                />
+                </div>
+                <div class="custom-select-options text-gray-900 dark:text-white">
+                <div class="custom-select-option" data-value="teste01">
+                    Teste 01
+                </div>
+                <div class="custom-select-option" data-value="joao">
+                    João Silva
+                </div>
+                <div class="custom-select-option" data-value="maria">
+                    Maria Santos
+                </div>
+                <div class="custom-select-option" data-value="pedro">
+                    Pedro Oliveira
+                </div>
+                <div class="custom-select-option" data-value="ana">Ana Costa</div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Chamada -->
+        <div>
+            <label
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >Chamada:</label
+            >
+            <div class="custom-select" data-name="chamada">
+            <div class="custom-select-trigger text-gray-900 dark:text-white">
+                Selecione...
+            </div>
+            <div class="custom-select-dropdown">
+                <div class="custom-select-search">
+                <input
+                    type="text"
+                    placeholder="Buscar chamada..."
+                    class="custom-select-search-input"
+                />
+                </div>
+                <div class="custom-select-options text-gray-900 dark:text-white">
+                <div class="custom-select-option" data-value="atendimento">
+                    Favor comparecer à área de atendimento ao cliente
+                </div>
+                <div class="custom-select-option" data-value="recepcao">
+                    Dirija-se à recepção
+                </div>
+                <div class="custom-select-option" data-value="rh">
+                    Compareça ao setor de RH
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Prioridade -->
+        <div>
+            <label
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >Prioridade:</label
+            >
+            <div class="custom-select" data-name="prioridade">
+            <div class="custom-select-trigger text-gray-900 dark:text-white">
+                Selecione...
+            </div>
+            <div class="custom-select-dropdown">
+                <div class="custom-select-search">
+                <input
+                    type="text"
+                    placeholder="Buscar..."
+                    class="custom-select-search-input"
+                />
+                </div>
+                <div class="custom-select-options text-gray-900 dark:text-white">
+                <div class="custom-select-option" data-value="normal">Normal</div>
+                <div class="custom-select-option" data-value="alta">Alta</div>
+                <div class="custom-select-option" data-value="urgente">
+                    Urgente
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Botões -->
+        <div class="flex flex-wrap gap-3">
+        <button
+            onclick="playFuncionarios()"
+            class="px-6 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform hover:scale-105 hover:shadow-lg"
+        >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"></path>
+            </svg>
+            <span>PLAY</span>
+        </button>
+
+        <button
+            onclick="openModalFuncionarios()"
+            class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 flex items-center space-x-2 transform hover:scale-105"
+        >
+            <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+            ></path>
+            </svg>
+            <span>Adicionar Nomes e Chamadas</span>
+        </button>
         </div>
     </div>
+    </div>
+
 
     <div id="drawerVeiculos" class="fixed bottom-0 left-0 right-0 z-[46] bg-white dark:bg-gray-800 shadow-2xl transform translate-y-full transition-transform duration-300 flex flex-col" style="max-height: 85vh;">
         <div class="bg-green-600 dark:bg-green-700 p-4 flex items-center justify-between flex-shrink-0">
