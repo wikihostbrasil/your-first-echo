@@ -78,10 +78,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (drawerOverlay) {
         drawerOverlay.addEventListener('click', (e) => {
-            // Only close if clicked directly on overlay
+            // Only close if clicked directly on overlay (not on any child elements)
             if (e.target === drawerOverlay && currentDrawer) {
                 closeDrawer(currentDrawer);
             }
         });
     }
+    
+    // Prevent drawer content clicks from closing the drawer
+    document.querySelectorAll('[id^="drawer"]').forEach(drawer => {
+        drawer.addEventListener('click', (e) => {
+            // Stop propagation to prevent overlay click handler
+            e.stopPropagation();
+        });
+    });
 });

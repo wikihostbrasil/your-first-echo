@@ -180,6 +180,123 @@ function switchFuncionarioTab(tabName) {
     }
 }
 
+// Gerenciar Nomes de Funcionários
+async function adicionarNomeFuncionario() {
+    const input = document.getElementById('inputNovoNome');
+    const nome = input.value.trim();
+    
+    if (!nome) {
+        showToast('Por favor, digite um nome', 'error');
+        return;
+    }
+    
+    try {
+        // Integração com API
+        const response = await API.funcionarios.create({ nome, tipo: 'nome' });
+        
+        const lista = document.getElementById('listaNomesFuncionarios');
+        const novoItem = document.createElement('div');
+        novoItem.className = 'flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg';
+        novoItem.dataset.id = response.data.id;
+        novoItem.innerHTML = `
+            <span class="font-medium text-gray-800 dark:text-gray-200">${nome}</span>
+            <button onclick="removerNomeFuncionario(this)" class="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                </svg>
+            </button>
+        `;
+        
+        lista.appendChild(novoItem);
+        input.value = '';
+        showToast('Nome adicionado com sucesso', 'success');
+    } catch (error) {
+        showToast('Erro ao adicionar nome', 'error');
+        console.error(error);
+    }
+}
+
+async function removerNomeFuncionario(btn) {
+    const item = btn.closest('div.flex');
+    if (!item) return;
+    
+    const id = item.dataset.id;
+    
+    try {
+        await API.funcionarios.delete(id);
+        item.remove();
+        showToast('Nome removido', 'success');
+    } catch (error) {
+        showToast('Erro ao remover nome', 'error');
+        console.error(error);
+    }
+}
+
+// Gerenciar Chamadas de Funcionários
+async function adicionarChamadaFuncionario() {
+    const input = document.getElementById('inputNovaChamada');
+    const chamada = input.value.trim();
+    
+    if (!chamada) {
+        showToast('Por favor, digite uma chamada', 'error');
+        return;
+    }
+    
+    try {
+        // Integração com API
+        const response = await API.funcionarios.create({ nome: chamada, tipo: 'chamada' });
+        
+        const lista = document.getElementById('listaChamadasFuncionarios');
+        const novoItem = document.createElement('div');
+        novoItem.className = 'flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg';
+        novoItem.dataset.id = response.data.id;
+        novoItem.innerHTML = `
+            <span class="font-medium text-gray-800 dark:text-gray-200">${chamada}</span>
+            <div class="flex gap-2">
+                <button onclick="playPreviewChamada(this)" class="px-3 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </button>
+                <button onclick="removerChamadaFuncionario(this)" class="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                    </svg>
+                </button>
+            </div>
+        `;
+        
+        lista.appendChild(novoItem);
+        input.value = '';
+        showToast('Chamada adicionada com sucesso', 'success');
+    } catch (error) {
+        showToast('Erro ao adicionar chamada', 'error');
+        console.error(error);
+    }
+}
+
+async function removerChamadaFuncionario(btn) {
+    const item = btn.closest('div.flex');
+    if (!item) return;
+    
+    const id = item.dataset.id;
+    
+    try {
+        await API.funcionarios.delete(id);
+        item.remove();
+        showToast('Chamada removida', 'success');
+    } catch (error) {
+        showToast('Erro ao remover chamada', 'error');
+        console.error(error);
+    }
+}
+
+function playPreviewChamada(btn) {
+    const item = btn.closest('div.flex');
+    const texto = item.querySelector('span').textContent;
+    showToast(`Reproduzindo: "${texto}"`, 'info');
+}
+
 // Modal Pasta Locuções
 function openPastaLocucoesModal() {
     const modal = document.getElementById('modalPastaLocucoes');
@@ -376,3 +493,16 @@ window.closeSugestaoVeiculosModal = closeSugestaoVeiculosModal;
 window.enviarSugestaoVeiculos = enviarSugestaoVeiculos;
 window.enviarSugestao = enviarSugestao;
 window.enviarUpload = enviarUpload;
+window.adicionarNomeFuncionario = adicionarNomeFuncionario;
+window.removerNomeFuncionario = removerNomeFuncionario;
+window.adicionarChamadaFuncionario = adicionarChamadaFuncionario;
+window.removerChamadaFuncionario = removerChamadaFuncionario;
+window.playPreviewChamada = playPreviewChamada;
+
+// Alias para compatibilidade
+window.openModalFuncionarios = openGerenciarFuncionariosModal;
+
+// Função auxiliar do drawer funcionários
+window.playFuncionarios = function() {
+    showToast('Reproduzindo chamada de funcionário...', 'info');
+};
